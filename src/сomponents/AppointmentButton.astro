@@ -1,0 +1,27 @@
+<button class="appointment-button">Записаться</button>
+
+<style>
+    .appointment-button {
+        display: inline-flex;
+        align-items: center;
+        padding: 12px 32px;
+        border: none;
+        border-radius: 50px;
+        background-color: var(--primary-color);
+        color: var(--secondary-color);
+        font-size: 24px;
+        line-height: 32px;
+        text-transform: uppercase;
+        cursor: pointer;
+
+        &:hover,
+        &:active {
+            background-color: var(--hover-color);
+        }
+
+        @media screen and (width < 768px) {
+            font-size: 18px;
+            line-height: 24px;
+        }
+    }
+</style>

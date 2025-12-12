@@ -1,0 +1,30 @@
+---
+import ContactLinks from "./ContactLinks.astro";
+---
+
+<footer class="footer container">
+    <ContactLinks />
+</footer>
+
+<style>
+    .footer {
+        display: flex;
+        align-items: center;
+        padding-block: 50px;
+        background-color: var(--accent-color);
+        color: var(--secondary-color);
+
+        @media screen and (width < 768px) {
+            padding-block: 24px;
+
+            .contact-links {
+                flex-direction: column;
+                gap: 24px;
+            }
+        }
+
+        &.container {
+            --container-width: 1592px;
+        }
+    }
+</style>

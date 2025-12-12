@@ -1,0 +1,87 @@
+---
+import Navigation from "./Navigation.astro";
+import AppointmentButton from "./AppointmentButton.astro";
+---
+
+<header class="header container">
+    <h1 class="title">
+        Илона Хоменко
+        <span>психолог онлайн</span>
+    </h1>
+
+    <AppointmentButton />
+
+    <Navigation />
+</header>
+
+<style>
+    .header {
+        z-index: 1;
+        position: sticky;
+        top: 0;
+        display: grid;
+        grid-template-columns: 1fr repeat(2, max-content);
+        gap: 24px;
+        align-items: center;
+        box-sizing: border-box;
+        height: var(--header-height, auto);
+        min-height: 150px;
+        padding-block: 36px;
+        background-color: var(--secondary-color);
+
+        @media screen and (width >= 1718px) {
+            .appointment-button {
+                order: 1;
+            }
+        }
+
+        @media screen and (1138px <= width < 1718px) {
+            grid-template-columns: 1fr max-content;
+
+            .menu {
+                grid-column: 1 / -1;
+                display: flex;
+                justify-content: center;
+                padding-top: 24px;
+                border-top: 2px solid #a393bf;
+            }
+        }
+
+        @media screen and (width < 1138px) {
+            --header-height: 150px;
+        }
+
+        @media screen and (width < 768px) {
+            --header-height: 94px;
+            min-height: auto;
+            padding-block: 24px;
+        }
+
+        &.container {
+            --container-width: 1776px;
+        }
+    }
+
+    .title {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: max-content;
+        margin: 0;
+        font-weight: 400;
+        font-size: 40px;
+        white-space: nowrap;
+
+        & span {
+            font-size: 22px;
+        }
+
+        @media screen and (width < 768px) {
+            font-size: 22px;
+
+            & span {
+                font-size: 16px;
+            }
+        }
+    }
+</style>

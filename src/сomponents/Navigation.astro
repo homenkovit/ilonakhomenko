@@ -1,0 +1,188 @@
+---
+const { pathname } = Astro.url;
+
+const navigationLinks = [
+    {
+        href: "/",
+        label: "Главная",
+    },
+    {
+        href: "/#help",
+        label: "С чем помогаю",
+    },
+    {
+        href: "/#price",
+        label: "Стоимость",
+    },
+    {
+        href: "/#faq",
+        label: "Вопросы",
+    },
+    {
+        href: "/about",
+        label: "Обо мне",
+    },
+    {
+        href: "/articles",
+        label: "Статьи",
+    },
+    {
+        href: "/tests",
+        label: "Тесты",
+    },
+    {
+        href: "/education",
+        label: "Образование",
+    },
+];
+---
+
+<button
+    type="button"
+    class="menu-button"
+    aria-label="Меню"
+    aria-expanded="false"
+    aria-controls="menu"
+>
+    Меню
+</button>
+<nav id="menu" class="menu closed" aria-label="Главное меню">
+    <ul class="nav-list">
+        {
+            navigationLinks.map((link) => (
+                <li class="nav-item">
+                    <a
+                        class="nav-link"
+                        href={link.href}
+                        aria-current={
+                            pathname === link.href ? "page" : undefined
+                        }
+                    >
+                        {link.label}
+                    </a>
+                </li>
+            ))
+        }
+    </ul>
+</nav>
+
+<style>
+    .menu-button {
+        padding: 0;
+        border: none;
+        margin: 0;
+        background-color: transparent;
+        cursor: pointer;
+        font-size: 24px;
+        line-height: 30px;
+        color: var(--primary-color);
+        text-transform: uppercase;
+
+        &:hover,
+        &:active,
+        &[aria-expanded="true"] {
+            color: var(--hover-color);
+        }
+
+        @media screen and (width >= 1138px) {
+            display: none;
+        }
+
+        @media screen and (width < 768px) {
+            font-size: 18px;
+            line-height: 24px;
+        }
+    }
+
+    .menu {
+        @media screen and (width < 1138px) {
+            position: absolute;
+            top: var(--header-height);
+            left: 0;
+            right: 0;
+            box-sizing: border-box;
+            max-height: calc(100vh - var(--header-height));
+            overflow-y: auto;
+            padding: 20px;
+            border-top: 2px solid #a393bf;
+            background-color: var(--secondary-color);
+
+            &.closed {
+                display: none;
+            }
+
+            .nav-list {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 20px;
+            }
+
+            .nav-item {
+                display: flex;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .nav-link {
+                box-sizing: border-box;
+                width: 100%;
+                max-width: 462px;
+                padding: 20px;
+                font-size: 22px;
+                line-height: 30px;
+                text-align: center;
+            }
+        }
+    }
+
+    .nav-list {
+        display: flex;
+        align-items: center;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .nav-link {
+        display: block;
+        padding: 8px 24px;
+        font-size: 18px;
+        line-height: 28px;
+        color: var(--primary-color);
+        white-space: nowrap;
+        text-decoration: none;
+
+        &:hover,
+        &:active {
+            color: var(--hover-color);
+        }
+
+        &:hover,
+        &:active,
+        &[aria-current="page"] {
+            text-decoration: underline;
+        }
+    }
+</style>
+
+<script>
+    const main = document.querySelector("main");
+    const footer = document.querySelector("footer");
+    const menuButton = document.querySelector(".menu-button");
+    const menu = document.querySelector(".menu");
+
+    menuButton?.addEventListener("click", () => {
+        const isMenuOpen = menuButton.getAttribute("aria-expanded") === "true";
+
+        menuButton.setAttribute("aria-expanded", isMenuOpen ? "false" : "true");
+        menu?.classList.toggle("closed");
+
+        if (isMenuOpen) {
+            main?.removeAttribute("inert");
+            footer?.removeAttribute("inert");
+        } else {
+            main?.setAttribute("inert", "");
+            footer?.setAttribute("inert", "");
+        }
+    });
+</script>

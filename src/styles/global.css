@@ -1,0 +1,41 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/inter-cyrillic-400-normal.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Inter';
+    src: url('/fonts/inter-cyrillic-600-normal.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+:root {
+    --primary-color: #0D0911;
+    --secondary-color: #FFFFFF;
+    --accent-color: #453750;
+    --hover-color: #8169AB;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    color: var(--primary-color);
+}
+
+a {
+    text-underline-position: under;
+}
+
+.container {
+    --container-width: 964px;
+    padding-inline: max(32px, calc(50% - var(--container-width) / 2));
+
+    @media screen and (width < 768px) {
+        padding-inline: 24px;
+    }
+}

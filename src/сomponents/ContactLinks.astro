@@ -1,0 +1,53 @@
+---
+const contactLinks = [
+    {
+        href: "https://t.me/ilonakhomenko_psy",
+        label: "telegram",
+    },
+    {
+        href: "https://wa.me/message/SIEVDKC4PL6QE1",
+        label: "whatsapp",
+    },
+    {
+        href: "mailto:ilonakhomenkopsy@gmail.com",
+        label: "ilonakhomenkopsy@gmail.com",
+    },
+];
+---
+
+<ul class="contact-links">
+    {
+        contactLinks.map((link) => (
+            <li>
+                <a class="contact-link" href={link.href}>
+                    {link.label}
+                </a>
+            </li>
+        ))
+    }
+</ul>
+
+<style>
+    .contact-links {
+        display: flex;
+        gap: 28px;
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        @media screen and (width < 768px) {
+            flex-direction: column;
+            gap: 24px;
+        }
+    }
+
+    .contact-link {
+        font-size: 18px;
+        line-height: 24px;
+        color: inherit;
+
+        &:not(:hover) {
+            text-decoration: none;
+        }
+    }
+</style>

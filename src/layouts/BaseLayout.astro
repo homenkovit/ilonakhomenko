@@ -1,0 +1,31 @@
+---
+import Header from "../сomponents/Header.astro";
+import Footer from "../сomponents/Footer.astro";
+
+import "../styles/global.css";
+---
+
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>Илона Хоменко</title>
+    </head>
+    <body>
+        <Header />
+        <main>
+            <slot />
+        </main>
+        <Footer />
+    </body>
+</html>
+
+<style>
+    body {
+        display: grid;
+        grid-template-rows: auto 1fr auto;
+        min-height: 100vh;
+    }
+</style>
