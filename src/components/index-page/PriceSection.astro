@@ -1,0 +1,35 @@
+---
+import AppointmentButton from "../shared/AppointmentButton.astro";
+import ContactLinks from "../shared/ContactLinks.astro";
+---
+
+<section id="price" class="price container">
+    <h2 class="price__title">Стоимость и формат работы</h2>
+    <ul class="price__list">
+        <li class="price__item">
+            <h3 class="price__item-title">Онлайн консультация</h3>
+            <ul class="item-list">
+                <li class="item-list__item">
+                    Ознакомительная встреча 60 минут
+                </li>
+                <li class="item-list__item">
+                    Отвечу на интересующие вас вопросы
+                </li>
+                <li class="item-list__item">Соберу основную информацию</li>
+                <li class="item-list__item">
+                    Всё, что для этого нужно - стабильное интернет-соединение и
+                    помещение, где вас не будут отвлекать
+                </li>
+            </ul>
+            <p class="price__item-price">€50 / $55</p>
+            <p class="price__item-duration">60 минут</p>
+            <AppointmentButton />
+        </li>
+    </ul>
+    <p class="price__text">
+        Работаю только онлайн, по всему миру, по предоплате. Оплату принимаю в
+        евро и долларах. Буду рада вам помочь!
+    </p>
+    <p class="price__text">Для связи:</p>
+    <ContactLinks />
+</section>
