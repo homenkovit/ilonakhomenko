@@ -19,7 +19,12 @@ const contactLinks = [
     {
         contactLinks.map((link) => (
             <li>
-                <a class="contact-link" href={link.href}>
+                <a
+                    class="contact-link"
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
                     {link.label}
                 </a>
             </li>
