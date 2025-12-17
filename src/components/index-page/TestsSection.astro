@@ -1,14 +1,61 @@
----
-
----
-
-<section id="tests" class="tests container">
+<section class="tests container">
     <h2 class="tests__title">Тесты</h2>
     <ul class="tests__list">
         <li class="tests__item">
-            <a href="/tests" class="tests__link">
-                <h3 class="tests__title">Тест</h3>
+            <a href="/tests" class="test-link">
+                <h3 class="test-link__title">Название теста</h3>
+            </a>
+        </li>
+        <li class="tests__item">
+            <a href="/tests" class="test-link">
+                <h3 class="test-link__title">Название ещё одного теста</h3>
             </a>
         </li>
     </ul>
 </section>
+
+<style>
+    .tests {
+        position: relative;
+        min-height: 1200px;
+        padding-block: 160px;
+
+        &::after {
+            content: "";
+            position: absolute;
+            inset-block-start: 290px;
+            inset-inline-end: 0;
+            width: 603px;
+            height: 752px;
+            background-image: url("/images/tests-section-cover.webp");
+        }
+
+        &.container {
+            --container-width: 1592px;
+        }
+    }
+
+    .tests__title {
+        margin-block-start: 0;
+        margin-block-end: 60px;
+        font-size: 60px;
+        line-height: 70px;
+        text-align: center;
+    }
+
+    .tests__list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .test-link__title {
+        margin: 0;
+        font-size: 40px;
+        line-height: 50px;
+        font-weight: 500;
+    }
+</style>
