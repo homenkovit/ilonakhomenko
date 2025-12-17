@@ -10,7 +10,7 @@ import ContactLinks from "../shared/ContactLinks.astro";
             <h3 class="price__item-title">Онлайн консультация</h3>
             <ul class="item-list">
                 <li class="item-list__item">
-                    Ознакомительная встреча 60 минут
+                    Первая встреча 90 минут, последующие - 60 минут
                 </li>
                 <li class="item-list__item">
                     Отвечу на интересующие вас вопросы
@@ -21,8 +21,7 @@ import ContactLinks from "../shared/ContactLinks.astro";
                     помещение, где вас не будут отвлекать
                 </li>
             </ul>
-            <p class="price__item-price">€50 / $55</p>
-            <p class="price__item-duration">60 минут</p>
+            <p class="item-price">€50 / $55</p>
             <AppointmentButton />
         </li>
     </ul>
@@ -30,6 +29,102 @@ import ContactLinks from "../shared/ContactLinks.astro";
         Работаю только онлайн, по всему миру, по предоплате. Оплату принимаю в
         евро и долларах. Буду рада вам помочь!
     </p>
-    <p class="price__text">Для связи:</p>
+    <p class="price__contact-text">Для связи:</p>
     <ContactLinks />
 </section>
+
+<style>
+    .price {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-block: 160px;
+
+        &.container {
+            --container-width: 1592px;
+        }
+
+        .contact-links {
+            color: var(--accent-color);
+        }
+    }
+
+    .price__title {
+        margin-block-start: 0;
+        margin-block-end: 60px;
+        font-size: 60px;
+        line-height: 70px;
+        text-align: center;
+    }
+
+    .price__list {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-block-start: 0;
+        margin-block-end: 108px;
+    }
+
+    .price__item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+        width: 508px;
+        padding: 32px 36px;
+        border: 4px solid var(--border-color);
+        border-radius: 16px;
+        background-color: var(--secondary-color);
+    }
+
+    .price__item-title {
+        margin-block-start: 0;
+        margin-block-end: 60px;
+        font-size: 40px;
+        line-height: 50px;
+    }
+
+    .item-list {
+        align-self: flex-start;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        margin-block-start: 0;
+        margin-block-end: 40px;
+    }
+
+    .item-list__item {
+        font-size: 20px;
+        line-height: 30px;
+
+        &::marker {
+            content: "\2713";
+            font-size: 30px;
+        }
+    }
+
+    .item-price {
+        margin-block-start: 0;
+        margin-block-end: 32px;
+        font-size: 50px;
+        line-height: 60px;
+        font-weight: 700;
+    }
+
+    .price__text {
+        max-width: 720px;
+        margin-block-start: 0;
+        margin-block-end: 44px;
+        font-size: 20px;
+        line-height: 30px;
+        text-align: center;
+    }
+
+    .price__contact-text {
+        margin-block-start: 0;
+        margin-block-end: 20px;
+        font-size: 20px;
+        line-height: 30px;
+    }
+</style>
