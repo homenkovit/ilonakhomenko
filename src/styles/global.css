@@ -25,6 +25,8 @@
 body {
     margin: 0;
     font-family: 'Inter', sans-serif;
+    font-size: 20px;
+    line-height: 30px;
     color: var(--primary-color);
 }
 
@@ -33,15 +35,48 @@ a {
     color: var(--accent-color);
 }
 
-:where(h1, h2, h3, h4, h5, h6) {
-    font-weight: 400;
-}
-
 .container {
     --container-width: 964px;
     padding-inline: max(32px, calc(50% - var(--container-width) / 2));
 
     @media screen and (width < 768px) {
         padding-inline: 24px;
+    }
+}
+
+.page-title,
+.page-subtitle {
+    margin-block-start: 0;
+    font-weight: 400;
+    text-align: center;
+}
+
+.page-title {
+    margin-block-end: 48px;
+    font-size: 74px;
+    line-height: 80px;
+}
+
+.page-subtitle {
+    margin-block-end: 60px;
+    font-size: 60px;
+    line-height: 70px;
+}
+
+.page-section:not(:last-child) {
+    margin-block-end: 100px;
+}
+
+.page-text {
+    margin-block: 32px;
+    font-size: 20px;
+    line-height: 30px;
+
+    &:first-child {
+        margin-block-start: 0;
+    }
+
+    &:last-child {
+        margin-block-end: 0;
     }
 }

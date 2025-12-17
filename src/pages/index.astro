@@ -8,7 +8,7 @@ import ArticlesSection from "../components/index-page/ArticlesSection.astro";
 import TestsSection from "../components/index-page/TestsSection.astro";
 ---
 
-<BaseLayout>
+<BaseLayout class="index-page">
 	<AboutSection />
 	<HelpSection />
 	<PriceSection />
@@ -16,3 +16,13 @@ import TestsSection from "../components/index-page/TestsSection.astro";
 	<ArticlesSection />
 	<TestsSection />
 </BaseLayout>
+
+<style is:global>
+	main.index-page {
+		padding-block: 0;
+
+		:where(h1, h2, h3, h4, h5, h6) {
+			font-weight: 400;
+		}
+	}
+</style>
