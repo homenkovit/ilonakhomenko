@@ -10,16 +10,96 @@ import AppointmentButton from "../shared/AppointmentButton.astro";
         по всему миру, оплату принимаю в долларах и евро. Работаю с широким
         спектром тем. Помогаю людям справляться с тревогой, выгоранием, сложными
         эмоциями и кризисами идентичности — мягко, с опорой на доказательные
-        методы, без шаблонов и давления. У меня есть телеграм канал "Безоценочно
-        с поддержкой". С уважением отношусь к людям любой сексуальной ориентации
-        и гендерной идентичности.
+        методы, без шаблонов и давления. У меня есть
+        <a href="https://t.me/not_judging_you" target="_blank" rel="noopener noreferrer">телеграм канал "Безоценочно с
+            поддержкой"</a>. С уважением отношусь к людям любой сексуальной ориентации и гендерной идентичности.
     </p>
     <p class="about__text">
         Консультации проходят онлайн — в комфортной для вас обстановке, в
         удобное время.
     </p>
+    <div class="about__photo">
+        <img src="/images/my-photo.webp" alt="" width="552" height="552">
+    </div>
     <div class="about__buttons">
         <AppointmentButton />
         <a href="/about" class="about__link">Подробнее обо мне</a>
     </div>
 </section>
+
+<style>
+    .about {
+        display: grid;
+        grid-template-columns: 1fr 35%;
+        column-gap: 158px;
+        padding-block: 124px;
+        background-color: var(--border-color);
+
+        @media screen and (width < 768px) {
+        }
+
+        @media screen and (width < 1326px) {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &.container {
+            --container-width: 1592px;
+        }
+    }
+
+    .about__title {
+        grid-column: 1 / 2;
+        margin-block-start: 0;
+        margin-block-end: 48px;
+        font-size: 74px;
+        line-height: 80px;
+        text-wrap: balance;
+    }
+
+    .about__text {
+        grid-column: 1 / 2;
+        margin-block-start: 0;
+        margin-block-end: 40px;
+        font-size: 20px;
+        line-height: 30px;
+    }
+
+    .about__photo {
+        grid-column: 2 / 2;
+        grid-row: 1 / 5;
+        align-self: center;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+
+        @media screen and (width < 1326px) {
+            margin-block: 60px;
+        }
+
+        img {
+            width: 100%;
+            max-width: 552px;
+            aspect-ratio: 1 / 1;
+            object-fit: contain;
+        }
+    }
+
+    .about__buttons {
+        grid-column: 1 / 2;
+        display: flex;
+        align-items: center;
+        gap: 24px;
+
+        @media screen and (width < 1326px) {
+            align-self: center;
+        }
+    }
+
+    .about__link {
+        font-size: 24px;
+        line-height: 32px;
+        text-transform: uppercase;
+        color: var(--primary-color);
+    }
+</style>
