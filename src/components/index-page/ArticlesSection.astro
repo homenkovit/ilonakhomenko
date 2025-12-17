@@ -1,15 +1,68 @@
----
-
----
-
-<section id="articles" class="articles container">
+<section class="articles container">
     <h2 class="articles__title">Статьи</h2>
     <ul class="articles__list">
         <li class="articles__item">
-            <a href="/articles" class="articles__link">
-                <h3 class="articles__title">Статья</h3>
+            <a href="/articles" class="article-link">
+                <h3 class="article-link__title">Название статьи</h3>
+            </a>
+        </li>
+        <li class="articles__item">
+            <a href="/articles" class="article-link">
+                <h3 class="article-link__title">Название ещё одной статьи</h3>
             </a>
         </li>
     </ul>
-    <a href="/articles" class="articles__link">Показать все</a>
+    <a href="/articles" class="show-all-link">Показать все</a>
 </section>
+
+<style>
+    .articles {
+        display: flex;
+        flex-direction: column;
+        padding-block: 160px;
+        background-color: #ede8f0;
+
+        &.container {
+            --container-width: 1592px;
+        }
+    }
+
+    .articles__title {
+        margin-block-start: 0;
+        margin-block-end: 60px;
+        font-size: 60px;
+        line-height: 70px;
+        text-align: center;
+    }
+
+    .articles__list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .article-link__title {
+        margin: 0;
+        font-size: 40px;
+        line-height: 50px;
+        font-weight: 500;
+    }
+
+    .show-all-link {
+        align-self: center;
+        display: inline-block;
+        padding: 10px 32px;
+        margin-block-start: 100px;
+        border-radius: 50px;
+        background-color: var(--accent-color);
+        font-size: 35px;
+        line-height: 45px;
+        font-weight: 500;
+        color: var(--secondary-color);
+        text-transform: lowercase;
+        text-decoration: none;
+    }
+</style>
