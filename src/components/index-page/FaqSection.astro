@@ -1,48 +1,35 @@
----
-
----
-
 <section id="faq" class="faq container">
     <h2 class="faq__title">Популярные вопросы (FAQ)</h2>
-    <details>
-        <summary>Могу ли я получить помощь онлайн?</summary>
+    <details name="faq" class="faq__item">
+        <summary><h3>Могу ли я получить помощь онлайн?</h3></summary>
         <p>
             Это возможно во многих случаях, но есть нюансы. Например, при
             расстройствах личности в основном рекомендована очная психотерапия,
             но онлайн формат тоже возможен, просто он удлиняет продолжительность
             психотерапии в силу его особенностей. Если вас волнует этот вопрос
-            (или какой-то еще) и вы хотите уточнить поконкретнее, напишите мне в <a
-                href="https://t.me/ilonakhomenko"
-                target="_blank"
-                rel="noopener noreferrer">telegram</a
-            >,
-            <a
-                href="https://wa.me/79252122525"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                whatsapp
-            </a> или на
+            (или какой-то еще) и вы хотите уточнить поконкретнее, напишите мне в
+            <a href="https://t.me/ilonakhomenko" target="_blank" rel="noopener noreferrer">telegram</a>,
+            <a href="https://wa.me/79252122525" target="_blank" rel="noopener noreferrer">whatsapp</a> или на
             <a href="mailto:ilonakhomenko@gmail.com">почту</a>.
         </p>
     </details>
-    <details>
-        <summary
-            >Сколько длится первая встреча и как мне к ней подготовиться?</summary
-        >
+    <details name="faq" class="faq__item">
+        <summary><h3>Сколько длится первая встреча и как мне к ней подготовиться?</h3></summary>
         <p>
-            Первая встреча со мной длится 60 минут. У других специалистов она
-            может длится меньше или больше. Как-то особенно подготавливаться не
-            нужно, это не собеседование и не экзамен. Я здесь, чтобы вас
-            поддержать. Можно подготовить лист бумаги и ручку, если захочется
-            что-то зафиксировать, но как правило это ознакомительная встреча, на
+            Первая встреча со мной длится 90 минут. У других специалистов она
+            может длиться меньше или столько же. Часто стандартных 50 или 60
+            минут оказывается недостаточно для первой встречи, поэтому я беру
+            запас по времени. Как-то особенно подготавливаться не нужно, это не
+            собеседование и не экзамен. Я здесь, чтобы вас поддержать. Можно
+            подготовить лист бумаги и ручку, если захочется что-то
+            зафиксировать, но как правило это ознакомительная встреча, на
             которой я рассказываю, как может выглядеть наша дальнейшая работа и
-            мы принимаем решение о сотрудничестве. Стоимость первой встречи -
-            donation, последующие по фиксированному прайсу 40 евро/4000 р.
+            мы принимаем решение о сотрудничестве. Стоимость первой встречи - 50
+            евро или 55 долларов.
         </p>
     </details>
-    <details>
-        <summary>Что будет на первой встрече? Не знаю, с чего начать</summary>
+    <details name="faq" class="faq__item">
+        <summary><h3>Что будет на первой встрече? Не знаю, с чего начать</h3></summary>
         <p>
             Первая встреча - это зачастую довольно волнительное мероприятие, как
             для клиента, так и для психолога. Так что тревога и волнение в такой
@@ -52,10 +39,8 @@
             стоит задуматься, хотите ли вы продолжать с ним работу).
         </p>
     </details>
-    <details>
-        <summary
-            >Сколько сессий потребуется, чтобы разобраться с проблемой?</summary
-        >
+    <details name="faq" class="faq__item">
+        <summary><h3>Сколько сессий потребуется, чтобы разобраться с проблемой?</h3></summary>
         <p>
             Зависит от проблемы. Очень легко попасть впросак с ответом, когда
             ещё не знаешь, в чём она заключается. Также это очень индивидуально.
@@ -67,12 +52,11 @@
             может корректироваться, это нормально.
         </p>
     </details>
-    <details>
-        <summary
-            >Слышал, что действительно профессиональные психологи не дают
-            советов и ничего не обещают и не решают. Что тогда происходит на
-            сессиях?</summary
-        >
+    <details name="faq" class="faq__item">
+        <summary>
+            <h3>Слышал, что действительно профессиональные психологи не дают советов и ничего
+                не обещают и не решают. Что тогда происходит на сессиях?</h3>
+        </summary>
         <p>
             Только вам решать, необходимы ли изменения в вашей жизни и какие
             именно. Действительно, по этическим соображениям психолог не должен
@@ -82,3 +66,80 @@
         </p>
     </details>
 </section>
+
+<style>
+    .faq {
+        padding-block: 160px;
+        background-color: #ddc0e3;
+
+        &.container {
+            --container-width: 1018px;
+        }
+    }
+
+    .faq__title {
+        margin-block-start: 0;
+        margin-block-end: 60px;
+        font-size: 60px;
+        line-height: 70px;
+        text-align: center;
+    }
+
+    .faq__item {
+        padding-block: 40px;
+        border-bottom: 1px solid var(--accent-color);
+
+        &[open] {
+            summary::after {
+                content: "–";
+            }
+        }
+
+        summary {
+            list-style: none;
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            cursor: pointer;
+
+            &::before {
+                content: "?";
+                flex-shrink: 0;
+                display: grid;
+                place-items: center;
+                width: 40px;
+                height: 40px;
+                background-color: var(--accent-color);
+                border-radius: 50%;
+                font-size: 28px;
+                color: #ddc0e3;
+                transform: translateY(-2px);
+            }
+
+            &::after {
+                content: "+";
+                flex-shrink: 0;
+                margin-inline-start: auto;
+                font-size: 28px;
+                font-weight: 200;
+                color: var(--accent-color);
+            }
+        }
+
+        h3 {
+            margin-block: 0;
+            padding-block: 0;
+            font-size: 24px;
+            line-height: 34px;
+            color: var(--accent-color);
+        }
+
+        p {
+            padding-block-start: 24px;
+            padding-inline-start: 54px;
+            margin-block: 0;
+            font-size: 20px;
+            line-height: 30px;
+        }
+    }
+</style>
