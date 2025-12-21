@@ -1,5 +1,5 @@
 <section id="help" class="help container">
-    <h2 class="help__title">С чем помогаю</h2>
+    <h2 class="page-subtitle">С чем помогаю</h2>
     <ol class="help__list">
         <li class="help__item">
             <h3 class="help__item-title">
@@ -198,27 +198,29 @@
 
 <style>
     .help {
-        padding-block: 160px;
-        
         &::after {
             content: "";
             display: block;
             height: 2px;
             background-color: var(--border-color);
             transform: translateY(160px);
+
+            @media screen and (width < 1440px) {
+                transform: translateY(100px);
+            }
+
+            @media screen and (width < 768px) {
+                transform: translateY(60px);
+            }
         }
 
         &.container {
             --container-width: 1592px;
-        }
-    }
 
-    .help__title {
-        margin-block-start: 0;
-        margin-block-end: 76px;
-        font-size: 60px;
-        line-height: 70px;
-        text-align: center;
+            @media screen and (width < 1240px) {
+                --container-width: 704px;
+            }
+        }
     }
 
     .help__list {
@@ -227,9 +229,14 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         column-gap: 196px;
-        row-gap: 100px;
+        row-gap: 70px;
         padding-inline-start: 96px;
         margin-block: 0;
+
+        @media screen and (width < 1240px) {
+            grid-template-columns: 1fr;
+            row-gap: 40px;
+        }
     }
 
     .help__item-title {

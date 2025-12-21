@@ -1,5 +1,5 @@
 <section class="articles container">
-    <h2 class="articles__title">Статьи</h2>
+    <h2 class="page-subtitle">Статьи</h2>
     <ul class="articles__list">
         <li class="articles__item">
             <a href="/articles" class="article-link">
@@ -19,20 +19,15 @@
     .articles {
         display: flex;
         flex-direction: column;
-        padding-block: 160px;
         background-color: #ede8f0;
 
         &.container {
             --container-width: 1592px;
-        }
-    }
 
-    .articles__title {
-        margin-block-start: 0;
-        margin-block-end: 60px;
-        font-size: 60px;
-        line-height: 70px;
-        text-align: center;
+            @media screen and (width < 1440px) {
+                --container-width: 800px;
+            }
+        }
     }
 
     .articles__list {
@@ -49,6 +44,11 @@
         font-size: 40px;
         line-height: 50px;
         font-weight: 500;
+
+        @media screen and (width < 1440px) {
+            font-size: 30px;
+            line-height: 40px;
+        }
     }
 
     .show-all-link {
@@ -64,5 +64,13 @@
         color: var(--secondary-color);
         text-transform: lowercase;
         text-decoration: none;
+
+        @media screen and (width < 1440px) {
+            margin-block-start: 68px;
+        }
+
+        @media screen and (width < 768px) {
+            margin-block-start: 32px;
+        }
     }
 </style>

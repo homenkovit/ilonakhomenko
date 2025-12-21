@@ -4,7 +4,7 @@ import ContactLinks from "../shared/ContactLinks.astro";
 ---
 
 <section id="price" class="price container">
-    <h2 class="price__title">Стоимость и формат работы</h2>
+    <h2 class="page-subtitle">Стоимость и формат работы</h2>
     <ul class="price__list">
         <li class="price__item">
             <h3 class="price__item-title">Онлайн консультация</h3>
@@ -38,7 +38,6 @@ import ContactLinks from "../shared/ContactLinks.astro";
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding-block: 160px;
 
         &.container {
             --container-width: 1592px;
@@ -46,15 +45,11 @@ import ContactLinks from "../shared/ContactLinks.astro";
 
         .contact-links {
             color: var(--accent-color);
-        }
-    }
 
-    .price__title {
-        margin-block-start: 0;
-        margin-block-end: 60px;
-        font-size: 60px;
-        line-height: 70px;
-        text-align: center;
+            @media screen and (width < 768px) {
+                align-items: center;
+            }
+        }
     }
 
     .price__list {
@@ -62,8 +57,17 @@ import ContactLinks from "../shared/ContactLinks.astro";
         display: flex;
         justify-content: center;
         flex-wrap: wrap;
+        padding-inline: 0;
         margin-block-start: 0;
         margin-block-end: 108px;
+
+        @media screen and (width < 1440px) {
+            margin-block-end: 88px;
+        }
+
+        @media screen and (width < 768px) {
+            margin-block-end: 48px;
+        }
     }
 
     .price__item {
@@ -71,7 +75,7 @@ import ContactLinks from "../shared/ContactLinks.astro";
         flex-direction: column;
         align-items: center;
         box-sizing: border-box;
-        width: 508px;
+        max-width: 508px;
         padding: 32px 36px;
         border: 4px solid var(--border-color);
         border-radius: 16px;
@@ -83,6 +87,17 @@ import ContactLinks from "../shared/ContactLinks.astro";
         margin-block-end: 60px;
         font-size: 40px;
         line-height: 50px;
+
+        @media screen and (width < 1440px) {
+            font-size: 30px;
+            line-height: 40px;
+        }
+
+        @media screen and (width < 768px) {
+            margin-block-end: 32px;
+            font-size: 24px;
+            line-height: 30px;
+        }
     }
 
     .item-list {

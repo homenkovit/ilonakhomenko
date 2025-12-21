@@ -38,5 +38,13 @@ const { class: className, bodyBgColor } = Astro.props;
 
     main {
         padding-block: 160px;
+
+        @media screen and (width < 1440px) {
+            padding-block: 100px;
+        }
+
+        @media screen and (width < 768px) {
+            padding-block: 60px;
+        }
     }
 </style>

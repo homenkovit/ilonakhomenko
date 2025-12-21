@@ -3,7 +3,7 @@ import AppointmentButton from "../shared/AppointmentButton.astro";
 ---
 
 <section class="about container">
-    <h2 class="about__title">Бережный онлайн подход в удобном для вас темпе</h2>
+    <h2 class="about__title page-title">Бережный онлайн подход в удобном для вас темпе</h2>
     <p class="about__text">
         Меня зовут Илона и я практикующий нейроотличный психолог-консультант с
         высшим психологическим образованием. Живу в Нидерландах и работаю онлайн
@@ -35,34 +35,37 @@ import AppointmentButton from "../shared/AppointmentButton.astro";
         padding-block: 124px;
         background-color: var(--border-color);
 
-        @media screen and (width < 768px) {
-        }
-
-        @media screen and (width < 1326px) {
-            display: flex;
-            flex-direction: column;
-        }
-
         &.container {
             --container-width: 1592px;
+        }
+
+        @media screen and (width < 1440px) {
+            display: flex;
+            flex-direction: column;
+
+            &.container {
+                --container-width: 882px;
+            }
         }
     }
 
     .about__title {
         grid-column: 1 / 2;
-        margin-block-start: 0;
-        margin-block-end: 48px;
-        font-size: 74px;
-        line-height: 80px;
-        text-wrap: balance;
+
+        @media screen and (width >= 1440px) {
+            text-align: left;
+        }
     }
 
     .about__text {
         grid-column: 1 / 2;
         margin-block-start: 0;
-        margin-block-end: 40px;
         font-size: 20px;
         line-height: 30px;
+
+        @media screen and (width >= 1440px) {
+            margin-block-end: 40px;
+        }
     }
 
     .about__photo {
@@ -73,15 +76,23 @@ import AppointmentButton from "../shared/AppointmentButton.astro";
         justify-content: flex-end;
         align-items: center;
 
-        @media screen and (width < 1326px) {
-            margin-block: 60px;
-        }
-
         img {
             width: 100%;
             max-width: 552px;
             aspect-ratio: 1 / 1;
             object-fit: contain;
+        }
+
+        @media screen and (width < 1440px) {
+            width: 362px;
+            height: 362px;
+            margin-block: 60px;
+        }
+
+        @media screen and (width < 768px) {
+            width: 200px;
+            height: 200px;
+            margin-block: 40px;
         }
     }
 
@@ -89,10 +100,12 @@ import AppointmentButton from "../shared/AppointmentButton.astro";
         grid-column: 1 / 2;
         display: flex;
         align-items: center;
+        flex-wrap: wrap;
         gap: 24px;
 
-        @media screen and (width < 1326px) {
+        @media screen and (width < 1440px) {
             align-self: center;
+            justify-content: center;
         }
     }
 

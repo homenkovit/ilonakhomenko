@@ -1,5 +1,5 @@
 <section class="tests container">
-    <h2 class="tests__title">Тесты</h2>
+    <h2 class="page-subtitle">Тесты</h2>
     <ul class="tests__list">
         <li class="tests__item">
             <a href="/tests" class="test-link">
@@ -16,9 +16,8 @@
 
 <style>
     .tests {
+        overflow: hidden;
         position: relative;
-        min-height: 1200px;
-        padding-block: 160px;
 
         &::after {
             content: "";
@@ -28,19 +27,43 @@
             width: 603px;
             height: 752px;
             background-image: url("/images/tests-section-cover.webp");
+            background-repeat: no-repeat;
         }
 
         &.container {
             --container-width: 1592px;
         }
-    }
 
-    .tests__title {
-        margin-block-start: 0;
-        margin-block-end: 60px;
-        font-size: 60px;
-        line-height: 70px;
-        text-align: center;
+        @media screen and (width >= 1440px) {
+            min-height: 1200px;
+
+            &::after {
+                inset-block-start: 290px;
+                inset-inline-end: 0;
+                width: 603px;
+                height: 752px;
+            }
+        }
+
+        @media screen and (width < 1440px) {
+            padding-block-end: 200px;
+
+            &::after {
+                inset: 0;
+                width: 100%;
+                object-fit: fill;
+                background-size: 100%;
+                opacity: 0.1;
+            }
+
+            &.container {
+                --container-width: 800px;
+            }
+        }
+
+        @media screen and (width < 768px) {
+            padding-block-end: 100px;
+        }
     }
 
     .tests__list {
@@ -57,5 +80,10 @@
         font-size: 40px;
         line-height: 50px;
         font-weight: 500;
+
+        @media screen and (width < 1440px) {
+            font-size: 30px;
+            line-height: 40px;
+        }
     }
 </style>

@@ -24,5 +24,17 @@ import TestsSection from "../components/index-page/TestsSection.astro";
 		:where(h1, h2, h3, h4, h5, h6) {
 			font-weight: 400;
 		}
+
+		section {
+			padding-block: 160px;
+
+			@media screen and (width < 1440px) {
+				padding-block: 100px;
+			}
+
+			@media screen and (width < 768px) {
+				padding-block: 60px;
+			}
+		}
 	}
 </style>

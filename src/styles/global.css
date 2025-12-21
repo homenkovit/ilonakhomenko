@@ -44,27 +44,56 @@ a {
     }
 }
 
+.page-section {
+    &:not(:last-child) {
+        margin-block-end: 100px;
+
+        @media screen and (width < 768px) {
+            margin-block-end: 60px;
+        }
+    }
+}
+
 .page-title,
 .page-subtitle {
     margin-block-start: 0;
     font-weight: 400;
     text-align: center;
+    text-wrap: balance;
 }
 
 .page-title {
     margin-block-end: 48px;
     font-size: 74px;
     line-height: 80px;
+
+    @media screen and (width < 1440px) {
+        font-size: 70px;
+    }
+
+    @media screen and (width < 768px) {
+        margin-block-end: 32px;
+        font-size: 45px;
+        line-height: 55px;
+    }
 }
 
 .page-subtitle {
     margin-block-end: 60px;
     font-size: 60px;
     line-height: 70px;
-}
 
-.page-section:not(:last-child) {
-    margin-block-end: 100px;
+    @media screen and (width < 1440px) {
+        margin-block-end: 48px;
+        font-size: 50px;
+        line-height: 60px;
+    }
+
+    @media screen and (width < 768px) {
+        margin-block-end: 32px;
+        font-size: 40px;
+        line-height: 50px;
+    }
 }
 
 .page-text {
