@@ -30,9 +30,22 @@ import AppointmentButton from "./AppointmentButton.astro";
         background-color: var(--secondary-color);
         box-shadow: 0 4px 10px 0 rgb(from #b4b4b4 r g b / 25%);
 
-        @media screen and (width >= 1718px) {
-            .appointment-button {
+        .appointment-button {
+            @media screen and (width >= 1718px) {
                 order: 1;
+            }
+
+            @media screen and (width < 800px) {
+                font-size: 18px;
+                line-height: 24px;
+            }
+
+            @media screen and (width < 520px) {
+                padding-inline: 12px;
+
+                span {
+                    display: none;
+                }
             }
         }
 
@@ -43,7 +56,7 @@ import AppointmentButton from "./AppointmentButton.astro";
                 grid-column: 1 / -1;
                 display: flex;
                 justify-content: center;
-                padding-top: 24px;
+                padding-block-start: 24px;
                 border-top: 2px solid var(--border-color);
             }
         }
@@ -52,7 +65,7 @@ import AppointmentButton from "./AppointmentButton.astro";
             --header-height: 150px;
         }
 
-        @media screen and (width < 768px) {
+        @media screen and (width < 800px) {
             --header-height: 94px;
             min-height: auto;
             padding-block: 24px;
@@ -71,13 +84,14 @@ import AppointmentButton from "./AppointmentButton.astro";
         margin: 0;
         font-weight: 400;
         font-size: 40px;
+        line-height: 100%;
         white-space: nowrap;
 
         & span {
             font-size: 22px;
         }
 
-        @media screen and (width < 768px) {
+        @media screen and (width < 800px) {
             font-size: 22px;
 
             & span {

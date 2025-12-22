@@ -2,49 +2,20 @@
 const { pathname } = Astro.url;
 
 const navigationLinks = [
-    {
-        href: "/",
-        label: "Главная",
-    },
-    {
-        href: "/#help",
-        label: "С чем помогаю",
-    },
-    {
-        href: "/#price",
-        label: "Стоимость",
-    },
-    {
-        href: "/#faq",
-        label: "Вопросы",
-    },
-    {
-        href: "/about",
-        label: "Обо мне",
-    },
-    {
-        href: "/articles",
-        label: "Статьи",
-    },
-    {
-        href: "/tests",
-        label: "Тесты",
-    },
-    {
-        href: "/education",
-        label: "Образование",
-    },
+    { href: "/", label: "Главная" },
+    { href: "/#help", label: "С чем помогаю" },
+    { href: "/#price", label: "Стоимость" },
+    { href: "/#faq", label: "Вопросы" },
+    { href: "/about", label: "Обо мне" },
+    { href: "/articles", label: "Статьи" },
+    { href: "/tests", label: "Тесты" },
+    { href: "/education", label: "Образование" },
 ];
 ---
 
-<button
-    type="button"
-    class="menu-button"
-    aria-label="Меню"
-    aria-expanded="false"
-    aria-controls="menu"
->
-    Меню
+<button type="button" class="menu-button" aria-label="Меню" aria-expanded="false" aria-controls="menu">
+    <span>Меню</span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"><path d="M20 17.5a1.5 1.5 0 0 1 .144 2.993L20 20.5H4a1.5 1.5 0 0 1-.144-2.993L4 17.5h16Zm0-7a1.5 1.5 0 1 1 0 3H4a1.5 1.5 0 1 1 0-3h16Zm0-7a1.5 1.5 0 0 1 0 3H4a1.5 1.5 0 0 1 0-3h16Z"/></svg>
 </button>
 <nav id="menu" class="menu closed" aria-label="Главное меню">
     <ul class="nav-list">
@@ -54,9 +25,7 @@ const navigationLinks = [
                     <a
                         class="nav-link"
                         href={link.href}
-                        aria-current={
-                            pathname === link.href ? "page" : undefined
-                        }
+                        aria-current={pathname === link.href ? "page" : undefined}
                     >
                         {link.label}
                     </a>
@@ -68,6 +37,9 @@ const navigationLinks = [
 
 <style>
     .menu-button {
+        display: flex;
+        align-items: center;
+        gap: 12px;
         padding: 0;
         border: none;
         margin: 0;
@@ -88,9 +60,15 @@ const navigationLinks = [
             display: none;
         }
 
-        @media screen and (width < 768px) {
+        @media screen and (width < 800px) {
             font-size: 18px;
             line-height: 24px;
+        }
+
+        @media screen and (width < 600px) {
+            span {
+                display: none;
+            }
         }
     }
 
