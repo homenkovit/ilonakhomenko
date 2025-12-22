@@ -3,6 +3,7 @@ import Header from "../components/shared/Header.astro";
 import Footer from "../components/shared/Footer.astro";
 
 import "../styles/global.css";
+import AppointmentDialog from "../components/shared/AppointmentDialog.astro";
 
 interface Props {
     class?: string;
@@ -26,6 +27,7 @@ const { class: className, bodyBgColor } = Astro.props;
             <slot />
         </main>
         <Footer />
+        <AppointmentDialog />
     </body>
 </html>
 
