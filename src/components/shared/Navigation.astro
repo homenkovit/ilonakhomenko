@@ -1,6 +1,8 @@
 ---
 const { pathname } = Astro.url;
 
+const getIsLinkActive = (href: string) => !href.includes("#") && pathname === href;
+
 const navigationLinks = [
     { href: "/", label: "Главная" },
     { href: "/#help", label: "С чем помогаю" },
@@ -20,21 +22,17 @@ const navigationLinks = [
 <nav id="menu" class="menu closed" aria-label="Главное меню">
     <ul class="nav-list">
         {
-            navigationLinks.map((link) => (
-                <li class="nav-item">
-                    <a
-                        class="nav-link"
-                        href={link.href}
-                        aria-current={
-                            !link.href.includes("#") && pathname === link.href
-                                ? "page"
-                                : undefined
-                        }
-                    >
-                        {link.label}
-                    </a>
-                </li>
-            ))
+            navigationLinks.map((link) => {
+                const isActive = getIsLinkActive(link.href);
+
+                return (
+                    <li class="nav-item">
+                        <a class="nav-link" href={link.href} class:list={[{ active: isActive }]} aria-current={isActive ? "page" : undefined}>
+                            {link.label}
+                        </a>
+                    </li>
+                );
+            })
         }
     </ul>
 </nav>
