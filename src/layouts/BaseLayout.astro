@@ -6,11 +6,13 @@ import "../styles/global.css";
 import AppointmentDialog from "../components/shared/AppointmentDialog.astro";
 
 interface Props {
+    title?: string;
     class?: string;
     bodyBgColor?: string;
 }
 
-const { class: className, bodyBgColor } = Astro.props;
+const { title: subtitle, class: className, bodyBgColor } = Astro.props;
+const title = `Психолог Илона Хоменко${subtitle ? ` - ${subtitle}` : ""}`
 ---
 
 <html lang="ru">
@@ -19,7 +21,7 @@ const { class: className, bodyBgColor } = Astro.props;
         <link rel="icon" type="image/svg+xml" href="/favicon.svg">
         <meta name="viewport" content="width=device-width">
         <meta name="generator" content={Astro.generator}>
-        <title>Илона Хоменко</title>
+        <title>{title}</title>
     </head>
     <body style={{ backgroundColor: bodyBgColor }}>
         <Header />
