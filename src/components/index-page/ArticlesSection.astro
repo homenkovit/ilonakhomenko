@@ -1,16 +1,21 @@
+---
+import { getCollection } from "astro:content";
+
+const articles = (await getCollection("articles")).sort(
+    (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
+).slice(0, 3);
+---
+
 <section class="articles container">
     <h2 class="page-subtitle">Статьи</h2>
     <ul class="articles__list">
-        <li class="articles__item">
-            <a href="/articles" class="article-link">
-                <h3 class="article-link__title">Название статьи</h3>
-            </a>
-        </li>
-        <li class="articles__item">
-            <a href="/articles" class="article-link">
-                <h3 class="article-link__title">Название ещё одной статьи</h3>
-            </a>
-        </li>
+        {articles.map((article) => (
+            <li class="articles__item">
+                <a href={`/articles/${article.id}`} class="article-link">
+                    <h3 class="article-link__title">{article.data.title}</h3>
+                </a>
+            </li>
+        ))}
     </ul>
     <a href="/articles" class="show-all-link">Показать все</a>
 </section>

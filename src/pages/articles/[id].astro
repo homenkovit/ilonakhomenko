@@ -1,0 +1,127 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+    const articles = (await getCollection("articles")).sort(
+        (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
+    )
+
+    return articles.map((article, index, array) => {
+        const prevArticle = index > 0 ? array[index - 1] : undefined;
+        const nextArticle = index < array.length - 1 ? array[index + 1] : undefined;
+
+        return ({
+            params: { id: article.id },
+            props: { article, prevArticle, nextArticle },
+        });
+    });
+}
+
+const { article, prevArticle, nextArticle } = Astro.props;
+const { Content } = await render(article);
+const pageTitle = `Статья "${article.data.title}"`;
+const pubDate = article.data.pubDate.toLocaleDateString("ru-RU").replaceAll(".", "/");
+---
+
+<BaseLayout title={pageTitle} class="container" bodyBgColor="#ede8f0">
+    <h2 class="page-title">{article.data.title}</h2>
+    <time class="article-datetime" datetime={pubDate}>{pubDate}</time>
+
+    <Content />
+
+    <div class="prev-next-articles">
+        {prevArticle && (
+            <a href={`/articles/${prevArticle.id}`} class="article-url prev">
+                <span class="article-url__text-with-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"><path d="M12.727 3.687A.999.999 0 0 0 11.972 2a1 1 0 0 0-.699.313l-8.5 9a1 1 0 0 0 0 1.374l8.5 9a1.002 1.002 0 0 0 1.736-.654.999.999 0 0 0-.282-.718L4.875 12l7.852-8.313Z"/></svg>
+                    Предыдущая&nbsp;статья
+                </span>
+                <span class="article-url__title">{prevArticle.data.title}</span>
+            </a>
+        )}
+        {nextArticle && (
+            <a href={`/articles/${nextArticle.id}`} class="article-url next">
+                <span class="article-url__text-with-icon">
+                    Следующая&nbsp;статья
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"><path d="M11.273 3.687A.999.999 0 0 1 12.028 2a1 1 0 0 1 .699.313l8.5 9a1 1 0 0 1 0 1.374l-8.5 9a1.002 1.002 0 0 1-1.736-.654.999.999 0 0 1 .282-.718L19.125 12l-7.852-8.313Z"/></svg>
+                </span>
+                <span class="article-url__title">{nextArticle.data.title}</span>
+            </a>
+        )}
+    </div>
+</BaseLayout>
+
+<style>
+    .article-datetime {
+        margin-block-end: 24px;
+        font-size: 24px;
+        line-height: 34px;
+        font-weight: 500;
+    }
+
+    .prev-next-articles {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 44px;
+
+        margin-block-start: 72px;
+
+        @media screen and (width < 768px) {
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+    }
+
+    .article-url__text-with-icon {
+        display: contents;
+
+        @media screen and (width < 768px) {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+    }
+
+    .article-url {
+        display: grid;
+        gap: 12px;
+        align-items: center;
+        max-width: 314px;
+
+        &:not(:hover) {
+            text-decoration: none;
+        }
+
+        &.prev {
+            grid-template-columns: auto 198px;
+        }
+        &.next {
+            grid-template-columns: 187px auto;
+
+            @media screen and (width >= 768px) {
+                margin-inline-start: auto;
+            }
+        }
+
+        @media screen and (width < 768px) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    .article-url__title {
+        font-size: 30px;
+        line-height: 40px;
+        hyphens: auto;
+
+        @media screen and (width >= 768px) {
+            .article-url.prev & {
+                grid-column: 2 / 3;
+            }
+        }
+    }
+</style>

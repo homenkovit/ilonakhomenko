@@ -19,8 +19,9 @@
         overflow: hidden;
         position: relative;
 
-        &::after {
+        &::before {
             content: "";
+            z-index: -1;
             position: absolute;
             inset-block-start: 290px;
             inset-inline-end: 0;
@@ -37,7 +38,7 @@
         @media screen and (width >= 1440px) {
             min-height: 1200px;
 
-            &::after {
+            &::before {
                 inset-block-start: 290px;
                 inset-inline-end: 0;
                 width: 603px;
@@ -48,7 +49,7 @@
         @media screen and (width < 1440px) {
             padding-block-end: 200px;
 
-            &::after {
+            &::before {
                 inset: 0;
                 width: 100%;
                 object-fit: fill;

@@ -1,0 +1,61 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const articles = (await getCollection("articles")).sort(
+    (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout title="Статьи" class="articles-page container">
+    <h2 class="page-title">Статьи</h2>
+
+    <ul class="articles-list">
+        {articles.map((article) => (
+            <li>
+                <a href={`/articles/${article.id}`}>{article.data.title}</a>
+            </li>
+        ))}
+    </ul>
+</BaseLayout>
+
+<style is:global>
+    .articles-page {
+        position: relative;
+
+        &::before {
+            content: "";
+            z-index: -1;
+            position: absolute;
+            inset: 0;
+            display: block;
+            background-image: url("/images/articles-cover.webp");
+            background-repeat: no-repeat;
+            background-size: cover;
+            object-fit: fill;
+            opacity: 0.1;
+        }
+    }
+</style>
+
+<style>
+    .articles-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li + li {
+            margin-block-start: 24px;
+        }
+
+        a {
+            font-size: 30px;
+            line-height: 40px;
+
+            @media screen and (width >= 1440px) {
+                font-size: 40px;
+                line-height: 50px;
+            }
+        }
+    }
+</style>
