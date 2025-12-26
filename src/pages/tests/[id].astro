@@ -1,0 +1,272 @@
+---
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import type { TestData } from "../../types/test";
+
+const testDataFiles = import.meta.glob<{
+    default: Omit<TestData, "id" | "title">;
+}>("../../data/tests/*.json", { eager: true });
+
+export async function getStaticPaths() {
+    const tests = await getCollection("tests");
+
+    return tests.map((test) => ({
+        params: { id: test.id },
+        props: { test },
+    }));
+}
+
+const { test } = Astro.props;
+const { Content } = await render(test);
+const pageTitle = `Тест "${test.data.title}"`;
+
+const jsonPath = `../../data/tests/${test.id}.json`;
+const testData = {
+    id: test.id,
+    title: test.data.title,
+    ...testDataFiles[jsonPath]?.default,
+} satisfies TestData;
+---
+
+<BaseLayout title={pageTitle} class="container" bodyBgColor="#ede8f0">
+    <h2 class="page-title">{test.data.title}</h2>
+
+    <p class="test-warning">
+        Онлайн тест не стоит использовать для самодиагностики! Для интерпретации
+        результатов лучше обращаться к квалифицированным специалистам.
+    </p>
+
+    <div class="test-description">
+        <Content />
+    </div>
+
+    <div id="test-runner">
+        <div class="test-question-container">
+            <p class="test-question-text" id="question-text" tabindex="-1"></p>
+            <p class="test-progress" id="test-progress"></p>
+
+            <div class="test-options" id="test-options"></div>
+
+            <div class="test-navigation" id="test-navigation">
+                <button type="button" class="nav-btn" id="prev-btn" hidden>
+                    Назад
+                </button>
+                <button type="button" class="nav-btn" id="next-btn" hidden>
+                    Вперёд
+                </button>
+            </div>
+        </div>
+
+        <div
+            class="test-result-container"
+            id="result-container"
+            style="display: none;"
+        >
+            <h3 id="result-heading" tabindex="-1">Ваш результат:</h3>
+            <div id="result-content"></div>
+
+            <div class="test-actions">
+                <button type="button" class="btn btn-primary" id="share-btn">
+                    Поделиться
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none"><path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m20 6.667-4-4m0 0-4 4m4-4v16M8 12H5.335v12a2.667 2.667 0 0 0 2.667 2.666h16A2.667 2.667 0 0 0 26.667 24V12h-2.666"/></svg>
+                </button>
+                <button type="button" class="btn btn-secondary" id="restart-btn">
+                    Пройти заново
+                </button>
+            </div>
+        </div>
+    </div>
+</BaseLayout>
+
+<style>
+    .test-warning,
+    .test-description {
+        margin-block-end: 48px;
+        font-size: 24px;
+        line-height: 34px;
+    }
+
+    .test-warning {
+        margin-block-start: 0;
+        color: #de005c;
+        font-style: italic;
+    }
+
+    .test-question-container,
+    .test-result-container {
+        padding: 32px;
+        border-radius: 24px;
+        background-color: var(--secondary-color);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .test-question-text,
+    .test-progress {
+        margin-block-start: 0;
+    }
+
+    .test-question-text {
+        margin-block-end: 16px;
+        font-size: 24px;
+        line-height: 34px;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .test-progress {
+        margin-block-end: 32px;
+        font-size: 20px;
+        line-height: 30px;
+        text-align: center;
+    }
+
+    .test-options {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .test-navigation {
+        display: flex;
+        justify-content: space-between;
+        margin-block-start: 24px;
+        gap: 16px;
+    }
+
+    .nav-btn {
+        width: 125px;
+        padding: 10px;
+        border: 1px solid var(--primary-color);
+        border-radius: 12px;
+        background-color: transparent;
+        font-size: 20px;
+        cursor: pointer;
+
+        &:last-child {
+            margin-inline-start: auto;
+        }
+
+        &:hover {
+            border-color: var(--hover-color);
+            color: var(--hover-color);
+        }
+
+        &:active {
+            border-color: var(--hover-color);
+            background-color: var(--hover-color);
+            color: var(--secondary-color);
+        }
+    }
+
+    .test-result-container h3 {
+        margin-block-start: 0;
+        margin-block-end: 40px;
+        font-size: 24px;
+        line-height: 34px;
+        color: var(--accent-color);
+    }
+
+    .test-actions {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        margin-block-start: 64px;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 45px;
+        border: none;
+        border-radius: 50px;
+        font-size: 24px;
+        line-height: 32px;
+        font-weight: 500;
+        color: var(--secondary-color);
+        cursor: pointer;
+
+        &.btn-primary {
+            background-color: var(--primary-color);
+        }
+
+        &.btn-secondary {
+            background-color: var(--accent-color);
+        }
+
+        &:hover {
+            background-color: var(--hover-color);
+        }
+    }
+</style>
+
+<style is:global>
+    .option-btn {
+        padding: 10px;
+        border: none;
+        border-radius: 16px;
+        background-color: var(--accent-color);
+        font-size: 20px;
+        line-height: 30px;
+        color: var(--secondary-color);
+        cursor: pointer;
+
+        @media (prefers-reduced-motion: no-preference) {
+            transition:
+                opacity 0.2s,
+                transform 0.1s;
+        }
+
+        &:hover,
+        &:active,
+        &.selected {
+            background-color: var(--hover-color);
+        }
+
+        &:active {
+            transform: scale(0.98);
+        }
+    }
+
+    .result-interpretation {
+        font-size: 24px;
+        line-height: 34px;
+    }
+
+    .result-group {
+        font-size: 24px;
+        line-height: 34px;
+
+        & + & {
+            margin-block-start: 48px;
+        }
+    }
+
+    .result-group-name {
+        margin-block-end: 12px;
+        font-style: italic;
+        color: var(--accent-color);
+    }
+
+    .result-group-interpretation {
+        margin-block: 0;
+    }
+</style>
+
+<script is:inline define:vars={{ testData }}>
+    window.__TEST_DATA__ = testData;
+</script>
+
+<script>
+    import { TestRunner } from "../../scripts/test-runner";
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const container = document.getElementById("test-runner");
+        const testData = window.__TEST_DATA__;
+
+        if (container && testData) {
+            new TestRunner(container, testData);
+        }
+    });
+</script>

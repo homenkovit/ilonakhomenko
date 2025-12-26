@@ -10,4 +10,11 @@ const articles = defineCollection({
     }),
 });
 
-export const collections = { articles };
+const tests = defineCollection({
+    loader: glob({ pattern: '**/[^_]*.md', base: "./src/data/tests" }),
+    schema: z.object({
+        title: z.string(),
+    }),
+});
+
+export const collections = { articles, tests };

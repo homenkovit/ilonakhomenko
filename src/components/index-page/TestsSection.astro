@@ -1,16 +1,21 @@
+---
+import { getCollection } from "astro:content";
+
+const tests = await getCollection("tests");
+---
+
 <section class="tests container">
     <h2 class="page-subtitle">Тесты</h2>
     <ul class="tests__list">
-        <li class="tests__item">
-            <a href="/tests" class="test-link">
-                <h3 class="test-link__title">Название теста</h3>
-            </a>
-        </li>
-        <li class="tests__item">
-            <a href="/tests" class="test-link">
-                <h3 class="test-link__title">Название ещё одного теста</h3>
-            </a>
-        </li>
+        {
+            tests.map((test) => (
+                <li class="tests__item">
+                    <a href={`/tests/${test.id}`} class="test-link">
+                        <h3 class="test-link__title">{test.data.title}</h3>
+                    </a>
+                </li>
+            ))
+        }
     </ul>
 </section>
 
