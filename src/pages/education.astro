@@ -1,5 +1,16 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import CertificateCarousel from "../components/shared/CertificateCarousel.astro";
+
+const certificates = [
+  { src: "/images/education/1-diploma-1.webp", alt: "Диплом психолога РХГА" },
+  { src: "/images/education/2-diploma-2.webp", alt: "Диплом о высшем образовании" },
+  { src: "/images/education/3-diploma-3.webp", alt: "Диплом о квалификации" },
+  { src: "/images/education/4-certificate-rhga.webp", alt: "Сертификат РХГА" },
+  { src: "/images/education/5-certificate-act.webp", alt: "Сертификат ACT" },
+  { src: "/images/education/6-certificate-manp.webp", alt: "Сертификат МАНП" },
+  { src: "/images/education/7-certificate-manp.webp", alt: "Сертификат МАНП" },
+];
 ---
 
 <BaseLayout title="Образование" class="container">
@@ -28,5 +39,6 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </section>
     <section class="page-section">
         <h3 class="page-subtitle">Дипломы и сертификаты</h3>
+        <CertificateCarousel images={certificates} />
     </section>
 </BaseLayout>

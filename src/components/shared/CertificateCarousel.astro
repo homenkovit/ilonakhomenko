@@ -1,0 +1,431 @@
+---
+interface Certificate {
+  src: string;
+  alt: string;
+}
+
+interface Props {
+  images: Certificate[];
+  mode?: 'inline' | 'modal';
+}
+
+const { images, mode = 'inline' } = Astro.props;
+const totalSlides = images.length;
+---
+
+<div
+  class="carousel"
+  role="region"
+  aria-label="Карусель сертификатов"
+  aria-roledescription="carousel"
+  data-mode={mode}
+  tabindex="-1"
+>
+  <div class="carousel-main">
+    <button
+      class="nav-button"
+      aria-label="Предыдущий слайд"
+      data-action="prev"
+      disabled
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="104" height="104" fill="currentColor" viewBox="0 0 104 104" aria-hidden="true"><path d="M66.76 84.935a2.928 2.928 0 0 1-1.212-.246 2.985 2.985 0 0 1-1.01-.728l-28.585-29.22a3.265 3.265 0 0 1 0-4.611l28.584-29.156c1.27-1.299 3.24-1.299 4.51 0a3.265 3.265 0 0 1 0 4.61L42.686 52.468l26.361 26.948a3.265 3.265 0 0 1 0 4.61c-.635.65-1.46.974-2.223.974l-.064-.065Z"/></svg>
+    </button>
+
+    <div class="carousel-viewport">
+      <div class="carousel-track" aria-live="polite">
+        {images.map((image, index) => (
+          <div
+            class="carousel-slide"
+            role="group"
+            aria-roledescription="slide"
+            aria-label={`${index + 1} из ${totalSlides}`}
+            aria-hidden={index !== 0 ? "true" : undefined}
+            inert={index !== 0 ? true : undefined}
+            data-slide-index={index}
+          >
+            {mode === 'inline' ? (
+              <button
+                class="slide-button"
+                aria-label={`Открыть ${image.alt} в полноэкранном режиме`}
+                data-action="open-modal"
+                data-slide-index={index}
+              >
+                <img src={image.src} alt={image.alt} loading="lazy" />
+              </button>
+            ) : (
+              <img src={image.src} alt={image.alt} loading="lazy" />
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <button
+      class="nav-button"
+      aria-label="Следующий слайд"
+      data-action="next"
+      disabled={totalSlides === 1}
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="104" height="104" fill="currentColor" viewBox="0 0 104 104" aria-hidden="true"><path d="M38.24 84.935c.416.005.83-.079 1.212-.246a2.985 2.985 0 0 0 1.01-.728l28.585-29.22a3.265 3.265 0 0 0 0-4.611L40.463 20.974c-1.27-1.299-3.24-1.299-4.51 0a3.265 3.265 0 0 0 0 4.61l26.361 26.884-26.361 26.948a3.265 3.265 0 0 0 0 4.61c.635.65 1.46.974 2.223.974l.064-.065Z"/></svg>
+    </button>
+  </div>
+
+  <span class="counter" aria-live="polite">1 из {totalSlides}</span>
+</div>
+
+{mode === 'inline' && (
+  <dialog
+    id="certificate-modal"
+    class="carousel-modal"
+    aria-modal="true"
+    aria-label="Полноэкранный просмотр сертификата"
+  >
+    <button
+      class="close-modal-button"
+      aria-label="Закрыть"
+      data-action="close-modal"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="currentColor" viewBox="0 0 44 44" aria-hidden="true"><path d="M22 25.407 10.076 37.33c-.446.446-1.014.669-1.703.669-.69 0-1.258-.223-1.704-.67C6.223 36.886 6 36.318 6 35.628c0-.69.223-1.257.67-1.703L18.592 22 6.67 10.076C6.223 9.63 6 9.062 6 8.373c0-.69.223-1.258.67-1.704C7.114 6.223 7.682 6 8.372 6c.69 0 1.257.223 1.703.67L22 18.592 33.924 6.67C34.37 6.223 34.938 6 35.627 6c.69 0 1.258.223 1.704.67.446.445.669 1.013.669 1.703 0 .69-.223 1.257-.67 1.703L25.408 22 37.33 33.924c.446.446.669 1.014.669 1.703 0 .69-.223 1.258-.67 1.704-.445.446-1.013.669-1.703.669-.69 0-1.257-.223-1.703-.67L22 25.408Z"/></svg>
+    </button>
+
+    <div class="modal-content">
+      <Astro.self images={images} mode="modal" />
+    </div>
+  </dialog>
+)}
+
+<style>
+  .carousel-main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 38px;
+
+    @media screen and (width < 768px) {
+      gap: 24px;
+    }
+  }
+
+  .carousel-viewport {
+    flex: 1;
+    overflow: hidden;
+    height: 652px;
+
+    .carousel[data-mode=inline] & {
+      max-width: 472px;
+    }
+
+    @media screen and (width < 460px) {
+      height: auto;
+    }
+  }
+
+  .carousel-track {
+    display: flex;
+    align-items: center;
+    max-width: 100%;
+    height: 100%;
+
+    @media (prefers-reduced-motion: no-preference) {
+      transition: transform 0.3s ease;
+    }
+  }
+
+  .carousel-slide {
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: center;
+    min-width: 0;
+    height: 100%;
+
+    img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      display: block;
+      object-fit: contain;
+      object-position: center;
+    }
+  }
+
+  .slide-button {
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  .nav-button {
+    flex-shrink: 0;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      color: var(--hover-color);
+    }
+
+    &:disabled {
+      color: #d9d9d9;
+      cursor: not-allowed;
+    }
+
+    @media screen and (width < 768px) {
+      svg {
+        width: 44px;
+        height: 44px;
+      }
+    }
+
+    @media screen and (width < 600px) {
+      z-index: 1;
+      position: absolute;
+
+      &[data-action=prev] {
+        left: 20px;
+      }
+
+      &[data-action=next] {
+        right: 20px;
+      }
+    }
+  }
+
+  .counter {
+    display: block;
+    margin-block-start: 32px;
+    font-size: 20px;
+    line-height: 30px;
+    text-align: center;
+  }
+
+  .carousel-modal {
+    --block-padding: 100px;
+    --inline-padding: 40px;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+    padding: 0;
+    border: none;
+    background-color: #ffffff;
+    margin: 0;
+
+    .carousel-main {
+      padding: var(--block-padding) var(--inline-padding);
+
+      @media screen and (width >= 600px) {
+        justify-content: space-between;
+      }
+    }
+
+    .carousel-viewport {
+      width: auto;
+      height: calc(100vh - var(--block-padding) * 2);
+    }
+
+    .carousel-track {
+      height: 100%;
+    }
+
+    .carousel-slide {
+      height: 100%;
+      justify-content: center;
+
+      img {
+        width: auto;
+        height: 100%;
+      }
+    }
+
+    .counter {
+      margin-block-start: 0;
+      transform: translateY(calc(-1 * (var(--block-padding) - 32px)));
+    }
+
+    @media screen and (width < 600px) {
+      --inline-padding: 8px;
+    }
+  }
+
+  .close-modal-button {
+    z-index: 1;
+    position: absolute;
+    top: 60px;
+    right: 60px;
+    display: flex;
+    padding: 0;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--hover-color);
+    }
+  }
+
+  .modal-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>
+
+<script>
+  function initCarousel(carouselElement: HTMLElement) {
+    const track = carouselElement.querySelector<HTMLElement>('.carousel-track');
+    const slides = Array.from(carouselElement.querySelectorAll('.carousel-slide'));
+    const prevButton = carouselElement.querySelector<HTMLButtonElement>('.nav-button[data-action="prev"]');
+    const nextButton = carouselElement.querySelector<HTMLButtonElement>('.nav-button[data-action="next"]');
+    const counter = carouselElement.querySelector<HTMLElement>('.counter');
+
+    let currentIndex = 0;
+    const totalSlides = slides.length;
+
+    function goToSlide(index: number, instant: boolean = false) {
+      if (index < 0 || index >= totalSlides) return;
+
+      currentIndex = index;
+      updateUI(instant);
+    }
+
+    function nextSlide() {
+      if (currentIndex < totalSlides - 1) {
+        goToSlide(currentIndex + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentIndex > 0) {
+        goToSlide(currentIndex - 1);
+      }
+    }
+
+    function updateUI(instant: boolean = false) {
+      if (!track) return;
+
+      if (instant) {
+        track.style.transition = 'none';
+      }
+
+      track.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+      if (instant) {
+        requestAnimationFrame(() => {
+          track.style.transition = '';
+        });
+      }
+
+      prevButton && (prevButton.disabled = currentIndex === 0);
+      nextButton && (nextButton.disabled = currentIndex === totalSlides - 1);
+
+      counter && (counter.textContent = `${currentIndex + 1} из ${totalSlides}`);
+
+      slides.forEach((slide, index) => {
+        const isActive = index === currentIndex;
+        slide.setAttribute('aria-hidden', String(!isActive));
+
+        if (isActive) {
+          slide.removeAttribute('inert');
+        } else {
+          slide.setAttribute('inert', '');
+        }
+      });
+    }
+
+    prevButton?.addEventListener('click', prevSlide);
+    nextButton?.addEventListener('click', nextSlide);
+
+    carouselElement.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        nextSlide();
+      }
+    });
+
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const minSwipeDistance = 50;
+
+    carouselElement.addEventListener('touchstart', (e) => {
+      touchStartX = e.touches[0].clientX;
+    }, { passive: true });
+
+    carouselElement.addEventListener('touchmove', (e) => {
+      touchEndX = e.touches[0].clientX;
+    }, { passive: true });
+
+    carouselElement.addEventListener('touchend', () => {
+      if (touchEndX === 0) return;
+      const swipeDistance = touchStartX - touchEndX;
+
+      if (Math.abs(swipeDistance) > minSwipeDistance) {
+        if (swipeDistance > 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      }
+
+      touchStartX = 0;
+      touchEndX = 0;
+    });
+
+    return { goToSlide };
+  }
+
+  const inlineCarousel = document.querySelector<HTMLElement>('.carousel[data-mode="inline"]');
+  if (inlineCarousel) {
+    initCarousel(inlineCarousel);
+
+    const modal = document.querySelector<HTMLDialogElement>('#certificate-modal');
+    const modalCarousel = document.querySelector<HTMLElement>('.carousel[data-mode="modal"]');
+    const closeButton = modal?.querySelector<HTMLButtonElement>('.close-modal-button');
+    const openButtons = document.querySelectorAll('[data-action="open-modal"]');
+
+    let modalController: ReturnType<typeof initCarousel> | null = null;
+
+    function openModal(slideIndex: number = 0) {
+      if (!modal || !modalCarousel) return;
+
+      document.body.style.overflow = 'hidden';
+      modal.showModal();
+
+      if (!modalController) {
+        modalController = initCarousel(modalCarousel);
+      }
+
+      modalController.goToSlide(slideIndex, true);
+      modalCarousel.focus();
+    }
+
+    openButtons.forEach(button => {
+      button.addEventListener('click', (e) => {
+        const target = e.currentTarget as HTMLElement;
+        const slideIndex = parseInt(target.dataset.slideIndex || '0', 10);
+        openModal(slideIndex);
+      });
+    });
+
+    if (modal) {
+      modal.addEventListener('close', () => {
+        document.body.style.overflow = 'auto';
+      });
+
+      if (closeButton) {
+        closeButton.addEventListener('click', () => {
+          modal.close();
+        });
+      }
+    }
+  }
+</script>
