@@ -34,7 +34,7 @@ const pubDate = article.data.pubDate.toLocaleDateString("ru-RU").replaceAll(".",
         {prevArticle && (
             <a href={`/articles/${prevArticle.id}`} class="article-url prev">
                 <span class="article-url__text-with-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"><path d="M12.727 3.687A.999.999 0 0 0 11.972 2a1 1 0 0 0-.699.313l-8.5 9a1 1 0 0 0 0 1.374l8.5 9a1.002 1.002 0 0 0 1.736-.654.999.999 0 0 0-.282-.718L4.875 12l7.852-8.313Z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M12.727 3.687A.999.999 0 0 0 11.972 2a1 1 0 0 0-.699.313l-8.5 9a1 1 0 0 0 0 1.374l8.5 9a1.002 1.002 0 0 0 1.736-.654.999.999 0 0 0-.282-.718L4.875 12l7.852-8.313Z"/></svg>
                     Предыдущая&nbsp;статья
                 </span>
                 <span class="article-url__title">{prevArticle.data.title}</span>
@@ -44,7 +44,7 @@ const pubDate = article.data.pubDate.toLocaleDateString("ru-RU").replaceAll(".",
             <a href={`/articles/${nextArticle.id}`} class="article-url next">
                 <span class="article-url__text-with-icon">
                     Следующая&nbsp;статья
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"><path d="M11.273 3.687A.999.999 0 0 1 12.028 2a1 1 0 0 1 .699.313l8.5 9a1 1 0 0 1 0 1.374l-8.5 9a1.002 1.002 0 0 1-1.736-.654.999.999 0 0 1 .282-.718L19.125 12l-7.852-8.313Z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" aria-hidden="true"><path d="M11.273 3.687A.999.999 0 0 1 12.028 2a1 1 0 0 1 .699.313l8.5 9a1 1 0 0 1 0 1.374l-8.5 9a1.002 1.002 0 0 1-1.736-.654.999.999 0 0 1 .282-.718L19.125 12l-7.852-8.313Z"/></svg>
                 </span>
                 <span class="article-url__title">{nextArticle.data.title}</span>
             </a>
