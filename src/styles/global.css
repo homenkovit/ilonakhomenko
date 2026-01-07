@@ -33,6 +33,14 @@ body {
 a {
     text-underline-position: under;
     color: var(--accent-color);
+
+    &:active {
+        color: var(--hover-color);
+    }
+
+    &:visited {
+        color: #5f00ad;
+    }
 }
 
 .container {

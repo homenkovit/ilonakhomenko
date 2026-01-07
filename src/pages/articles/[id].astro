@@ -90,9 +90,10 @@ const pubDate = article.data.pubDate.toLocaleDateString("ru-RU").replaceAll(".",
         gap: 12px;
         align-items: center;
         max-width: 314px;
+        text-decoration: none;
 
-        &:not(:hover) {
-            text-decoration: none;
+        &:hover {
+            color: var(--hover-color);
         }
 
         &.prev {
