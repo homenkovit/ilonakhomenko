@@ -210,6 +210,7 @@
             }
 
             @media screen and (width < 768px) {
+                margin-inline: -24px;
                 transform: translateY(60px);
             }
         }
@@ -236,6 +237,25 @@
         @media screen and (width < 1240px) {
             grid-template-columns: 1fr;
             row-gap: 40px;
+        }
+
+        @media screen and (width < 600px) {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            display: flex;
+            gap: 0;
+            max-width: 100%;
+            padding-inline: 24px;
+            padding-block-start: 4px;
+            margin-inline: -24px;
+            margin-block-start: -4px;
+
+
+            .help__item {
+                min-width: 100%;
+                scroll-snap-align: center;
+                scroll-snap-stop: always;
+            }
         }
     }
 
@@ -264,6 +284,20 @@
             line-height: 30px;
             font-weight: 400;
             color: var(--secondary-color);
+        }
+
+        @media screen and (width < 600px) {
+            align-items: flex-start;
+            gap: 16px;
+            transform: translateX(0);
+
+            &::before {
+                width: 40px;
+                height: 40px;
+                margin-top: -4px;
+                font-size: 20px;
+                line-height: 30px;
+            }
         }
     }
 
