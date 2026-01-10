@@ -3,7 +3,8 @@ import Icon from "./Icon.astro";
 
 const { pathname } = Astro.url;
 
-const getIsLinkActive = (href: string) => !href.includes("#") && pathname === href;
+const normalizePathname = (path: string) => path.replace(/\/$/, '') || '/';
+const getIsLinkActive = (href: string) => !href.includes("#") && normalizePathname(pathname) === normalizePathname(href);
 
 const navigationLinks = [
     { href: "/", label: "Главная" },
