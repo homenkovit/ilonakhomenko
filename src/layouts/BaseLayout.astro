@@ -23,7 +23,7 @@ const title = `Психолог Илона Хоменко${subtitle ? ` - ${subt
         <meta name="generator" content={Astro.generator}>
         <title>{title}</title>
     </head>
-    <body style={{ backgroundColor: bodyBgColor }}>
+    <body>
         <Header />
         <main class={className}>
             <slot />
@@ -33,11 +33,12 @@ const title = `Психолог Илона Хоменко${subtitle ? ` - ${subt
     </body>
 </html>
 
-<style>
+<style define:vars={{ bodyBgColor }}>
     body {
         display: grid;
         grid-template-rows: auto 1fr auto;
         min-height: 100vh;
+        background-color: var(--bodyBgColor);
     }
 
     main {
