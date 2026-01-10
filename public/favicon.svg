@@ -1,15 +1,1 @@
-<svg width="200" height="200" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="flower-gradient" x1="0" y1="0" x2="100" y2="100" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#2de3e8"/>
-      <stop offset="0.5" stop-color="#46aef7"/>
-      <stop offset="1" stop-color="#6942ef"/>
-    </linearGradient>
-  </defs>
-  <g fill="url(#flower-gradient)">
-    <path d="M50 50 C 28 50 10 32 8 8 C 32 10 50 28 50 50 Z" />
-    <path d="M50 50 C 50 28 68 10 92 8 C 90 32 72 50 50 50 Z" />
-    <path d="M50 50 C 72 50 90 68 92 92 C 68 90 50 72 50 50 Z" />
-    <path d="M50 50 C 50 72 32 90 8 92 C 10 68 28 50 50 50 Z" />
-  </g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" fill="none" viewBox="0 0 100 100"><defs><linearGradient id="a" x1="0" x2="100" y1="0" y2="100" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#2de3e8"/><stop offset=".5" stop-color="#46aef7"/><stop offset="1" stop-color="#6942ef"/></linearGradient></defs><g fill="url(#a)"><path d="M50 50C28 50 10 32 8 8c24 2 42 20 42 42"/><path d="M50 50c0-22 18-40 42-42-2 24-20 42-42 42"/><path d="M50 50c22 0 40 18 42 42-24-2-42-20-42-42"/><path d="M50 50c0 22-18 40-42 42 2-24 20-42 42-42"/></g></svg>
