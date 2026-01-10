@@ -1,4 +1,6 @@
 ---
+import { Image } from "astro:assets";
+import myPhoto from "../../assets/images/my-photo.webp";
 import AppointmentButton from "../shared/AppointmentButton.astro";
 ---
 
@@ -19,7 +21,7 @@ import AppointmentButton from "../shared/AppointmentButton.astro";
         удобное время.
     </p>
     <div class="about__photo">
-        <img src="/images/my-photo.webp" alt="" width="552" height="552">
+        <Image src={myPhoto} alt="Илона Хоменко — психолог" width={552} height={552} />
     </div>
     <div class="about__buttons">
         <AppointmentButton />

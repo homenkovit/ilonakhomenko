@@ -29,12 +29,21 @@ const tests = await getCollection("tests");
             position: absolute;
             inset: 0;
             display: block;
-            background-image: url("/images/tests-cover.webp");
+            background-image: url("/images/tests-cover-768.webp");
             background-repeat: no-repeat;
             background-size: cover;
             object-fit: fill;
             opacity: 0.1;
+
+            @media screen and (width >= 768px) {
+                background-image: url("/images/tests-cover-1440.webp");
+            }
+
+            @media screen and (width >= 1440px) {
+                background-image: url("/images/tests-cover.webp");
+            }
         }
+
     }
 </style>
 
