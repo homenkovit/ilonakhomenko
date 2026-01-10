@@ -1,4 +1,6 @@
 ---
+import Icon from "./Icon.astro";
+
 interface Certificate {
   src: string;
   alt: string;
@@ -28,7 +30,7 @@ const totalSlides = images.length;
       data-action="prev"
       disabled
     >
-      <svg xmlns="http://www.w3.org/2000/svg" width="104" height="104" fill="currentColor" viewBox="0 0 104 104" aria-hidden="true"><path d="M66.76 84.935a2.928 2.928 0 0 1-1.212-.246 2.985 2.985 0 0 1-1.01-.728l-28.585-29.22a3.265 3.265 0 0 1 0-4.611l28.584-29.156c1.27-1.299 3.24-1.299 4.51 0a3.265 3.265 0 0 1 0 4.61L42.686 52.468l26.361 26.948a3.265 3.265 0 0 1 0 4.61c-.635.65-1.46.974-2.223.974l-.064-.065Z"/></svg>
+      <Icon name="arrow-prev-lg" size={104} />
     </button>
 
     <div class="carousel-viewport">
@@ -66,7 +68,7 @@ const totalSlides = images.length;
       data-action="next"
       disabled={totalSlides === 1}
     >
-      <svg xmlns="http://www.w3.org/2000/svg" width="104" height="104" fill="currentColor" viewBox="0 0 104 104" aria-hidden="true"><path d="M38.24 84.935c.416.005.83-.079 1.212-.246a2.985 2.985 0 0 0 1.01-.728l28.585-29.22a3.265 3.265 0 0 0 0-4.611L40.463 20.974c-1.27-1.299-3.24-1.299-4.51 0a3.265 3.265 0 0 0 0 4.61l26.361 26.884-26.361 26.948a3.265 3.265 0 0 0 0 4.61c.635.65 1.46.974 2.223.974l.064-.065Z"/></svg>
+      <Icon name="arrow-next-lg" size={104} />
     </button>
   </div>
 
@@ -85,7 +87,7 @@ const totalSlides = images.length;
       aria-label="Закрыть"
       data-action="close-modal"
     >
-      <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" fill="currentColor" viewBox="0 0 44 44" aria-hidden="true"><path d="M22 25.407 10.076 37.33c-.446.446-1.014.669-1.703.669-.69 0-1.258-.223-1.704-.67C6.223 36.886 6 36.318 6 35.628c0-.69.223-1.257.67-1.703L18.592 22 6.67 10.076C6.223 9.63 6 9.062 6 8.373c0-.69.223-1.258.67-1.704C7.114 6.223 7.682 6 8.372 6c.69 0 1.257.223 1.703.67L22 18.592 33.924 6.67C34.37 6.223 34.938 6 35.627 6c.69 0 1.258.223 1.704.67.446.445.669 1.013.669 1.703 0 .69-.223 1.257-.67 1.703L25.408 22 37.33 33.924c.446.446.669 1.014.669 1.703 0 .69-.223 1.258-.67 1.704-.445.446-1.013.669-1.703.669-.69 0-1.257-.223-1.703-.67L22 25.408Z"/></svg>
+      <Icon name="close" size={44} />
     </button>
 
     <div class="modal-content">

@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Icon from "../../components/shared/Icon.astro";
 import type { TestData } from "../../types/test";
 
 const testDataFiles = import.meta.glob<{
@@ -68,7 +69,7 @@ const testData = {
             <div class="test-actions">
                 <button type="button" class="btn btn-primary" id="share-btn">
                     Поделиться
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="32" height="32" fill="none" aria-hidden="true"><path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m20 6.667-4-4m0 0-4 4m4-4v16M8 12H5.335v12a2.667 2.667 0 0 0 2.667 2.666h16A2.667 2.667 0 0 0 26.667 24V12h-2.666"/></svg>
+                    <Icon name="share" size={32} />
                 </button>
                 <button type="button" class="btn btn-secondary" id="restart-btn">
                     Пройти заново
