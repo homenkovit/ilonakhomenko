@@ -23,7 +23,6 @@ const totalSlides = images.length;
   aria-label="Карусель сертификатов"
   aria-roledescription="carousel"
   data-mode={mode}
-  tabindex="-1"
 >
   <div class="carousel-main">
     <button
@@ -78,17 +77,8 @@ const totalSlides = images.length;
 </div>
 
 {mode === 'inline' && (
-  <dialog
-    id="certificate-modal"
-    class="carousel-modal"
-    aria-modal="true"
-    aria-label="Полноэкранный просмотр сертификата"
-  >
-    <button
-      class="close-modal-button"
-      aria-label="Закрыть"
-      data-action="close-modal"
-    >
+  <dialog id="certificate-modal" class="carousel-modal" aria-label="Полноэкранный просмотр сертификата">
+    <button class="close-modal-button" aria-label="Закрыть">
       <Icon name="close" size={44} />
     </button>
 
@@ -157,6 +147,7 @@ const totalSlides = images.length;
     padding: 0;
     border: none;
     background-color: transparent;
+    color: inherit;
     cursor: pointer;
   }
 
@@ -165,6 +156,7 @@ const totalSlides = images.length;
     padding: 0;
     border: none;
     background-color: transparent;
+    color: inherit;
     cursor: pointer;
 
     &:hover:not(:disabled) {
@@ -198,8 +190,9 @@ const totalSlides = images.length;
   }
 
   .counter {
+    --margin-block-start: 32px;
     display: block;
-    margin-block-start: 32px;
+    margin-block-start: var(--margin-block-start);
     font-size: 20px;
     line-height: 30px;
     text-align: center;
@@ -247,8 +240,11 @@ const totalSlides = images.length;
     }
 
     .counter {
+      position: absolute;
+      bottom: calc(var(--block-padding) - var(--margin-block-start) * 2);
+      left: 50%;
+      transform: translateX(-50%);
       margin-block-start: 0;
-      transform: translateY(calc(-1 * (var(--block-padding) - 32px)));
     }
 
     @media screen and (width < 600px) {
@@ -265,6 +261,7 @@ const totalSlides = images.length;
     padding: 0;
     border: none;
     background-color: transparent;
+    color: inherit;
     cursor: pointer;
 
     &:hover {
@@ -409,7 +406,6 @@ const totalSlides = images.length;
       }
 
       modalController.goToSlide(slideIndex, true);
-      modalCarousel.focus();
     }
 
     openButtons.forEach(button => {

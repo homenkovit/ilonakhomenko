@@ -48,7 +48,7 @@ const finalDescription = description || defaultDescription;
 <html lang="ru">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" href="/favicon.ico" sizes="32x32">
         <link rel="icon" href="/favicon.svg" type="image/svg+xml">
         <link rel="apple-touch-icon" href="/apple-touch-favicon.png">
@@ -78,16 +78,17 @@ const finalDescription = description || defaultDescription;
     </body>
 </html>
 
-<style define:vars={{ bodyBgColor }}>
+<style is:global define:vars={{ bodyBgColor }}>
     body {
         display: grid;
         grid-template-rows: auto 1fr auto;
         min-height: 100vh;
-        background-color: var(--bodyBgColor);
+        background-color: var(--accent-color);
     }
 
     main {
         padding-block: 160px;
+        background-color: var(--bodyBgColor, var(--secondary-color));
 
         @media screen and (width < 1440px) {
             padding-block: 100px;

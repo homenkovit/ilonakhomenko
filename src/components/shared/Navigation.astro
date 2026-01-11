@@ -79,12 +79,10 @@ const navigationLinks = [
 
     .menu {
         @media screen and (width < 1138px) {
-            position: absolute;
-            top: var(--header-height);
-            left: 0;
-            right: 0;
+            position: fixed;
+            inset: var(--header-height) 0 0;
             box-sizing: border-box;
-            max-height: calc(100vh - var(--header-height));
+            contain: layout;
             overflow-y: auto;
             padding: 20px;
             border-top: 2px solid var(--border-color);
@@ -163,11 +161,11 @@ const navigationLinks = [
         menu?.classList.toggle('closed');
 
         if (isMenuOpen) {
-            document.body.style.overflow = 'hidden';
+            document.body.style.overflow = 'auto';
             main?.removeAttribute('inert');
             footer?.removeAttribute('inert');
         } else {
-            document.body.style.overflow = 'auto';
+            document.body.style.overflow = 'hidden';
             main?.setAttribute('inert', '');
             footer?.setAttribute('inert', '');
         }

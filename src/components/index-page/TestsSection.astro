@@ -23,18 +23,7 @@ const tests = await getCollection("tests");
     .tests {
         overflow: hidden;
         position: relative;
-
-        &::before {
-            content: "";
-            z-index: -1;
-            position: absolute;
-            inset-block-start: 290px;
-            inset-inline-end: 0;
-            width: 603px;
-            height: 752px;
-            background-image: url("/images/tests-section-cover.webp");
-            background-repeat: no-repeat;
-        }
+        background-repeat: no-repeat;
 
         &.container {
             --container-width: 1592px;
@@ -42,25 +31,16 @@ const tests = await getCollection("tests");
 
         @media screen and (width >= 1440px) {
             min-height: 1200px;
-
-            &::before {
-                inset-block-start: 290px;
-                inset-inline-end: 0;
-                width: 603px;
-                height: 752px;
-            }
+            background-image: url("/images/tests-section-cover.webp");
+            background-position: 100% 290px;
         }
 
         @media screen and (width < 1440px) {
             padding-block-end: 200px;
-
-            &::before {
-                inset: 0;
-                width: 100%;
-                object-fit: fill;
-                background-size: 100%;
-                opacity: 0.1;
-            }
+            background-image:
+                    linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+                    url("/images/tests-section-cover.webp");
+            background-size: cover;
 
             &.container {
                 --container-width: 800px;

@@ -29,13 +29,15 @@ const fullOgImageUrl = new URL(ogImage, siteUrl).href;
 <link rel="canonical" href={fullCanonicalUrl} />
 
 <!-- Open Graph -->
+<meta property="og:type" content={ogType} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={fullOgImageUrl} />
 <meta property="og:url" content={fullCanonicalUrl} />
-<meta property="og:type" content={ogType} />
 <meta property="og:locale" content="ru_RU" />
 <meta property="og:site_name" content="Психолог Илона Хоменко" />
+<meta property="og:image" content={fullOgImageUrl} />
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 
 {ogType === "article" && articlePublishedTime && (
     <meta property="article:published_time" content={articlePublishedTime} />
