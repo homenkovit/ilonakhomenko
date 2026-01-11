@@ -142,3 +142,38 @@
         }
     }
 </style>
+
+<script>
+    const faqItems = document.querySelectorAll<HTMLDetailsElement>('.faq__item');
+
+    faqItems.forEach(details => {
+        const summary = details.querySelector('summary');
+        let savedTop: number | null = null;
+
+        summary?.addEventListener('click', () => {
+            if (!details.open) {
+                savedTop = details.getBoundingClientRect().top;
+            }
+        });
+
+        details.addEventListener('toggle', () => {
+            if (details.open && savedTop !== null) {
+                const initialTop = savedTop;
+                savedTop = null;
+
+                requestAnimationFrame(() => {
+                    const currentTop = details.getBoundingClientRect().top;
+                    const delta = currentTop - initialTop;
+
+                    if (Math.abs(delta) > 1) {
+                        window.scrollBy({ top: delta, behavior: 'instant' });
+                    }
+
+                    requestAnimationFrame(() => {
+                        details.scrollIntoView({ block: 'start', behavior: 'smooth' });
+                    });
+                });
+            }
+        });
+    });
+</script>
