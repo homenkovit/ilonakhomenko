@@ -20,10 +20,10 @@
     --accent-color: #453750;
     --hover-color: #8169AB;
     --border-color: #a393bf;
-    --header-height: auto;
+    --header-height: 152px;
 
-    @media screen and (width < 1138px) {
-        --header-height: 150px;
+    @media screen and (1138px <= width < 1718px) {
+        --header-height: 246px;
     }
 
     @media screen and (width < 800px) {
