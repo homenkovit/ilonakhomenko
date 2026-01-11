@@ -5,8 +5,10 @@ import AppointmentButton from "./AppointmentButton.astro";
 
 <header class="header container">
     <h1 class="title">
-        Илона Хоменко
-        <span>психолог онлайн</span>
+        <a href="/" class="title-link">
+            Илона Хоменко
+            <span>психолог онлайн</span>
+        </a>
     </h1>
 
     <AppointmentButton />
@@ -77,15 +79,20 @@ import AppointmentButton from "./AppointmentButton.astro";
     }
 
     .title {
+        margin: 0;
+    }
+
+    .title-link {
         display: flex;
         flex-direction: column;
         align-items: center;
         width: max-content;
-        margin: 0;
-        font-weight: 400;
         font-size: 40px;
         line-height: 100%;
+        font-weight: 400;
+        color: var(--primary-color);
         white-space: nowrap;
+        text-decoration: none;
 
         & span {
             font-size: 22px;
