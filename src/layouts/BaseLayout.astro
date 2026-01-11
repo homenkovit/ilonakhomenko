@@ -1,28 +1,72 @@
 ---
 import Header from "../components/shared/Header.astro";
 import Footer from "../components/shared/Footer.astro";
+import SEO from "../components/shared/SEO.astro";
+import JsonLd from "../components/shared/JsonLd.astro";
 
 import "../styles/global.css";
 import AppointmentDialog from "../components/shared/AppointmentDialog.astro";
 
+interface ArticleJsonLd {
+    title: string;
+    description: string;
+    datePublished: string;
+    url: string;
+}
+
 interface Props {
     title?: string;
+    description?: string;
+    ogImage?: string;
+    ogType?: "website" | "article";
+    articlePublishedTime?: string;
+    jsonLdType?: "ProfessionalService" | "Article" | "WebPage";
+    articleJsonLd?: ArticleJsonLd;
     class?: string;
     bodyBgColor?: string;
 }
 
-const { title: subtitle, class: className, bodyBgColor } = Astro.props;
-const title = `Психолог Илона Хоменко${subtitle ? ` - ${subtitle}` : ""}`
+const {
+    title: subtitle,
+    description,
+    ogImage,
+    ogType = "website",
+    articlePublishedTime,
+    jsonLdType = "WebPage",
+    articleJsonLd,
+    class: className,
+    bodyBgColor
+} = Astro.props;
+
+const title = `Психолог Илона Хоменко${subtitle ? ` - ${subtitle}` : ""}`;
+const canonicalUrl = Astro.url.pathname;
+
+const defaultDescription = "Психолог Илона Хоменко. Индивидуальные консультации онлайн. Работаю в подходах ACT, CFT и ОРКТ. Помогаю справиться с тревогой, депрессией, эмоциональным выгоранием.";
+const finalDescription = description || defaultDescription;
 ---
 
 <html lang="ru">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
         <link rel="icon" href="/favicon.ico" sizes="32x32">
         <link rel="icon" href="/favicon.svg" type="image/svg+xml">
         <link rel="apple-touch-icon" href="/apple-touch-favicon.png">
-        <meta name="viewport" content="width=device-width">
         <title>{title}</title>
+
+        <SEO
+            title={title}
+            description={finalDescription}
+            canonicalUrl={canonicalUrl}
+            ogImage={ogImage}
+            ogType={ogType}
+            articlePublishedTime={articlePublishedTime}
+        />
+
+        <JsonLd
+            type={jsonLdType}
+            articleData={articleJsonLd}
+        />
     </head>
     <body>
         <Header />

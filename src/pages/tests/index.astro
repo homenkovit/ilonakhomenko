@@ -5,7 +5,11 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const tests = await getCollection("tests");
 ---
 
-<BaseLayout title="Тесты" class="tests-page container">
+<BaseLayout
+    title="Тесты"
+    description="Психологические тесты онлайн: шкала депрессии Бэка, шкала социальной тревожности Либовица, опросник осознанности и другие."
+    class="tests-page container"
+>
     <h2 class="page-title">Тесты</h2>
 
     <ul class="tests-list">

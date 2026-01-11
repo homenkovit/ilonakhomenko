@@ -27,9 +27,17 @@ const testData = {
     title: test.data.title,
     ...testDataFiles[jsonPath]?.default,
 } satisfies TestData;
+
+const testDescription = test.data.description ||
+    `Пройдите тест "${test.data.title}" онлайн. Тест не заменяет консультацию специалиста.`;
 ---
 
-<BaseLayout title={pageTitle} class="container" bodyBgColor="#ede8f0">
+<BaseLayout
+    title={pageTitle}
+    description={testDescription}
+    bodyBgColor="#ede8f0"
+    class="container"
+>
     <h2 class="page-title">{test.data.title}</h2>
 
     <p class="test-warning">

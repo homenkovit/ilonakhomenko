@@ -8,7 +8,11 @@ import ArticlesSection from "../components/index-page/ArticlesSection.astro";
 import TestsSection from "../components/index-page/TestsSection.astro";
 ---
 
-<BaseLayout class="index-page">
+<BaseLayout
+	description="Индивидуальные онлайн-консультации. Психологическая помощь при тревоге и депрессии, поддержка в эмиграции и при нейроотличиях."
+	jsonLdType="ProfessionalService"
+	class="index-page"
+>
 	<AboutSection />
 	<HelpSection />
 	<PriceSection />

@@ -7,6 +7,7 @@ const articles = defineCollection({
     schema: z.object({
         title: z.string(),
         pubDate: z.date(),
+        description: z.string().optional(),
     }),
 });
 
@@ -14,6 +15,7 @@ const tests = defineCollection({
     loader: glob({ pattern: '**/[^_]*.md', base: "./src/data/tests" }),
     schema: z.object({
         title: z.string(),
+        description: z.string().optional(),
     }),
 });
 

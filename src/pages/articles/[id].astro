@@ -23,9 +23,29 @@ const { article, prevArticle, nextArticle } = Astro.props;
 const { Content } = await render(article);
 const pageTitle = `Статья "${article.data.title}"`;
 const pubDate = article.data.pubDate.toLocaleDateString("ru-RU").replaceAll(".", "/");
+
+const articleDescription = article.data.description ||
+    `Статья "${article.data.title}"`;
+const siteUrl = import.meta.env.SITE || "https://ilonakhomenko.com";
+const articleUrl = `${siteUrl}/articles/${article.id}`;
+const isoDate = article.data.pubDate.toISOString();
 ---
 
-<BaseLayout title={pageTitle} class="container" bodyBgColor="#ede8f0">
+<BaseLayout
+    title={pageTitle}
+    description={articleDescription}
+    ogType="article"
+    articlePublishedTime={isoDate}
+    jsonLdType="Article"
+    articleJsonLd={{
+        title: article.data.title,
+        description: articleDescription,
+        datePublished: isoDate,
+        url: articleUrl
+    }}
+    bodyBgColor="#ede8f0"
+    class="container"
+>
     <h2 class="page-title">{article.data.title}</h2>
     <time class="article-datetime" datetime={pubDate}>{pubDate}</time>
 

@@ -7,7 +7,11 @@ const articles = (await getCollection("articles")).sort(
 );
 ---
 
-<BaseLayout title="Статьи" class="articles-page container">
+<BaseLayout
+    title="Статьи"
+    description="Статьи о психологии, эмоциях, осознанности, хронической боли и других темах."
+    class="articles-page container"
+>
     <h2 class="page-title">Статьи</h2>
 
     <ul class="articles-list">

@@ -1,0 +1,87 @@
+---
+interface ArticleData {
+    title: string;
+    description: string;
+    datePublished: string;
+    url: string;
+}
+
+interface Props {
+    type: "ProfessionalService" | "Article" | "WebPage";
+    articleData?: ArticleData;
+}
+
+const { type, articleData } = Astro.props;
+const siteUrl = import.meta.env.SITE || "https://ilonakhomenko.com";
+
+const psychologistSchema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "@id": `${siteUrl}/#psychologist`,
+    "name": "Психолог Илона Хоменко",
+    "url": siteUrl,
+    "description": "Индивидуальные онлайн-консультации. Психологическая помощь при тревоге и депрессии, поддержка в эмиграции и при нейроотличиях.",
+    "priceRange": "€50/$55",
+    "areaServed": {
+        "@type": "Place",
+        "name": "Онлайн консультации"
+    },
+    "provider": {
+        "@type": "Person",
+        "name": "Илона Хоменко",
+        "jobTitle": "Психолог",
+        "url": siteUrl
+    },
+    "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Психологические услуги",
+        "itemListElement": [
+            {
+                "@type": "Offer",
+                "itemOffered": {
+                    "@type": "Service",
+                    "name": "Индивидуальные онлайн-консультации"
+                }
+            }
+        ]
+    }
+};
+
+const articleSchema = articleData ? {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": articleData.title,
+    "description": articleData.description,
+    "datePublished": articleData.datePublished,
+    "url": articleData.url,
+    "author": {
+        "@type": "Person",
+        "name": "Илона Хоменко"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Психолог Илона Хоменко",
+        "url": siteUrl
+    }
+} : null;
+
+const webPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "url": siteUrl,
+    "name": "Психолог Илона Хоменко",
+    "isPartOf": {
+        "@type": "WebSite",
+        "url": siteUrl,
+        "name": "Психолог Илона Хоменко"
+    }
+};
+
+const schema = type === "Article" && articleSchema
+    ? articleSchema
+    : type === "ProfessionalService"
+        ? psychologistSchema
+        : webPageSchema;
+---
+
+<script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
