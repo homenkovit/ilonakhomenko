@@ -153,6 +153,7 @@ const navigationLinks = [
     const footer = document.querySelector('footer');
     const menuButton = document.querySelector<HTMLButtonElement>('.menu-button');
     const menu = document.querySelector<HTMLElement>('.menu');
+    const hashLinks = menu?.querySelectorAll<HTMLAnchorElement>('a[href*="#"]');
 
     function isMenuOpened(): boolean {
         return menuButton?.getAttribute('aria-expanded') === 'true';
@@ -182,6 +183,14 @@ const navigationLinks = [
         if (event.key === 'Escape' && isMenuOpened()) {
             closeMenu();
         }
+    });
+
+    hashLinks?.forEach((link) => {
+        link.addEventListener('click', () => {
+            if (isMenuOpened()) {
+                closeMenu();
+            }
+        });
     });
 
     if (window.location.pathname === '/') {

@@ -20,6 +20,23 @@
     --accent-color: #453750;
     --hover-color: #8169AB;
     --border-color: #a393bf;
+    --header-height: auto;
+
+    @media screen and (width < 1138px) {
+        --header-height: 150px;
+    }
+
+    @media screen and (width < 800px) {
+        --header-height: 96px;
+    }
+}
+
+html {
+    scroll-padding-top: var(--header-height);
+
+    @media (prefers-reduced-motion: no-preference) {
+        scroll-behavior: smooth;
+    }
 }
 
 body {
