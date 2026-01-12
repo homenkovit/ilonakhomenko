@@ -22,10 +22,6 @@
     --border-color: #a393bf;
     --header-height: 152px;
 
-    @media screen and (1138px <= width < 1718px) {
-        --header-height: 246px;
-    }
-
     @media screen and (width < 800px) {
         --header-height: 96px;
     }
