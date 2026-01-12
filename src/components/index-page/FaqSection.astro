@@ -1,6 +1,6 @@
 <section class="faq container">
     <h2 class="page-subtitle">Популярные вопросы (FAQ)</h2>
-    <details name="faq" class="faq__item">
+    <details class="faq__item">
         <summary><h3>Могу ли я получить помощь онлайн?</h3></summary>
         <p>
             Это возможно во многих случаях, но есть нюансы. Например, при
@@ -13,7 +13,7 @@
             <a href="mailto:ilonakhomenko@gmail.com">почту</a>.
         </p>
     </details>
-    <details name="faq" class="faq__item">
+    <details class="faq__item">
         <summary><h3>Сколько длится первая встреча и как мне к ней подготовиться?</h3></summary>
         <p>
             Первая встреча со мной длится 90 минут. У других специалистов она
@@ -28,7 +28,7 @@
             евро или 55 долларов.
         </p>
     </details>
-    <details name="faq" class="faq__item">
+    <details class="faq__item">
         <summary><h3>Что будет на первой встрече? Не знаю, с чего начать</h3></summary>
         <p>
             Первая встреча - это зачастую довольно волнительное мероприятие, как
@@ -39,7 +39,7 @@
             стоит задуматься, хотите ли вы продолжать с ним работу).
         </p>
     </details>
-    <details name="faq" class="faq__item">
+    <details class="faq__item">
         <summary><h3>Сколько сессий потребуется, чтобы разобраться с проблемой?</h3></summary>
         <p>
             Зависит от проблемы. Очень легко попасть впросак с ответом, когда
@@ -52,7 +52,7 @@
             может корректироваться, это нормально.
         </p>
     </details>
-    <details name="faq" class="faq__item">
+    <details class="faq__item">
         <summary>
             <h3>Слышал, что действительно профессиональные психологи не дают советов и ничего
                 не обещают и не решают. Что тогда происходит на сессиях?</h3>
@@ -142,38 +142,3 @@
         }
     }
 </style>
-
-<script>
-    const faqItems = document.querySelectorAll<HTMLDetailsElement>('.faq__item');
-
-    faqItems.forEach(details => {
-        const summary = details.querySelector('summary');
-        let savedTop: number | null = null;
-
-        summary?.addEventListener('click', () => {
-            if (!details.open) {
-                savedTop = details.getBoundingClientRect().top;
-            }
-        });
-
-        details.addEventListener('toggle', () => {
-            if (details.open && savedTop !== null) {
-                const initialTop = savedTop;
-                savedTop = null;
-
-                requestAnimationFrame(() => {
-                    const currentTop = details.getBoundingClientRect().top;
-                    const delta = currentTop - initialTop;
-
-                    if (Math.abs(delta) > 1) {
-                        window.scrollBy({ top: delta, behavior: 'instant' });
-                    }
-
-                    requestAnimationFrame(() => {
-                        details.scrollIntoView({ block: 'start', behavior: 'smooth' });
-                    });
-                });
-            }
-        });
-    });
-</script>
