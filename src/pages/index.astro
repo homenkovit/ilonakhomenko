@@ -15,6 +15,7 @@ import TestsSection from "../components/index-page/TestsSection.astro";
 >
 	<AboutSection />
 	<HelpSection />
+	<hr class="separator">
 	<PriceSection />
 	<FaqSection />
 	<ArticlesSection />
@@ -42,5 +43,14 @@ import TestsSection from "../components/index-page/TestsSection.astro";
 				padding-block: 60px;
 			}
 		}
+	}
+</style>
+
+<style>
+	.separator {
+		height: 2px;
+		border: none;
+		margin: 0;
+		background-color: var(--border-color);
 	}
 </style>

@@ -8,9 +8,9 @@ const getIsLinkActive = (href: string) => !href.includes("#") && normalizePathna
 
 const navigationLinks = [
     { href: "/", label: "Главная" },
-    { href: "/#help", label: "С чем помогаю" },
-    { href: "/#price", label: "Стоимость" },
-    { href: "/#faq", label: "Вопросы" },
+    { href: "/help", label: "С чем помогаю" },
+    { href: "/price", label: "Стоимость" },
+    { href: "/faq", label: "Вопросы" },
     { href: "/about", label: "Обо мне" },
     { href: "/articles", label: "Статьи" },
     { href: "/tests", label: "Тесты" },
@@ -147,13 +147,10 @@ const navigationLinks = [
 </style>
 
 <script>
-    import { throttle } from "../../utils/throttle.ts";
-
     const main = document.querySelector('main');
     const footer = document.querySelector('footer');
     const menuButton = document.querySelector<HTMLButtonElement>('.menu-button');
     const menu = document.querySelector<HTMLElement>('.menu');
-    const hashLinks = menu?.querySelectorAll<HTMLAnchorElement>('a[href*="#"]');
 
     function isMenuOpened(): boolean {
         return menuButton?.getAttribute('aria-expanded') === 'true';
@@ -185,55 +182,4 @@ const navigationLinks = [
         }
     });
 
-    hashLinks?.forEach((link) => {
-        link.addEventListener('click', () => {
-            if (isMenuOpened()) {
-                closeMenu();
-            }
-        });
-    });
-
-    if (window.location.pathname === '/') {
-        const navLinks = document.querySelectorAll<HTMLAnchorElement>('.nav-link');
-        const sections = document.querySelectorAll<HTMLElement>('section[id]');
-        const header = document.querySelector<HTMLElement>('header');
-
-        const SCROLL_OFFSET = 50;
-        const THROTTLE_DELAY = 100;
-
-        const getHeaderHeight = (): number => {
-            if (!header) return 0;
-
-            const cssVar = getComputedStyle(header).getPropertyValue('--header-height');
-            if (cssVar) return parseInt(cssVar, 10);
-
-            return header.offsetHeight;
-        };
-
-        const updateActiveLink = () => {
-            const scrollY = window.scrollY;
-            const headerHeight = getHeaderHeight();
-
-            let currentSectionId = '';
-
-            sections.forEach((section) => {
-                const sectionTop = section.offsetTop - headerHeight - SCROLL_OFFSET;
-                const sectionBottom = sectionTop + section.offsetHeight;
-
-                if (scrollY >= sectionTop && scrollY < sectionBottom) {
-                    currentSectionId = section.id;
-                }
-            });
-
-            navLinks.forEach((link) => {
-                const href = link.getAttribute('href');
-                const isActive = href === `/#${currentSectionId}` || (currentSectionId === '' && href === '/');
-
-                link.classList.toggle('active', isActive);
-            });
-        };
-
-        updateActiveLink();
-        window.addEventListener('scroll', throttle(updateActiveLink, THROTTLE_DELAY), { passive: true });
-    }
 </script>

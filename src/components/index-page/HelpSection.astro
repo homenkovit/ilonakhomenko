@@ -1,4 +1,4 @@
-<section id="help" class="help container">
+<section class="help container">
     <h2 class="page-subtitle">С чем помогаю</h2>
     <ol class="help__list">
         <li class="help__item">
@@ -198,23 +198,6 @@
 
 <style>
     .help {
-        &::after {
-            content: "";
-            display: block;
-            height: 2px;
-            background-color: var(--border-color);
-            transform: translateY(160px);
-
-            @media screen and (width < 1440px) {
-                transform: translateY(100px);
-            }
-
-            @media screen and (width < 768px) {
-                margin-inline: -24px;
-                transform: translateY(60px);
-            }
-        }
-
         &.container {
             --container-width: 1592px;
 
