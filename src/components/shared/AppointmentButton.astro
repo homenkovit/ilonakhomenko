@@ -30,11 +30,12 @@ import Icon from "./Icon.astro";
 </style>
 
 <script>
-    const appointmentButton = document.querySelector<HTMLButtonElement>('.appointment-button');
     const appointmentDialog = document.querySelector<HTMLDialogElement>('#appointment-dialog');
 
-    appointmentButton?.addEventListener('click', () => {
-        appointmentDialog?.showModal();
-        document.body.style.overflow = 'hidden';
+    window.addEventListener('click', (event) => {
+        if (appointmentDialog && event.target instanceof HTMLElement && event.target.closest('.appointment-button')) {
+            appointmentDialog.showModal();
+            document.body.style.overflow = 'hidden';
+        }
     })
 </script>
