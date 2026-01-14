@@ -29,14 +29,14 @@ const tests = await getCollection("tests");
             --container-width: 1592px;
         }
 
-        @media screen and (width >= 1440px) {
+        @media screen and (width >= 1500px) {
             min-height: 1200px;
             background-image: url("/images/tests-section-cover.webp");
             background-position: 100% 290px;
             background-size: 603px 752px;
         }
 
-        @media screen and (width < 1440px) {
+        @media screen and (width < 1500px) {
             padding-block-end: 200px;
             background-image:
                     linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
@@ -68,7 +68,7 @@ const tests = await getCollection("tests");
         line-height: 50px;
         font-weight: 500;
 
-        @media screen and (width < 1440px) {
+        @media screen and (width < 1500px) {
             font-size: 30px;
             line-height: 40px;
         }

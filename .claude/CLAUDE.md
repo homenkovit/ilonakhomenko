@@ -42,7 +42,7 @@ File-based routing in `src/pages/`:
 ### Styling
 - Global CSS variables and base styles in `src/styles/global.css`
 - Scoped styles within Astro components
-- Breakpoints: 1440px (desktop), 768px (mobile)
+- Breakpoints: 1500px (desktop), 768px (mobile)
 - No CSS framework
 
 ## Key Conventions
