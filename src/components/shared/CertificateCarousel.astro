@@ -407,19 +407,49 @@ const totalSlides = images.length;
     });
 
     let touchStartX = 0;
+    let touchStartY = 0;
     let touchEndX = 0;
+    let isHorizontalSwipe: boolean | null = null;
     const minSwipeDistance = 50;
 
     carouselElement.addEventListener('touchstart', (e) => {
       touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touchEndX = 0;
+      isHorizontalSwipe = null;
     }, { passive: true });
 
     carouselElement.addEventListener('touchmove', (e) => {
-      touchEndX = e.touches[0].clientX;
-    }, { passive: true });
+      const currentX = e.touches[0].clientX;
+      const currentY = e.touches[0].clientY;
+
+      // Определяем направление при первом значительном движении
+      if (isHorizontalSwipe === null) {
+        const deltaX = Math.abs(currentX - touchStartX);
+        const deltaY = Math.abs(currentY - touchStartY);
+
+        // Минимальный порог для определения направления
+        if (deltaX > 10 || deltaY > 10) {
+          isHorizontalSwipe = deltaX > deltaY;
+        }
+      }
+
+      // Блокируем вертикальный скролл при горизонтальном свайпе
+      if (isHorizontalSwipe) {
+        e.preventDefault();
+        touchEndX = currentX;
+      }
+    }, { passive: false });
 
     carouselElement.addEventListener('touchend', () => {
-      if (touchEndX === 0) return;
+      if (!isHorizontalSwipe || touchEndX === 0) {
+        touchStartX = 0;
+        touchStartY = 0;
+        touchEndX = 0;
+        isHorizontalSwipe = null;
+        return;
+      }
+
       const swipeDistance = touchStartX - touchEndX;
 
       if (Math.abs(swipeDistance) > minSwipeDistance) {
@@ -431,7 +461,9 @@ const totalSlides = images.length;
       }
 
       touchStartX = 0;
+      touchStartY = 0;
       touchEndX = 0;
+      isHorizontalSwipe = null;
     });
 
     return { goToSlide };
