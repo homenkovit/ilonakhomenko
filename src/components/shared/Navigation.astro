@@ -55,6 +55,10 @@ const navigationLinks = [
         color: var(--primary-color);
         text-transform: uppercase;
 
+        @media (prefers-reduced-motion: no-preference) {
+            transition: color 0.2s ease;
+        }
+
         @media (hover: hover) {
             &:hover {
                 color: var(--hover-color);
@@ -152,6 +156,10 @@ const navigationLinks = [
         color: var(--primary-color);
         white-space: nowrap;
         text-decoration: none;
+
+        @media (prefers-reduced-motion: no-preference) {
+            transition: color 0.2s ease;
+        }
 
         &:hover,
         &:active {

@@ -70,6 +70,20 @@ const articles = (await getCollection("articles")).sort(
         text-transform: lowercase;
         text-decoration: none;
 
+        @media (prefers-reduced-motion: no-preference) {
+            transition: background-color 0.2s ease;
+        }
+
+        @media (hover: hover) {
+            &:hover {
+                background-color: var(--hover-color);
+            }
+        }
+
+        &:active {
+            background-color: var(--hover-color);
+        }
+
         @media screen and (width < 1500px) {
             margin-block-start: 68px;
         }

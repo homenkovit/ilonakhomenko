@@ -159,6 +159,10 @@ const totalSlides = images.length;
     color: inherit;
     cursor: pointer;
 
+    @media (prefers-reduced-motion: no-preference) {
+      transition: color 0.2s ease;
+    }
+
     @media (hover: hover) {
       &:hover:not(:disabled) {
         color: var(--hover-color);
@@ -214,6 +218,43 @@ const totalSlides = images.length;
     background-color: #ffffff;
     margin: 0;
 
+    @media (prefers-reduced-motion: no-preference) {
+      transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        display 0.3s ease allow-discrete,
+        overlay 0.3s ease allow-discrete;
+
+      @starting-style {
+        opacity: 0;
+        transform: scale(0.95);
+      }
+    }
+
+    &:not([open]) {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+
+    &::backdrop {
+      background-color: rgb(0 0 0 / 50%);
+
+      @media (prefers-reduced-motion: no-preference) {
+        transition:
+          opacity 0.3s ease,
+          display 0.3s ease allow-discrete,
+          overlay 0.3s ease allow-discrete;
+
+        @starting-style {
+          opacity: 0;
+        }
+      }
+    }
+
+    &:not([open])::backdrop {
+      opacity: 0;
+    }
+
     .carousel-main {
       padding: var(--block-padding) var(--inline-padding);
 
@@ -266,10 +307,18 @@ const totalSlides = images.length;
     color: inherit;
     cursor: pointer;
 
+    @media (prefers-reduced-motion: no-preference) {
+      transition: color 0.2s ease;
+    }
+
     @media (hover: hover) {
       &:hover {
         color: var(--hover-color);
       }
+    }
+
+    &:active {
+      color: var(--hover-color);
     }
   }
 

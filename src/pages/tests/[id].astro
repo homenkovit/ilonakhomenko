@@ -152,6 +152,13 @@ const testDescription = test.data.description ||
         color: inherit;
         cursor: pointer;
 
+        @media (prefers-reduced-motion: no-preference) {
+            transition:
+                border-color 0.2s ease,
+                color 0.2s ease,
+                background-color 0.2s ease;
+        }
+
         &:last-child {
             margin-inline-start: auto;
         }
@@ -198,6 +205,10 @@ const testDescription = test.data.description ||
         font-weight: 500;
         color: var(--secondary-color);
         cursor: pointer;
+
+        @media (prefers-reduced-motion: no-preference) {
+            transition: background-color 0.2s ease;
+        }
 
         &.btn-primary {
             background-color: var(--primary-color);

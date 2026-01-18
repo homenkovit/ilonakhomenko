@@ -84,12 +84,6 @@
         padding-block: 40px;
         border-bottom: 1px solid var(--accent-color);
 
-        &[open] {
-            summary::after {
-                content: "–";
-            }
-        }
-
         summary {
             list-style: none;
             display: flex;
@@ -118,7 +112,15 @@
                 font-size: 28px;
                 font-weight: 200;
                 color: var(--accent-color);
+
+                @media (prefers-reduced-motion: no-preference) {
+                    transition: transform 0.2s ease;
+                }
             }
+        }
+
+        &[open] summary::after {
+            transform: rotate(45deg);
         }
 
         h3 {

@@ -115,5 +115,19 @@ import AppointmentButton from "../shared/AppointmentButton.astro";
         line-height: 32px;
         text-transform: uppercase;
         color: var(--primary-color);
+
+        @media (prefers-reduced-motion: no-preference) {
+            transition: color 0.2s ease;
+        }
+
+        @media (hover: hover) {
+            &:hover {
+                color: var(--hover-color);
+            }
+        }
+
+        &:active {
+            color: var(--hover-color);
+        }
     }
 </style>
