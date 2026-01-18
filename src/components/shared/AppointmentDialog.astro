@@ -92,14 +92,16 @@ import Icon from "./Icon.astro";
 </style>
 
 <script>
-    const appointmentDialog = document.querySelector<HTMLDialogElement>('#appointment-dialog');
-    const closeButton = appointmentDialog?.querySelector('.close-button');
+    document.addEventListener('close', (event) => {
+        if (event.target instanceof Element && event.target.id === 'appointment-dialog') {
+            document.body.style.overflow = 'auto';
+        }
+    }, true);
 
-    appointmentDialog?.addEventListener('close', () => {
-        document.body.style.overflow = 'auto';
-    })
-
-    closeButton?.addEventListener('click', () => {
-        appointmentDialog?.close();
-    })
+    document.addEventListener('click', (event) => {
+        if (event.target instanceof Element && event.target.closest('#appointment-dialog .close-button')) {
+            const dialog = document.querySelector<HTMLDialogElement>('#appointment-dialog');
+            dialog?.close();
+        }
+    });
 </script>

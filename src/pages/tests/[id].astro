@@ -285,7 +285,7 @@ const testDescription = test.data.description ||
 <script>
     import { TestRunner } from "../../scripts/test-runner";
 
-    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("astro:page-load", () => {
         const container = document.getElementById("test-runner");
         const testData = window.__TEST_DATA__;
 

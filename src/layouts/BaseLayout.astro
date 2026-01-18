@@ -1,4 +1,5 @@
 ---
+import { ClientRouter } from 'astro:transitions';
 import Header from "../components/shared/Header.astro";
 import Footer from "../components/shared/Footer.astro";
 import SEO from "../components/shared/SEO.astro";
@@ -59,6 +60,7 @@ const finalDescription = description || defaultDescription;
         <link rel="apple-touch-icon" href="/apple-touch-favicon.png">
 
         <title>{title}</title>
+        <ClientRouter />
 
         <SEO
             title={title}
@@ -75,12 +77,12 @@ const finalDescription = description || defaultDescription;
         />
     </head>
     <body>
-        <Header />
-        <main class={className}>
+        <Header transition:name="header" transition:animate="none" />
+        <main class={className} transition:animate="fade">
             <slot />
         </main>
-        <Footer />
-        <AppointmentDialog />
+        <Footer transition:persist />
+        <AppointmentDialog transition:persist />
     </body>
 </html>
 
