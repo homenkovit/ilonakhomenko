@@ -109,7 +109,10 @@ export class TestRunner {
                 btn.classList.add("selected");
             }
             btn.textContent = option.text;
-            btn.addEventListener("click", () => this.#selectOption(option.value));
+            btn.addEventListener("click", (event) => {
+                const clickedBtn = event.currentTarget as HTMLButtonElement;
+                this.#selectOption(option.value, clickedBtn);
+            });
             this.#optionsContainer.appendChild(btn);
         });
 
@@ -123,7 +126,7 @@ export class TestRunner {
         }
     }
 
-    #selectOption(value: number): void {
+    #selectOption(value: number, button: HTMLButtonElement): void {
         this.#state.answers[this.#state.currentQuestion] = value;
         this.#state.currentQuestion++;
 
@@ -131,13 +134,28 @@ export class TestRunner {
             this.#state.maxReachedQuestion = this.#state.currentQuestion;
         }
 
-        if (this.#state.currentQuestion >= this.#testData.questions.length) {
-            this.#state.completed = true;
-            this.#saveState();
-            this.#showResult();
+        const proceedToNext = () => {
+            if (this.#state.currentQuestion >= this.#testData.questions.length) {
+                this.#state.completed = true;
+                this.#saveState();
+                this.#showResult();
+            } else {
+                this.#saveState();
+                this.#renderQuestion();
+            }
+        };
+
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        if (prefersReducedMotion) {
+            // Если анимации отключены, переходим сразу
+            proceedToNext();
         } else {
-            this.#saveState();
-            this.#renderQuestion();
+            // Добавляем класс .selected для применения анимации
+            button.classList.add("selected");
+
+            // Дожидаемся завершения CSS transition
+            button.addEventListener("transitionend", proceedToNext, { once: true });
         }
     }
 

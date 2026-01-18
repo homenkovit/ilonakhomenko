@@ -149,15 +149,18 @@ const testDescription = test.data.description ||
         border-radius: 12px;
         background-color: transparent;
         font-size: 20px;
+        color: inherit;
         cursor: pointer;
 
         &:last-child {
             margin-inline-start: auto;
         }
 
-        &:hover {
-            border-color: var(--hover-color);
-            color: var(--hover-color);
+        @media (hover: hover) {
+            &:hover {
+                border-color: var(--hover-color);
+                color: var(--hover-color);
+            }
         }
 
         &:active {
@@ -204,8 +207,10 @@ const testDescription = test.data.description ||
             background-color: var(--accent-color);
         }
 
-        &:hover {
-            background-color: var(--hover-color);
+        @media (hover: hover) {
+            &:hover {
+                background-color: var(--hover-color);
+            }
         }
     }
 </style>
@@ -222,19 +227,18 @@ const testDescription = test.data.description ||
         cursor: pointer;
 
         @media (prefers-reduced-motion: no-preference) {
-            transition:
-                opacity 0.2s,
-                transform 0.1s;
+            transition: transform 0.1s;
         }
 
-        &:hover,
-        &:active,
         &.selected {
             background-color: var(--hover-color);
+            transform: scale(0.98);
         }
 
-        &:active {
-            transform: scale(0.98);
+        @media (hover: hover) {
+            &:hover {
+                background-color: var(--hover-color);
+            }
         }
     }
 
