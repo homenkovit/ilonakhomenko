@@ -63,6 +63,15 @@ export class TestRunner {
         }
     }
 
+    #withViewTransition(callback: () => void): void {
+        if (!document.startViewTransition) {
+            callback();
+            return;
+        }
+
+        document.startViewTransition(callback);
+    }
+
     #init(): void {
         if (this.#state.completed) {
             this.#showResult();
@@ -138,23 +147,19 @@ export class TestRunner {
             if (this.#state.currentQuestion >= this.#testData.questions.length) {
                 this.#state.completed = true;
                 this.#saveState();
-                this.#showResult();
+                this.#withViewTransition(() => this.#showResult());
             } else {
                 this.#saveState();
-                this.#renderQuestion();
+                this.#withViewTransition(() => this.#renderQuestion());
             }
         };
 
         const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
         if (prefersReducedMotion) {
-            // Если анимации отключены, переходим сразу
             proceedToNext();
         } else {
-            // Добавляем класс .selected для применения анимации
-            button.classList.add("selected");
-
-            // Дожидаемся завершения CSS transition
+            button.classList.add("clicked");
             button.addEventListener("transitionend", proceedToNext, { once: true });
         }
     }
@@ -180,7 +185,7 @@ export class TestRunner {
         if (this.#state.currentQuestion > 0) {
             this.#state.currentQuestion--;
             this.#saveState();
-            this.#renderQuestion();
+            this.#withViewTransition(() => this.#renderQuestion());
         }
     }
 
@@ -188,7 +193,7 @@ export class TestRunner {
         if (this.#state.currentQuestion < this.#state.maxReachedQuestion) {
             this.#state.currentQuestion++;
             this.#saveState();
-            this.#renderQuestion();
+            this.#withViewTransition(() => this.#renderQuestion());
         }
     }
 
@@ -318,6 +323,6 @@ export class TestRunner {
     #restart(): void {
         this.#state = { currentQuestion: 0, answers: {}, completed: false, maxReachedQuestion: 0 };
         localStorage.removeItem(this.#storageKey);
-        this.#renderQuestion();
+        this.#withViewTransition(() => this.#renderQuestion());
     }
 }

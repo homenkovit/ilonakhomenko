@@ -241,8 +241,12 @@ const testDescription = test.data.description ||
             transition: transform 0.1s;
         }
 
+        &.clicked,
         &.selected {
             background-color: var(--hover-color);
+        }
+
+        &.clicked {
             transform: scale(0.98);
         }
 
@@ -275,6 +279,62 @@ const testDescription = test.data.description ||
 
     .result-group-interpretation {
         margin-block: 0;
+    }
+</style>
+
+<style is:global>
+    @media (prefers-reduced-motion: no-preference) {
+        #question-text {
+            view-transition-name: question-text;
+        }
+
+        #test-progress {
+            view-transition-name: test-progress;
+        }
+
+        #test-options {
+            view-transition-name: test-options;
+        }
+
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+            }
+        }
+
+        @keyframes fade-out {
+            to {
+                opacity: 0;
+            }
+        }
+
+        @keyframes slide-from-right {
+            from {
+                transform: translateX(100px);
+            }
+        }
+
+        @keyframes slide-to-left {
+            to {
+                transform: translateX(-100px);
+            }
+        }
+
+        ::view-transition-old(question-text),
+        ::view-transition-old(test-progress),
+        ::view-transition-old(test-options) {
+            animation:
+                90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+                300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+        }
+
+        ::view-transition-new(question-text),
+        ::view-transition-new(test-progress),
+        ::view-transition-new(test-options) {
+            animation:
+                210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
+                300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+        }
     }
 </style>
 

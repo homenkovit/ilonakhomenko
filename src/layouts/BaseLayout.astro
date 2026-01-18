@@ -77,7 +77,7 @@ const finalDescription = description || defaultDescription;
         />
     </head>
     <body>
-        <Header transition:name="header" transition:animate="none" />
+        <Header />
         <main class={className} transition:animate="fade">
             <slot />
         </main>
@@ -96,6 +96,7 @@ const finalDescription = description || defaultDescription;
 
     main {
         overflow: hidden;
+        margin-top: var(--header-height);
         padding-block: 160px;
         background-color: var(--bodyBgColor, var(--secondary-color));
 
