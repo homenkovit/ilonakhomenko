@@ -55,7 +55,12 @@ const navigationLinks = [
         color: var(--primary-color);
         text-transform: uppercase;
 
-        &:hover,
+        @media (hover: hover) {
+            &:hover {
+                color: var(--hover-color);
+            }
+        }
+
         &:active,
         &[aria-expanded="true"] {
             color: var(--hover-color);

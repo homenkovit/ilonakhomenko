@@ -159,8 +159,10 @@ const totalSlides = images.length;
     color: inherit;
     cursor: pointer;
 
-    &:hover:not(:disabled) {
-      color: var(--hover-color);
+    @media (hover: hover) {
+      &:hover:not(:disabled) {
+        color: var(--hover-color);
+      }
     }
 
     &:disabled {
@@ -264,8 +266,10 @@ const totalSlides = images.length;
     color: inherit;
     cursor: pointer;
 
-    &:hover {
-      color: var(--hover-color);
+    @media (hover: hover) {
+      &:hover {
+        color: var(--hover-color);
+      }
     }
   }
 

@@ -22,7 +22,12 @@ import Icon from "./Icon.astro";
         text-transform: uppercase;
         cursor: pointer;
 
-        &:hover,
+        @media (hover: hover) {
+            &:hover {
+                background-color: var(--hover-color);
+            }
+        }
+
         &:active {
             background-color: var(--hover-color);
         }
