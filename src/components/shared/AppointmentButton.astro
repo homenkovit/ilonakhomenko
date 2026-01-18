@@ -33,7 +33,7 @@ import Icon from "./Icon.astro";
     const appointmentDialog = document.querySelector<HTMLDialogElement>('#appointment-dialog');
 
     window.addEventListener('click', (event) => {
-        if (appointmentDialog && event.target instanceof HTMLElement && event.target.closest('.appointment-button')) {
+        if (appointmentDialog && event.target instanceof Element && event.target.closest('.appointment-button')) {
             appointmentDialog.showModal();
             document.body.style.overflow = 'hidden';
         }
