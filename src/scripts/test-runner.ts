@@ -293,6 +293,91 @@ export class TestRunner {
         return html;
     }
 
+    #getPluralForm(n: number, one: string, few: string, many: string): string {
+        const mod10 = n % 10;
+        const mod100 = n % 100;
+
+        if (mod10 === 1 && mod100 !== 11) return one;
+        if (mod10 >= 2 && mod10 <= 4 && (mod100 < 10 || mod100 >= 20)) return few;
+        return many;
+    }
+
+    #getSumResultText(scoring: SumScoring): string {
+        const total = Object.values(this.#state.answers).reduce(
+            (sum, val) => sum + val,
+            0,
+        );
+
+        let interpretation = "";
+        for (const range of scoring.ranges) {
+            if (total <= range.max) {
+                interpretation = range.label;
+                break;
+            }
+            interpretation = range.label;
+        }
+
+        return `Результат: ${total} ${this.#getPluralForm(total, 'балл', 'балла', 'баллов')}\n${interpretation}`;
+    }
+
+    #getGroupsResultText(scoring: GroupsScoring): string {
+        const results: string[] = [];
+
+        for (const group of scoring.groups) {
+            let groupScore = 0;
+            for (const qNum of group.questions) {
+                const answer = this.#state.answers[qNum - 1];
+                if (answer !== undefined) {
+                    groupScore += answer;
+                }
+            }
+            results.push(`• ${group.name}: ${groupScore}`);
+        }
+
+        return "Результаты:\n" + results.join("\n");
+    }
+
+    #getReverseResultText(scoring: ReverseScoring): string {
+        const results: string[] = [];
+        const options = this.#testData.options || [];
+        const maxOptionValue = Math.max(...options.map((option) => option.value), 5);
+        const minOptionValue = Math.min(...options.map((option) => option.value), 1);
+
+        for (const factor of scoring.factors) {
+            let factorScore = 0;
+
+            for (const qNum of factor.questions) {
+                let answer = this.#state.answers[qNum - 1];
+                if (answer === undefined) continue;
+
+                if (factor.reversed.includes(qNum)) {
+                    answer = maxOptionValue + minOptionValue - answer;
+                }
+
+                factorScore += answer;
+            }
+
+            results.push(`• ${factor.name}: ${factorScore}`);
+        }
+
+        return "Результаты:\n" + results.join("\n");
+    }
+
+    #getResultTextForSharing(): string {
+        const scoring = this.#testData.scoring;
+
+        switch (scoring.type) {
+            case "sum":
+                return this.#getSumResultText(scoring);
+            case "groups":
+                return this.#getGroupsResultText(scoring);
+            case "reverse":
+                return this.#getReverseResultText(scoring);
+            default:
+                return "";
+        }
+    }
+
     #showResult(): void {
         this.#questionContainer.style.display = "none";
         this.#resultContainer.style.display = "block";
@@ -304,19 +389,63 @@ export class TestRunner {
     }
 
     async #share(): Promise<void> {
-        const text = `Я прошёл тест "${this.#testData.title}"`;
+        const shareBtn = document.getElementById("share-btn");
+        if (!shareBtn) return;
+
+        const originalHTML = shareBtn.innerHTML;
+        const title = `Я прошёл(а) тест "${this.#testData.title}"`;
+        const resultText = this.#getResultTextForSharing();
         const url = window.location.href;
+        const plainTextContent = `${title}\n\n${resultText}\n\nПройти тест: ${url}`;
+
+        const showFeedback = (message: string) => {
+            shareBtn.textContent = message;
+            setTimeout(() => {
+                shareBtn.innerHTML = originalHTML;
+            }, 2000);
+        };
 
         if (navigator.share) {
             try {
-                await navigator.share({ title: text, url });
-            } catch (e) { }
-        } else {
-            try {
-                await navigator.clipboard.writeText(`${text}\n${url}`);
+                await navigator.share({ text: plainTextContent });
+                showFeedback("Отправлено");
+                return;
             } catch (e) {
-                console.error("Failed to copy:", e);
+                if (e instanceof Error && e.name === "AbortError") return;
             }
+        }
+
+        if (navigator.clipboard?.write && window.ClipboardItem) {
+            try {
+                const resultTextHTML = resultText
+                    .replace(/\n/g, '<br>')
+                    .replace(/• /g, '&bull; ');
+
+                const htmlContent = `<div>
+                    <p>${title}</p>
+                    <p>${resultTextHTML}</p>
+                    <p><a href="${url}">Пройти тест: ${url}</a></p>
+                </div>`;
+
+
+                const clipboardItem = new ClipboardItem({
+                    'text/html': new Blob([htmlContent], { type: 'text/html' }),
+                    'text/plain': new Blob([plainTextContent], { type: 'text/plain' }),
+                });
+
+                await navigator.clipboard.write([clipboardItem]);
+                showFeedback("Скопировано");
+                return;
+            } catch (error) {
+                console.error('ClipboardItem failed:', error);
+            }
+        }
+
+        try {
+            await navigator.clipboard.writeText(plainTextContent);
+            showFeedback("Скопировано");
+        } catch {
+            showFeedback("Ошибка");
         }
     }
 
