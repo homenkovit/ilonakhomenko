@@ -81,6 +81,7 @@ a {
     font-weight: 400;
     text-align: center;
     text-wrap: balance;
+    hyphens: auto;
 }
 
 .page-title {
