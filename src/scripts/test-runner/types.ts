@@ -58,3 +58,8 @@ export type ScoringResult =
     | { type: "sum"; totalScore: number; interpretation: string }
     | { type: "groups"; items: ScoredItem[] }
     | { type: "reverse"; items: ScoredItem[] };
+
+export interface ResultTemplates {
+    interpretation: HTMLTemplateElement;
+    group: HTMLTemplateElement;
+}

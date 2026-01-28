@@ -1,43 +1,49 @@
-import type { ScoringResult } from "./types";
+import type { ScoringResult, ResultTemplates } from "./types";
 
-/** Возвращает HTML для вставки в #result-content */
-export function formatResultAsHtml(result: ScoringResult): string {
+export function renderResultToContainer(
+    result: ScoringResult,
+    container: HTMLElement,
+    templates: ResultTemplates,
+): void {
+    container.innerHTML = "";
+
     switch (result.type) {
-        case "sum":
-            return `<p class="result-interpretation">${result.interpretation}</p>`;
+        case "sum": {
+            const p = templates.interpretation.content.firstElementChild!.cloneNode(true) as HTMLElement;
+            p.textContent = result.interpretation;
+            container.appendChild(p);
+            break;
+        }
 
         case "groups":
-            return result.items
-                .map((item, i) => `
-                    <div class="result-group">
-                        <p class="result-group-name">${i + 1}. ${item.name} ${item.score}</p>
-                        <p class="result-group-interpretation">${item.interpretation}</p>
-                    </div>`)
-                .join("");
+        case "reverse": {
+            result.items.forEach((item, i) => {
+                const group = templates.group.content.firstElementChild!.cloneNode(true) as HTMLElement;
+                const nameElement = group.querySelector(".result-group-name")!;
+                const interpretationElement = group.querySelector(".result-group-interpretation")!;
 
-        case "reverse":
-            return result.items
-                .map((item, i) => `
-                    <div class="result-group">
-                        <p class="result-group-name">${i + 1}. ${item.name}: ${item.score}</p>
-                        <p class="result-group-interpretation">${item.interpretation}</p>
-                    </div>`)
-                .join("");
+                nameElement.textContent = result.type === "reverse"
+                    ? `${i + 1}. ${item.name}: ${item.score}`
+                    : `${i + 1}. ${item.name} ${item.score}`;
+                interpretationElement.textContent = item.interpretation;
+
+                container.appendChild(group);
+            });
+            break;
+        }
     }
 }
 
-/** Возвращает суффикс для заголовка (например, " 42" для sum-типа) */
 export function getResultHeadingSuffix(result: ScoringResult): string {
     return result.type === "sum" ? ` ${result.totalScore}` : "";
 }
 
-/** Возвращает plain text для шаринга через Web Share / Clipboard */
 export function formatResultAsText(result: ScoringResult): string {
     switch (result.type) {
         case "sum": {
-            const n = result.totalScore;
-            const word = getPluralForm(n, "балл", "балла", "баллов");
-            return `Результат: ${n} ${word}\n${result.interpretation}`;
+            const { totalScore, interpretation } = result;
+            const word = getPluralForm(totalScore, "балл", "балла", "баллов");
+            return `Результат: ${totalScore} ${word}\n${interpretation}`;
         }
 
         case "groups":

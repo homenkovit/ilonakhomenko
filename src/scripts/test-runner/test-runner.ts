@@ -1,7 +1,7 @@
 import type { TestData, Question, TestOption } from "./types";
 import { TestStateManager } from "./test-state";
 import { createScoringStrategy, type ScoringStrategy } from "./scoring/scoring-strategy";
-import { formatResultAsHtml, formatResultAsText, getResultHeadingSuffix } from "./result-formatter";
+import { renderResultToContainer, formatResultAsText, getResultHeadingSuffix, type ResultTemplates } from "./result-formatter";
 
 export class TestRunner {
     #testData: TestData;
@@ -18,6 +18,9 @@ export class TestRunner {
     #prevBtn: HTMLElement;
     #nextBtn: HTMLElement;
 
+    #optionBtnTemplate: HTMLTemplateElement;
+    #resultTemplates: ResultTemplates;
+
     constructor(containerElement: HTMLElement, testData: TestData) {
         this.#testData = testData;
         this.#stateManager = new TestStateManager(testData.id);
@@ -31,6 +34,12 @@ export class TestRunner {
         this.#resultContent = document.getElementById("result-content")!;
         this.#prevBtn = document.getElementById("prev-btn")!;
         this.#nextBtn = document.getElementById("next-btn")!;
+
+        this.#optionBtnTemplate = document.getElementById("option-btn-template") as HTMLTemplateElement;
+        this.#resultTemplates = {
+            interpretation: document.getElementById("result-interpretation-template") as HTMLTemplateElement,
+            group: document.getElementById("result-group-template") as HTMLTemplateElement,
+        };
 
         this.#init();
     }
@@ -75,9 +84,7 @@ export class TestRunner {
         const selectedAnswer = this.#stateManager.answers[q];
 
         options.forEach((option) => {
-            const btn = document.createElement("button");
-            btn.type = "button";
-            btn.className = "option-btn";
+            const btn = this.#optionBtnTemplate.content.firstElementChild!.cloneNode(true) as HTMLButtonElement;
             if (selectedAnswer === option.value) {
                 btn.classList.add("selected");
             }
@@ -169,7 +176,7 @@ export class TestRunner {
 
         this.#questionContainer.style.display = "none";
         this.#resultContainer.style.display = "block";
-        this.#resultContent.innerHTML = formatResultAsHtml(result);
+        renderResultToContainer(result, this.#resultContent, this.#resultTemplates);
 
         const heading = document.getElementById("result-heading");
         const suffix = getResultHeadingSuffix(result);

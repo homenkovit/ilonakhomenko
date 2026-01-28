@@ -66,11 +66,7 @@ const testDescription = test.data.description ||
             </div>
         </div>
 
-        <div
-            class="test-result-container"
-            id="result-container"
-            style="display: none;"
-        >
+        <div class="test-result-container" id="result-container" style="display: none;">
             <h3 id="result-heading" tabindex="-1">Ваш результат:</h3>
             <div id="result-content"></div>
 
@@ -84,6 +80,21 @@ const testDescription = test.data.description ||
                 </button>
             </div>
         </div>
+
+        <template id="option-btn-template">
+            <button type="button" class="option-btn"></button>
+        </template>
+
+        <template id="result-interpretation-template">
+            <p class="result-interpretation"></p>
+        </template>
+
+        <template id="result-group-template">
+            <div class="result-group">
+                <p class="result-group-name"></p>
+                <p class="result-group-interpretation"></p>
+            </div>
+        </template>
     </div>
 </BaseLayout>
 
@@ -224,9 +235,7 @@ const testDescription = test.data.description ||
             }
         }
     }
-</style>
 
-<style is:global>
     .option-btn {
         padding: 10px;
         border: none;
