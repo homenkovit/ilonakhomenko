@@ -47,3 +47,14 @@ export interface TestState {
     completed: boolean;
     maxReachedQuestion: number;
 }
+
+export interface ScoredItem {
+    name: string;
+    score: number;
+    interpretation: string;
+}
+
+export type ScoringResult =
+    | { type: "sum"; totalScore: number; interpretation: string }
+    | { type: "groups"; items: ScoredItem[] }
+    | { type: "reverse"; items: ScoredItem[] };

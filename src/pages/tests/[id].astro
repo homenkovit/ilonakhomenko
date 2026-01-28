@@ -2,7 +2,7 @@
 import { getCollection, render } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Icon from "../../components/shared/Icon.astro";
-import type { TestData } from "../../types/test";
+import type { TestData } from "../../scripts/test-runner";
 
 const testDataFiles = import.meta.glob<{
     default: Omit<TestData, "id" | "title">;
