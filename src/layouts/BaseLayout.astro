@@ -89,12 +89,21 @@ const finalDescription = description || defaultDescription;
 <style is:global define:vars={{ bodyBgColor }}>
     body {
         display: grid;
+        grid-template-areas:
+         "header"
+         "main"
+         "footer";
         grid-template-rows: auto 1fr auto;
         min-height: 100vh;
         background-color: var(--accent-color);
     }
 
+    header {
+        grid-area: header;
+    }
+
     main {
+        grid-area: main;
         overflow: hidden;
         margin-top: var(--header-height);
         padding-block: 160px;
@@ -107,5 +116,9 @@ const finalDescription = description || defaultDescription;
         @media screen and (width < 768px) {
             padding-block-start: 60px;
         }
+    }
+
+    footer {
+        grid-area: footer;
     }
 </style>
