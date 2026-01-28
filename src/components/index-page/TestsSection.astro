@@ -10,7 +10,7 @@ const tests = await getCollection("tests");
         {
             tests.map((test) => (
                 <li class="tests__item">
-                    <a href={`/tests/${test.id}`} class="test-link">
+                    <a href={`/tests/${test.id}`} class="test-link" data-astro-reload>
                         <h3 class="test-link__title">{test.data.title}</h3>
                     </a>
                 </li>

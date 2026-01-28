@@ -16,7 +16,7 @@ const tests = await getCollection("tests");
         {
             tests.map((test) => (
                 <li>
-                    <a href={`/tests/${test.id}`}>{test.data.title}</a>
+                    <a href={`/tests/${test.id}`} data-astro-reload>{test.data.title}</a>
                 </li>
             ))
         }
@@ -27,21 +27,21 @@ const tests = await getCollection("tests");
     .tests-page {
         position: relative;
         background-image:
-                linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
-                url("/images/tests-cover-768.webp");
+            linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+            url("/images/tests-cover-768.webp");
         background-repeat: no-repeat;
         background-size: cover;
 
         @media screen and (width >= 768px) {
             background-image:
-                    linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
-                    url("/images/tests-cover-1440.webp");
+                linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+                url("/images/tests-cover-1440.webp");
         }
 
         @media screen and (width >= 1500px) {
             background-image:
-                    linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
-                    url("/images/tests-cover.webp");
+                linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+                url("/images/tests-cover.webp");
         }
     }
 </style>
