@@ -77,8 +77,9 @@ const finalDescription = description || defaultDescription;
         />
     </head>
     <body>
+        <a class="skip-link" href="#main-content">Перейти к основному содержанию</a>
         <Header />
-        <main class={className} transition:animate="fade">
+        <main id="main-content" class={className} transition:animate="fade">
             <slot />
         </main>
         <Footer transition:persist />
@@ -121,4 +122,25 @@ const finalDescription = description || defaultDescription;
     footer {
         grid-area: footer;
     }
+
+    .skip-link {
+        z-index: 100;
+        position: absolute;
+        top: -100%;
+        left: 16px;
+        padding: 12px 24px;
+        border-radius: 0 0 8px 8px;
+        background-color: var(--primary-color);
+        font-size: 16px;
+        text-decoration: none;
+
+        &, &:visited {
+            color: var(--secondary-color);
+        }
+
+        &:focus {
+            top: 0;
+        }
+    }
+
 </style>
