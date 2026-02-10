@@ -1,9 +1,15 @@
 ---
 import { faqItems } from "../../data/faq";
+
+interface Props {
+    titleTag?: "h1" | "h2";
+}
+
+const { titleTag: TitleTag = "h2" } = Astro.props;
 ---
 
 <section class="faq container">
-    <h2 class="page-subtitle">Популярные вопросы (FAQ)</h2>
+    <TitleTag class="page-subtitle">Популярные вопросы (FAQ)</TitleTag>
     {faqItems.map((item) => (
         <details class="faq__item">
             <summary><h3>{item.question}</h3></summary>

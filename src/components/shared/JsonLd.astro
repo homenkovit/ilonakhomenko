@@ -6,12 +6,18 @@ interface ArticleData {
     url: string;
 }
 
+interface BreadcrumbItem {
+    name: string;
+    url: string;
+}
+
 interface Props {
     type: "ProfessionalService" | "Article" | "WebPage";
     articleData?: ArticleData;
+    breadcrumbs?: BreadcrumbItem[];
 }
 
-const { type, articleData } = Astro.props;
+const { type, articleData, breadcrumbs } = Astro.props;
 const siteUrl = import.meta.env.SITE || "https://ilonakhomenko.com";
 
 const psychologistSchema = {
@@ -82,6 +88,20 @@ const schema = type === "Article" && articleSchema
     : type === "ProfessionalService"
         ? psychologistSchema
         : webPageSchema;
+
+const breadcrumbSchema = breadcrumbs ? {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((item, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "name": item.name,
+        "item": item.url,
+    })),
+} : null;
 ---
 
 <script is:inline type="application/ld+json" set:html={JSON.stringify(schema)} />
+{breadcrumbSchema && (
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+)}

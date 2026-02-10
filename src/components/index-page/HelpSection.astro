@@ -1,5 +1,13 @@
+---
+interface Props {
+    titleTag?: "h1" | "h2";
+}
+
+const { titleTag: TitleTag = "h2" } = Astro.props;
+---
+
 <section class="help container">
-    <h2 class="page-subtitle">С чем помогаю</h2>
+    <TitleTag class="page-subtitle">С чем помогаю</TitleTag>
     <ol class="help__list">
         <li class="help__item">
             <h3 class="help__item-title">

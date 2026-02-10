@@ -30,15 +30,23 @@ const testData = {
 
 const testDescription = test.data.description ||
     `Пройдите тест "${test.data.title}" онлайн. Тест не заменяет консультацию специалиста.`;
+
+const siteUrl = import.meta.env.SITE || "https://ilonakhomenko.com";
+const testUrl = `${siteUrl}/tests/${test.id}`;
 ---
 
 <BaseLayout
     title={pageTitle}
     description={testDescription}
+    breadcrumbs={[
+        { name: "Главная", url: siteUrl },
+        { name: "Тесты", url: `${siteUrl}/tests` },
+        { name: test.data.title, url: testUrl },
+    ]}
     bodyBgColor="#ede8f0"
     class="container"
 >
-    <h2 class="page-title">{test.data.title}</h2>
+    <h1 class="page-title">{test.data.title}</h1>
 
     <p class="test-warning">
         Онлайн тест не стоит использовать для самодиагностики! Для интерпретации
@@ -67,7 +75,7 @@ const testDescription = test.data.description ||
         </div>
 
         <div class="test-result-container" id="result-container" style="display: none;">
-            <h3 id="result-heading" tabindex="-1">Ваш результат:</h3>
+            <h2 id="result-heading" tabindex="-1">Ваш результат:</h2>
             <div id="result-content"></div>
 
             <div class="test-actions">
@@ -188,7 +196,7 @@ const testDescription = test.data.description ||
         }
     }
 
-    .test-result-container h3 {
+    .test-result-container h2 {
         margin-block-start: 0;
         margin-block-end: 40px;
         font-size: 24px;

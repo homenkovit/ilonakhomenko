@@ -1,10 +1,16 @@
 ---
 import AppointmentButton from "../shared/AppointmentButton.astro";
 import ContactLinks from "../shared/ContactLinks.astro";
+
+interface Props {
+    titleTag?: "h1" | "h2";
+}
+
+const { titleTag: TitleTag = "h2" } = Astro.props;
 ---
 
 <section class="price container">
-    <h2 class="page-subtitle">Стоимость и формат работы</h2>
+    <TitleTag class="page-subtitle">Стоимость и формат работы</TitleTag>
     <ul class="price__list">
         <li class="price__item">
             <h3 class="price__item-title">Онлайн консультация</h3>

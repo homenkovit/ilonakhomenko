@@ -43,10 +43,15 @@ const isoDate = article.data.pubDate.toISOString();
         datePublished: isoDate,
         url: articleUrl
     }}
+    breadcrumbs={[
+        { name: "Главная", url: siteUrl },
+        { name: "Статьи", url: `${siteUrl}/articles` },
+        { name: article.data.title, url: articleUrl },
+    ]}
     bodyBgColor="#ede8f0"
     class="container"
 >
-    <h2 class="page-title">{article.data.title}</h2>
+    <h1 class="page-title">{article.data.title}</h1>
     <time class="article-datetime" datetime={pubDate}>{pubDate}</time>
 
     <Content />
