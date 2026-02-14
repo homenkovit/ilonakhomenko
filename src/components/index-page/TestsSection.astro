@@ -5,72 +5,70 @@ const tests = await getCollection("tests");
 ---
 
 <section class="tests container">
-    <h2 class="page-subtitle">Тесты</h2>
-    <ul class="tests__list">
-        {
-            tests.map((test) => (
+	<h2 class="page-subtitle">Тесты</h2>
+	<ul class="tests__list">
+		{tests.map((test) => (
                 <li class="tests__item">
                     <a href={`/tests/${test.id}`} class="test-link" data-astro-reload>
                         <h3 class="test-link__title">{test.data.title}</h3>
                     </a>
                 </li>
-            ))
-        }
-    </ul>
+            ))}
+	</ul>
 </section>
 
 <style>
-    .tests {
-        overflow: hidden;
-        position: relative;
-        background-repeat: no-repeat;
+.tests {
+	overflow: hidden;
+	position: relative;
+	background-repeat: no-repeat;
 
-        &.container {
-            --container-width: 1592px;
-        }
+	&.container {
+		--container-width: 1592px;
+	}
 
-        @media screen and (width >= 1500px) {
-            min-height: 1200px;
-            background-image: url("/images/tests-section-cover.webp");
-            background-position: 100% 290px;
-            background-size: 603px 752px;
-        }
+	@media screen and (width >= 1500px) {
+		min-height: 1200px;
+		background-image: url("/images/tests-section-cover.webp");
+		background-position: 100% 290px;
+		background-size: 603px 752px;
+	}
 
-        @media screen and (width < 1500px) {
-            padding-block-end: 200px;
-            background-image:
-                    linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
-                    url("/images/tests-section-cover.webp");
-            background-size: cover;
+	@media screen and (width < 1500px) {
+		padding-block-end: 200px;
+		background-image:
+			linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+			url("/images/tests-section-cover.webp");
+		background-size: cover;
 
-            &.container {
-                --container-width: 800px;
-            }
-        }
+		&.container {
+			--container-width: 800px;
+		}
+	}
 
-        @media screen and (width < 768px) {
-            padding-block-end: 100px;
-        }
-    }
+	@media screen and (width < 768px) {
+		padding-block-end: 100px;
+	}
+}
 
-    .tests__list {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        padding: 0;
-        margin: 0;
-    }
+.tests__list {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	padding: 0;
+	margin: 0;
+}
 
-    .test-link__title {
-        margin: 0;
-        font-size: 40px;
-        line-height: 50px;
-        font-weight: 500;
+.test-link__title {
+	margin: 0;
+	font-size: 40px;
+	line-height: 50px;
+	font-weight: 500;
 
-        @media screen and (width < 1500px) {
-            font-size: 30px;
-            line-height: 40px;
-        }
-    }
+	@media screen and (width < 1500px) {
+		font-size: 30px;
+		line-height: 40px;
+	}
+}
 </style>

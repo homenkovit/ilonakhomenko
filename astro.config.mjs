@@ -1,11 +1,12 @@
 // @ts-check
-import { defineConfig } from "astro/config";
+
 import sitemap from "@astrojs/sitemap";
+import { defineConfig } from "astro/config";
 
 export default defineConfig({
-  site: "https://ilonakhomenko.com",
-  image: {
-    layout: "constrained",
-  },
-  integrations: [sitemap()],
+	site: "https://ilonakhomenko.com",
+	image: {
+		layout: "constrained",
+	},
+	integrations: [sitemap()],
 });

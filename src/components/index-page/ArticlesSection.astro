@@ -1,97 +1,97 @@
 ---
 import { getCollection } from "astro:content";
 
-const articles = (await getCollection("articles")).sort(
-    (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
-).slice(0, 3);
+const articles = (await getCollection("articles"))
+	.sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
+	.slice(0, 3);
 ---
 
 <section class="articles container">
-    <h2 class="page-subtitle">Статьи</h2>
-    <ul class="articles__list">
-        {articles.map((article) => (
+	<h2 class="page-subtitle">Статьи</h2>
+	<ul class="articles__list">
+		{articles.map((article) => (
             <li class="articles__item">
                 <a href={`/articles/${article.id}`} class="article-link" data-astro-reload>
                     <h3 class="article-link__title">{article.data.title}</h3>
                 </a>
             </li>
         ))}
-    </ul>
-    <a href="/articles" class="show-all-link">Показать все</a>
+	</ul>
+	<a href="/articles" class="show-all-link">Показать все</a>
 </section>
 
 <style>
-    .articles {
-        display: flex;
-        flex-direction: column;
-        background-color: #ede8f0;
+.articles {
+	display: flex;
+	flex-direction: column;
+	background-color: #ede8f0;
 
-        &.container {
-            --container-width: 1592px;
+	&.container {
+		--container-width: 1592px;
 
-            @media screen and (width < 1500px) {
-                --container-width: 800px;
-            }
-        }
-    }
+		@media screen and (width < 1500px) {
+			--container-width: 800px;
+		}
+	}
+}
 
-    .articles__list {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        padding: 0;
-        margin: 0;
-    }
+.articles__list {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	padding: 0;
+	margin: 0;
+}
 
-    .article-link__title {
-        margin: 0;
-        font-size: 40px;
-        line-height: 50px;
-        font-weight: 500;
+.article-link__title {
+	margin: 0;
+	font-size: 40px;
+	line-height: 50px;
+	font-weight: 500;
 
-        @media screen and (width < 1500px) {
-            font-size: 30px;
-            line-height: 40px;
-        }
-    }
+	@media screen and (width < 1500px) {
+		font-size: 30px;
+		line-height: 40px;
+	}
+}
 
-    .show-all-link {
-        align-self: center;
-        display: inline-block;
-        padding: 10px 32px;
-        margin-block-start: 100px;
-        border-radius: 50px;
-        background-color: var(--accent-color);
-        font-size: 35px;
-        line-height: 45px;
-        font-weight: 500;
-        color: var(--secondary-color);
-        text-transform: lowercase;
-        text-decoration: none;
+.show-all-link {
+	align-self: center;
+	display: inline-block;
+	padding: 10px 32px;
+	margin-block-start: 100px;
+	border-radius: 50px;
+	background-color: var(--accent-color);
+	font-size: 35px;
+	line-height: 45px;
+	font-weight: 500;
+	color: var(--secondary-color);
+	text-transform: lowercase;
+	text-decoration: none;
 
-        @media (prefers-reduced-motion: no-preference) {
-            transition: background-color 0.2s ease;
-        }
+	@media (prefers-reduced-motion: no-preference) {
+		transition: background-color 0.2s ease;
+	}
 
-        @media (hover: hover) {
-            &:hover {
-                background-color: var(--hover-color);
-            }
-        }
+	@media (hover: hover) {
+		&:hover {
+			background-color: var(--hover-color);
+		}
+	}
 
-        &:active {
-            background-color: var(--hover-color);
-        }
+	&:active {
+		background-color: var(--hover-color);
+	}
 
-        @media screen and (width < 1500px) {
-            margin-block-start: 68px;
-            font-size: 24px;
-            line-height: 34px;
-        }
+	@media screen and (width < 1500px) {
+		margin-block-start: 68px;
+		font-size: 24px;
+		line-height: 34px;
+	}
 
-        @media screen and (width < 768px) {
-            margin-block-start: 32px;
-        }
-    }
+	@media screen and (width < 768px) {
+		margin-block-start: 32px;
+	}
+}
 </style>

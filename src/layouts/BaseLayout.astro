@@ -1,154 +1,163 @@
 ---
-import { ClientRouter } from 'astro:transitions';
-import Header from "../components/shared/Header.astro";
+import { ClientRouter } from "astro:transitions";
 import Footer from "../components/shared/Footer.astro";
-import SEO from "../components/shared/SEO.astro";
+import Header from "../components/shared/Header.astro";
 import JsonLd from "../components/shared/JsonLd.astro";
+import SEO from "../components/shared/SEO.astro";
 
 import "../styles/global.css";
 import AppointmentDialog from "../components/shared/AppointmentDialog.astro";
 
 interface ArticleJsonLd {
-    title: string;
-    description: string;
-    datePublished: string;
-    url: string;
+	title: string;
+	description: string;
+	datePublished: string;
+	url: string;
 }
 
 interface BreadcrumbItem {
-    name: string;
-    url: string;
+	name: string;
+	url: string;
 }
 
 interface Props {
-    title?: string;
-    description?: string;
-    ogImage?: string;
-    ogType?: "website" | "article";
-    articlePublishedTime?: string;
-    jsonLdType?: "ProfessionalService" | "Article" | "WebPage";
-    articleJsonLd?: ArticleJsonLd;
-    breadcrumbs?: BreadcrumbItem[];
-    class?: string;
-    bodyBgColor?: string;
+	title?: string;
+	description?: string;
+	ogImage?: string;
+	ogType?: "website" | "article";
+	articlePublishedTime?: string;
+	jsonLdType?: "ProfessionalService" | "Article" | "WebPage";
+	articleJsonLd?: ArticleJsonLd;
+	breadcrumbs?: BreadcrumbItem[];
+	class?: string;
+	bodyBgColor?: string;
 }
 
 const {
-    title: subtitle,
-    description,
-    ogImage,
-    ogType = "website",
-    articlePublishedTime,
-    jsonLdType = "WebPage",
-    articleJsonLd,
-    breadcrumbs,
-    class: className,
-    bodyBgColor
+	title: subtitle,
+	description,
+	ogImage,
+	ogType = "website",
+	articlePublishedTime,
+	jsonLdType = "WebPage",
+	articleJsonLd,
+	breadcrumbs,
+	class: className,
+	bodyBgColor,
 } = Astro.props;
 
 const title = `Психолог Илона Хоменко${subtitle ? ` - ${subtitle}` : ""}`;
 const canonicalUrl = Astro.url.pathname;
 
-const defaultDescription = "Психолог Илона Хоменко. Индивидуальные консультации онлайн. Работаю в подходах ACT, CFT и ОРКТ. Помогаю справиться с тревогой, депрессией, эмоциональным выгоранием.";
+const defaultDescription =
+	"Психолог Илона Хоменко. Индивидуальные консультации онлайн. Работаю в подходах ACT, CFT и ОРКТ. Помогаю справиться с тревогой, депрессией, эмоциональным выгоранием.";
 const finalDescription = description || defaultDescription;
 ---
 
 <html lang="ru">
-    <head>
-        <meta charset="utf-8">
+	<head>
+		<meta charset="utf-8">
 
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="preload" href="/fonts/inter-cyrillic-400-normal.woff2" crossorigin as="font" type="font/woff2">
-        <link rel="preload" href="/fonts/inter-cyrillic-600-normal.woff2" crossorigin as="font" type="font/woff2">
+		<link
+			rel="preload"
+			href="/fonts/inter-cyrillic-400-normal.woff2"
+			crossorigin
+			as="font"
+			type="font/woff2"
+		>
+		<link
+			rel="preload"
+			href="/fonts/inter-cyrillic-600-normal.woff2"
+			crossorigin
+			as="font"
+			type="font/woff2"
+		>
 
-        <link rel="icon" href="/favicon.ico" sizes="32x32">
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-        <link rel="apple-touch-icon" href="/apple-touch-favicon.png">
+		<link rel="icon" href="/favicon.ico" sizes="32x32">
+		<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+		<link rel="apple-touch-icon" href="/apple-touch-favicon.png">
 
-        <title>{title}</title>
-        <ClientRouter />
+		<title>{title}</title>
+		<ClientRouter />
 
-        <SEO
-            title={title}
-            description={finalDescription}
-            canonicalUrl={canonicalUrl}
-            ogImage={ogImage}
-            ogType={ogType}
-            articlePublishedTime={articlePublishedTime}
-        />
+		<SEO
+			title={title}
+			description={finalDescription}
+			canonicalUrl={canonicalUrl}
+			ogImage={ogImage}
+			ogType={ogType}
+			articlePublishedTime={articlePublishedTime}
+		/>
 
-        <JsonLd
-            type={jsonLdType}
-            articleData={articleJsonLd}
-            breadcrumbs={breadcrumbs}
-        />
-    </head>
-    <body>
-        <a class="skip-link" href="#main-content">Перейти к основному содержанию</a>
-        <Header />
-        <main id="main-content" class={className} transition:animate="fade">
-            <slot />
-        </main>
-        <Footer transition:persist />
-        <AppointmentDialog transition:persist />
-    </body>
+		<JsonLd type={jsonLdType} articleData={articleJsonLd} breadcrumbs={breadcrumbs} />
+	</head>
+	<body>
+		<a class="skip-link" href="#main-content">Перейти к основному содержанию</a>
+		<Header />
+		<main id="main-content" class={className} transition:animate="fade">
+			<slot />
+		</main>
+		<Footer transition:persist />
+		<AppointmentDialog transition:persist />
+	</body>
 </html>
 
 <style is:global define:vars={{ bodyBgColor }}>
-    body {
-        display: grid;
-        grid-template-areas:
-         "header"
-         "main"
-         "footer";
-        grid-template-rows: auto 1fr auto;
-        min-height: 100vh;
-        background-color: var(--accent-color);
-    }
+body {
+	display: grid;
+	grid-template-areas:
+		"header"
+		"main"
+		"footer";
+	grid-template-rows: auto 1fr auto;
+	min-height: 100vh;
+	background-color: var(--accent-color);
+}
 
-    header {
-        grid-area: header;
-    }
+header {
+	grid-area: header;
+}
 
-    main {
-        grid-area: main;
-        overflow: hidden;
-        margin-top: var(--header-height);
-        padding-block: 160px;
-        background-color: var(--bodyBgColor, var(--secondary-color));
+main {
+	grid-area: main;
+	overflow: hidden;
+	margin-top: var(--header-height);
+	padding-block: 160px;
+	background-color: var(--bodyBgColor, var(--secondary-color));
 
-        @media screen and (width < 1500px) {
-            padding-block: 100px;
-        }
+	@media screen and (width < 1500px) {
+		padding-block: 100px;
+	}
 
-        @media screen and (width < 768px) {
-            padding-block-start: 60px;
-        }
-    }
+	@media screen and (width < 768px) {
+		padding-block-start: 60px;
+	}
+}
 
-    footer {
-        grid-area: footer;
-    }
+footer {
+	grid-area: footer;
+}
 
-    .skip-link {
-        z-index: 100;
-        position: absolute;
-        top: -100%;
-        left: 16px;
-        padding: 12px 24px;
-        border-radius: 0 0 8px 8px;
-        background-color: var(--primary-color);
-        font-size: 16px;
-        text-decoration: none;
+.skip-link {
+	z-index: 100;
+	position: absolute;
+	top: -100%;
+	left: 16px;
+	padding: 12px 24px;
+	border-radius: 0 0 8px 8px;
+	background-color: var(--primary-color);
+	font-size: 16px;
+	text-decoration: none;
 
-        &, &:visited {
-            color: var(--secondary-color);
-        }
+	&,
+	&:visited {
+		color: var(--secondary-color);
+	}
 
-        &:focus {
-            top: 0;
-        }
-    }
-
+	&:focus {
+		top: 0;
+	}
+}
 </style>

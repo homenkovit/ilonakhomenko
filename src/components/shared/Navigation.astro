@@ -3,29 +3,35 @@ import Icon from "./Icon.astro";
 
 const { pathname } = Astro.url;
 
-const normalizePathname = (path: string) => path.replace(/\/$/, '') || '/';
-const getIsLinkActive = (href: string) => !href.includes("#") && normalizePathname(pathname) === normalizePathname(href);
+const normalizePathname = (path: string) => path.replace(/\/$/, "") || "/";
+const getIsLinkActive = (href: string) =>
+	!href.includes("#") && normalizePathname(pathname) === normalizePathname(href);
 
 const navigationLinks = [
-    { href: "/", label: "Главная" },
-    { href: "/help", label: "С чем помогаю" },
-    { href: "/price", label: "Стоимость" },
-    { href: "/faq", label: "Вопросы" },
-    { href: "/about", label: "Обо мне" },
-    { href: "/articles", label: "Статьи" },
-    { href: "/tests", label: "Тесты" },
-    { href: "/education", label: "Образование" },
+	{ href: "/", label: "Главная" },
+	{ href: "/help", label: "С чем помогаю" },
+	{ href: "/price", label: "Стоимость" },
+	{ href: "/faq", label: "Вопросы" },
+	{ href: "/about", label: "Обо мне" },
+	{ href: "/articles", label: "Статьи" },
+	{ href: "/tests", label: "Тесты" },
+	{ href: "/education", label: "Образование" },
 ];
 ---
 
-<button type="button" class="menu-button" aria-label="Меню" aria-expanded="false" aria-controls="menu">
-    <span>Меню</span>
-    <Icon name="menu" />
+<button
+	type="button"
+	class="menu-button"
+	aria-label="Меню"
+	aria-expanded="false"
+	aria-controls="menu"
+>
+	<span>Меню</span>
+	<Icon name="menu" />
 </button>
 <nav id="menu" class="menu closed" aria-label="Главное меню">
-    <ul class="nav-list">
-        {
-            navigationLinks.map((link) => {
+	<ul class="nav-list">
+		{navigationLinks.map((link) => {
                 const isActive = getIsLinkActive(link.href);
 
                 return (
@@ -35,187 +41,186 @@ const navigationLinks = [
                         </a>
                     </li>
                 );
-            })
-        }
-    </ul>
+            })}
+	</ul>
 </nav>
 
 <style>
-    .menu-button {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 0;
-        border: none;
-        margin: 0;
-        background-color: transparent;
-        cursor: pointer;
-        font-size: 24px;
-        line-height: 30px;
-        color: var(--primary-color);
-        text-transform: uppercase;
+.menu-button {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 0;
+	border: none;
+	margin: 0;
+	background-color: transparent;
+	cursor: pointer;
+	font-size: 24px;
+	line-height: 30px;
+	color: var(--primary-color);
+	text-transform: uppercase;
 
-        @media (prefers-reduced-motion: no-preference) {
-            transition: color 0.2s ease;
-        }
+	@media (prefers-reduced-motion: no-preference) {
+		transition: color 0.2s ease;
+	}
 
-        @media (hover: hover) {
-            &:hover {
-                color: var(--hover-color);
-            }
-        }
+	@media (hover: hover) {
+		&:hover {
+			color: var(--hover-color);
+		}
+	}
 
-        &:active,
-        &[aria-expanded="true"] {
-            color: var(--hover-color);
-        }
+	&:active,
+	&[aria-expanded="true"] {
+		color: var(--hover-color);
+	}
 
-        @media screen and (width >= 1138px) {
-            display: none;
-        }
+	@media screen and (width >= 1138px) {
+		display: none;
+	}
 
-        @media screen and (width < 800px) {
-            font-size: 18px;
-            line-height: 24px;
-        }
+	@media screen and (width < 800px) {
+		font-size: 18px;
+		line-height: 24px;
+	}
 
-        @media screen and (width < 600px) {
-            span {
-                display: none;
-            }
-        }
-    }
+	@media screen and (width < 600px) {
+		span {
+			display: none;
+		}
+	}
+}
 
-    .menu {
-        @media screen and (width < 1138px) {
-            z-index: 1;
-            position: fixed;
-            inset: var(--header-height) 0 0;
-            box-sizing: border-box;
-            contain: layout;
-            overflow-y: auto;
-            padding: 20px;
-            border-top: 2px solid var(--border-color);
-            background-color: var(--secondary-color);
+.menu {
+	@media screen and (width < 1138px) {
+		z-index: 1;
+		position: fixed;
+		inset: var(--header-height) 0 0;
+		box-sizing: border-box;
+		contain: layout;
+		overflow-y: auto;
+		padding: 20px;
+		border-top: 2px solid var(--border-color);
+		background-color: var(--secondary-color);
 
-            @media (prefers-reduced-motion: no-preference) {
-                transition:
-                    opacity 0.3s ease,
-                    transform 0.3s ease,
-                    display 0.3s ease allow-discrete;
+		@media (prefers-reduced-motion: no-preference) {
+			transition:
+				opacity 0.3s ease,
+				transform 0.3s ease,
+				display 0.3s ease allow-discrete;
 
-                @starting-style {
-                    opacity: 0;
-                    transform: translateX(100%);
-                }
-            }
+			@starting-style {
+				opacity: 0;
+				transform: translateX(100%);
+			}
+		}
 
-            &.closed {
-                display: none;
-                opacity: 0;
-                transform: translateX(100%);
-            }
+		&.closed {
+			display: none;
+			opacity: 0;
+			transform: translateX(100%);
+		}
 
-            .nav-list {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 20px;
-            }
+		.nav-list {
+			flex-direction: column;
+			align-items: stretch;
+			gap: 20px;
+		}
 
-            .nav-item {
-                display: flex;
-                justify-content: center;
-                width: 100%;
-            }
+		.nav-item {
+			display: flex;
+			justify-content: center;
+			width: 100%;
+		}
 
-            .nav-link {
-                box-sizing: border-box;
-                width: 100%;
-                max-width: 462px;
-                padding: 20px;
-                font-size: 22px;
-                line-height: 30px;
-                text-align: center;
-            }
-        }
-    }
+		.nav-link {
+			box-sizing: border-box;
+			width: 100%;
+			max-width: 462px;
+			padding: 20px;
+			font-size: 22px;
+			line-height: 30px;
+			text-align: center;
+		}
+	}
+}
 
-    .nav-list {
-        display: flex;
-        align-items: center;
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
+.nav-list {
+	display: flex;
+	align-items: center;
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
 
-    .nav-link {
-        display: block;
-        padding: 8px 24px;
-        font-size: 18px;
-        line-height: 28px;
-        color: var(--primary-color);
-        white-space: nowrap;
-        text-decoration: none;
+.nav-link {
+	display: block;
+	padding: 8px 24px;
+	font-size: 18px;
+	line-height: 28px;
+	color: var(--primary-color);
+	white-space: nowrap;
+	text-decoration: none;
 
-        @media (prefers-reduced-motion: no-preference) {
-            transition: color 0.2s ease;
-        }
+	@media (prefers-reduced-motion: no-preference) {
+		transition: color 0.2s ease;
+	}
 
-        &:hover,
-        &:active {
-            color: var(--hover-color);
-        }
+	&:hover,
+	&:active {
+		color: var(--hover-color);
+	}
 
-        &:hover,
-        &:active,
-        &.active {
-            text-decoration: underline;
-        }
-    }
+	&:hover,
+	&:active,
+	&.active {
+		text-decoration: underline;
+	}
+}
 </style>
 
 <script>
-    function getElements() {
-        return {
-            main: document.querySelector('main'),
-            footer: document.querySelector('footer'),
-            menuButton: document.querySelector<HTMLButtonElement>('.menu-button'),
-            menu: document.querySelector<HTMLElement>('.menu')
-        };
-    }
+function getElements() {
+	return {
+		main: document.querySelector("main"),
+		footer: document.querySelector("footer"),
+		menuButton: document.querySelector<HTMLButtonElement>(".menu-button"),
+		menu: document.querySelector<HTMLElement>(".menu"),
+	};
+}
 
-    function isMenuOpened(): boolean {
-        const { menuButton } = getElements();
-        return menuButton?.getAttribute('aria-expanded') === 'true';
-    }
+function isMenuOpened(): boolean {
+	const { menuButton } = getElements();
+	return menuButton?.getAttribute("aria-expanded") === "true";
+}
 
-    function openMenu() {
-        const { main, footer, menuButton, menu } = getElements();
-        document.body.style.overflow = 'hidden';
-        main?.setAttribute('inert', '');
-        footer?.setAttribute('inert', '');
-        menuButton?.setAttribute('aria-expanded', 'true');
-        menu?.classList.remove('closed');
-    }
+function openMenu() {
+	const { main, footer, menuButton, menu } = getElements();
+	document.body.style.overflow = "hidden";
+	main?.setAttribute("inert", "");
+	footer?.setAttribute("inert", "");
+	menuButton?.setAttribute("aria-expanded", "true");
+	menu?.classList.remove("closed");
+}
 
-    function closeMenu() {
-        const { main, footer, menuButton, menu } = getElements();
-        document.body.style.overflow = 'auto';
-        main?.removeAttribute('inert');
-        footer?.removeAttribute('inert');
-        menuButton?.setAttribute('aria-expanded', 'false');
-        menu?.classList.add('closed');
-    }
+function closeMenu() {
+	const { main, footer, menuButton, menu } = getElements();
+	document.body.style.overflow = "auto";
+	main?.removeAttribute("inert");
+	footer?.removeAttribute("inert");
+	menuButton?.setAttribute("aria-expanded", "false");
+	menu?.classList.add("closed");
+}
 
-    document.addEventListener('click', (event) => {
-        if (event.target instanceof Element && event.target.closest('.menu-button')) {
-            isMenuOpened() ? closeMenu() : openMenu();
-        }
-    });
+document.addEventListener("click", (event) => {
+	if (event.target instanceof Element && event.target.closest(".menu-button")) {
+		isMenuOpened() ? closeMenu() : openMenu();
+	}
+});
 
-    document.addEventListener('keyup', (event: KeyboardEvent) => {
-        if (event.key === 'Escape' && isMenuOpened()) {
-            closeMenu();
-        }
-    });
+document.addEventListener("keyup", (event: KeyboardEvent) => {
+	if (event.key === "Escape" && isMenuOpened()) {
+		closeMenu();
+	}
+});
 </script>
