@@ -3,72 +3,84 @@ import ContactLinks from "./ContactLinks.astro";
 import Icon from "./Icon.astro";
 ---
 
-<dialog id="appointment-dialog" class="appointment-dialog" aria-labelledby="appointment-title" closedby="any">
-    <button type="button" class="close-button" aria-label="Закрыть">
-        <Icon name="close" size={44} />
-    </button>
-    <h2 id="appointment-title" class="title">Запись на консультацию</h2>
-    <ContactLinks />
+<dialog
+	id="appointment-dialog"
+	class="appointment-dialog"
+	aria-labelledby="appointment-title"
+	closedby="any"
+>
+	<button type="button" class="close-button" aria-label="Закрыть">
+		<Icon name="close" size={44} />
+	</button>
+	<h2 id="appointment-title" class="title">Запись на консультацию</h2>
+	<ContactLinks />
 </dialog>
 
 <style>
-    .appointment-dialog {
-        overflow: hidden;
-        box-sizing: border-box;
-        width: 100%;
-        max-width: 404px;
-        height: 404px;
-        padding: 24px;
-        border: none;
-        border-radius: 4px;
-        background-color: #ddc0e3;
+.appointment-dialog {
+	overflow: hidden;
+	box-sizing: border-box;
+	width: 100%;
+	max-width: 404px;
+	height: 404px;
+	padding: 24px;
+	border: none;
+	border-radius: 4px;
+	background-color: #ddc0e3;
 
-        &::backdrop {
-            background-color: rgb(0 0 0 / 50%);
-        }
+	&::backdrop {
+		background-color: rgb(0 0 0 / 50%);
+	}
 
-        .contact-links {
-            flex-direction: column;
-            gap: 16px;
+	.contact-links {
+		flex-direction: column;
+		gap: 16px;
 
-            svg {
-                width: 36px;
-                height: 36px;
-            }
-        }
-    }
+		svg {
+			width: 36px;
+			height: 36px;
+		}
+	}
+}
 
-    .close-button {
-        display: flex;
-        padding: 0;
-        border: none;
-        margin-block-end: 4px;
-        margin-inline-start: auto;
-        background-color: transparent;
-        color: inherit;
-        cursor: pointer;
-    }
+.close-button {
+	display: flex;
+	padding: 0;
+	border: none;
+	margin-block-end: 4px;
+	margin-inline-start: auto;
+	background-color: transparent;
+	color: inherit;
+	cursor: pointer;
+}
 
-    .title {
-        margin-block-start: 0;
-        margin-block-end: 24px;
-        font-size: 40px;
-        line-height: 100%;
-        font-weight: 400;
-    }
+.title {
+	margin-block-start: 0;
+	margin-block-end: 24px;
+	font-size: 40px;
+	line-height: 100%;
+	font-weight: 400;
+}
 </style>
 
 <script>
-    document.addEventListener('close', (event) => {
-        if (event.target instanceof Element && event.target.id === 'appointment-dialog') {
-            document.body.style.overflow = 'auto';
-        }
-    }, true);
+document.addEventListener(
+	"close",
+	(event) => {
+		if (event.target instanceof Element && event.target.id === "appointment-dialog") {
+			document.body.style.overflow = "auto";
+		}
+	},
+	true,
+);
 
-    document.addEventListener('click', (event) => {
-        if (event.target instanceof Element && event.target.closest('#appointment-dialog .close-button')) {
-            const dialog = document.querySelector<HTMLDialogElement>('#appointment-dialog');
-            dialog?.close();
-        }
-    });
+document.addEventListener("click", (event) => {
+	if (
+		event.target instanceof Element &&
+		event.target.closest("#appointment-dialog .close-button")
+	) {
+		const dialog = document.querySelector<HTMLDialogElement>("#appointment-dialog");
+		dialog?.close();
+	}
+});
 </script>

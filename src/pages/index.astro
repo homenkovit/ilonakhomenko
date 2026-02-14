@@ -1,11 +1,11 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
 import AboutSection from "../components/index-page/AboutSection.astro";
+import ArticlesSection from "../components/index-page/ArticlesSection.astro";
+import FaqSection from "../components/index-page/FaqSection.astro";
 import HelpSection from "../components/index-page/HelpSection.astro";
 import PriceSection from "../components/index-page/PriceSection.astro";
-import FaqSection from "../components/index-page/FaqSection.astro";
-import ArticlesSection from "../components/index-page/ArticlesSection.astro";
 import TestsSection from "../components/index-page/TestsSection.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
@@ -24,34 +24,34 @@ import TestsSection from "../components/index-page/TestsSection.astro";
 </BaseLayout>
 
 <style is:global>
-	main.index-page {
-		overflow: hidden;
-		padding-block: 0;
+main.index-page {
+	overflow: hidden;
+	padding-block: 0;
 
-		:where(h1, h2, h3, h4, h5, h6) {
-			font-weight: 400;
+	:where(h1, h2, h3, h4, h5, h6) {
+		font-weight: 400;
+	}
+
+	section {
+		padding-block: 160px;
+		background-color: var(--secondary-color);
+
+		@media screen and (width < 1500px) {
+			padding-block: 80px;
 		}
 
-		section {
-			padding-block: 160px;
-			background-color: var(--secondary-color);
-
-			@media screen and (width < 1500px) {
-				padding-block: 80px;
-			}
-
-			@media screen and (width < 768px) {
-				padding-block: 60px;
-			}
+		@media screen and (width < 768px) {
+			padding-block: 60px;
 		}
 	}
+}
 </style>
 
 <style>
-	.separator {
-		height: 2px;
-		border: none;
-		margin: 0;
-		background-color: var(--border-color);
-	}
+.separator {
+	height: 2px;
+	border: none;
+	margin: 0;
+	background-color: var(--border-color);
+}
 </style>

@@ -3,67 +3,67 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const articles = (await getCollection("articles")).sort(
-    (a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
+	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf(),
 );
 ---
 
 <BaseLayout
-    title="Статьи о психологии"
-    description="Статьи психолога Илоны Хоменко: осознанность, эмоции, хроническая боль, выученная беспомощность и другие темы."
-    class="articles-page container"
+	title="Статьи о психологии"
+	description="Статьи психолога Илоны Хоменко: осознанность, эмоции, хроническая боль, выученная беспомощность и другие темы."
+	class="articles-page container"
 >
-    <h1 class="page-title">Статьи</h1>
+	<h1 class="page-title">Статьи</h1>
 
-    <ul class="articles-list">
-        {articles.map((article) => (
+	<ul class="articles-list">
+		{articles.map((article) => (
             <li>
                 <a href={`/articles/${article.id}`} data-astro-reload>{article.data.title}</a>
             </li>
         ))}
-    </ul>
+	</ul>
 </BaseLayout>
 
 <style is:global>
-    .articles-page {
-        position: relative;
-        background-image:
-            linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
-            url("/images/articles-cover-768.webp");
-        background-repeat: no-repeat;
-        background-size: cover;
+.articles-page {
+	position: relative;
+	background-image:
+		linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+		url("/images/articles-cover-768.webp");
+	background-repeat: no-repeat;
+	background-size: cover;
 
-        @media screen and (width >= 768px) {
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
-                url("/images/articles-cover-1440.webp");
-        }
+	@media screen and (width >= 768px) {
+		background-image:
+			linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+			url("/images/articles-cover-1440.webp");
+	}
 
-        @media screen and (width >= 1500px) {
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
-                url("/images/articles-cover.webp");
-        }
-    }
+	@media screen and (width >= 1500px) {
+		background-image:
+			linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+			url("/images/articles-cover.webp");
+	}
+}
 </style>
 
 <style>
-    .articles-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+.articles-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
 
-        li + li {
-            margin-block-start: 24px;
-        }
+	li + li {
+		margin-block-start: 24px;
+	}
 
-        a {
-            font-size: 30px;
-            line-height: 40px;
+	a {
+		font-size: 30px;
+		line-height: 40px;
 
-            @media screen and (width >= 1500px) {
-                font-size: 40px;
-                line-height: 50px;
-            }
-        }
-    }
+		@media screen and (width >= 1500px) {
+			font-size: 40px;
+			line-height: 50px;
+		}
+	}
+}
 </style>

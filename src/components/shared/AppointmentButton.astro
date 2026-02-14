@@ -3,49 +3,49 @@ import Icon from "./Icon.astro";
 ---
 
 <button class="appointment-button" aria-label="Записаться">
-    <span>Записаться</span>
-    <Icon name="calendar" />
+	<span>Записаться</span>
+	<Icon name="calendar" />
 </button>
 
 <style>
-    .appointment-button {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        padding: 12px 32px;
-        border: none;
-        border-radius: 50px;
-        background-color: var(--primary-color);
-        color: var(--secondary-color);
-        font-size: 24px;
-        line-height: 32px;
-        text-transform: uppercase;
-        cursor: pointer;
+.appointment-button {
+	display: inline-flex;
+	align-items: center;
+	gap: 12px;
+	padding: 12px 32px;
+	border: none;
+	border-radius: 50px;
+	background-color: var(--primary-color);
+	color: var(--secondary-color);
+	font-size: 24px;
+	line-height: 32px;
+	text-transform: uppercase;
+	cursor: pointer;
 
-        @media (prefers-reduced-motion: no-preference) {
-            transition: background-color 0.2s ease;
-        }
+	@media (prefers-reduced-motion: no-preference) {
+		transition: background-color 0.2s ease;
+	}
 
-        @media (hover: hover) {
-            &:hover {
-                background-color: var(--hover-color);
-            }
-        }
+	@media (hover: hover) {
+		&:hover {
+			background-color: var(--hover-color);
+		}
+	}
 
-        &:active {
-            background-color: var(--hover-color);
-        }
-    }
+	&:active {
+		background-color: var(--hover-color);
+	}
+}
 </style>
 
 <script>
-    window.addEventListener('click', (event) => {
-        if (event.target instanceof Element && event.target.closest('.appointment-button')) {
-            const appointmentDialog = document.querySelector<HTMLDialogElement>('#appointment-dialog');
-            if (appointmentDialog) {
-                appointmentDialog.showModal();
-                document.body.style.overflow = 'hidden';
-            }
-        }
-    })
+window.addEventListener("click", (event) => {
+	if (event.target instanceof Element && event.target.closest(".appointment-button")) {
+		const appointmentDialog = document.querySelector<HTMLDialogElement>("#appointment-dialog");
+		if (appointmentDialog) {
+			appointmentDialog.showModal();
+			document.body.style.overflow = "hidden";
+		}
+	}
+});
 </script>

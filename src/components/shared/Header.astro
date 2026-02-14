@@ -1,128 +1,126 @@
 ---
-import Navigation from "./Navigation.astro";
 import AppointmentButton from "./AppointmentButton.astro";
+import Navigation from "./Navigation.astro";
 ---
 
 <header class="header container">
-    <p class="title">
-        <a href="/" class="title-link">
-            Илона Хоменко
-            <span>психолог онлайн</span>
-        </a>
-    </p>
+	<p class="title"><a href="/" class="title-link">
+		Илона Хоменко
+		<span>психолог онлайн</span>
+	</a></p>
 
-    <AppointmentButton />
+	<AppointmentButton />
 
-    <Navigation />
+	<Navigation />
 </header>
 
 <style>
-    .header {
-        view-transition-name: header;
-        z-index: 2;
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        display: grid;
-        grid-template-columns: 1fr repeat(2, max-content);
-        gap: 24px;
-        align-items: center;
-        box-sizing: border-box;
-        height: var(--header-height, auto);
-        min-height: 152px;
-        padding-block: 36px;
-        background-color: var(--secondary-color);
-        box-shadow: 0 4px 10px 0 rgb(from #b4b4b4 r g b / 25%);
+.header {
+	view-transition-name: header;
+	z-index: 2;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	display: grid;
+	grid-template-columns: 1fr repeat(2, max-content);
+	gap: 24px;
+	align-items: center;
+	box-sizing: border-box;
+	height: var(--header-height, auto);
+	min-height: 152px;
+	padding-block: 36px;
+	background-color: var(--secondary-color);
+	box-shadow: 0 4px 10px 0 rgb(from #b4b4b4 r g b / 25%);
 
-        .appointment-button {
-            @media screen and (width >= 1768px) {
-                order: 1;
-            }
+	.appointment-button {
+		@media screen and (width >= 1768px) {
+			order: 1;
+		}
 
-            @media screen and (1138px <= width < 1768px) {
-                font-size: 18px;
-                line-height: 24px;
-            }
+		@media screen and (1138px <= width < 1768px) {
+			font-size: 18px;
+			line-height: 24px;
+		}
 
-            @media screen and (width < 800px) {
-                font-size: 18px;
-                line-height: 24px;
-            }
+		@media screen and (width < 800px) {
+			font-size: 18px;
+			line-height: 24px;
+		}
 
-            @media screen and (width < 520px) {
-                padding-inline: 12px;
+		@media screen and (width < 520px) {
+			padding-inline: 12px;
 
-                span {
-                    display: none;
-                }
-            }
-        }
+			span {
+				display: none;
+			}
+		}
+	}
 
-        @media screen and (1138px <= width < 1768px) {
-            grid-template-columns: 1fr max-content;
-            row-gap: 16px;
-            padding-block: 24px 10px;
+	@media screen and (1138px <= width < 1768px) {
+		grid-template-columns: 1fr max-content;
+		row-gap: 16px;
+		padding-block: 24px 10px;
 
-            .menu {
-                grid-column: 1 / -1;
-                display: flex;
-                justify-content: center;
-                padding-block-start: 8px;
-                border-top: 2px solid var(--border-color);
-            }
-        }
+		.menu {
+			grid-column: 1 / -1;
+			display: flex;
+			justify-content: center;
+			padding-block-start: 8px;
+			border-top: 2px solid var(--border-color);
+		}
+	}
 
-        @media screen and (width < 800px) {
-            min-height: auto;
-            padding-block: 24px;
-        }
+	@media screen and (width < 800px) {
+		min-height: auto;
+		padding-block: 24px;
+	}
 
-        &.container {
-            --container-width: 1776px;
-        }
-    }
+	&.container {
+		--container-width: 1776px;
+	}
+}
 
-    .title {
-        margin: 0;
-    }
+.title {
+	margin: 0;
+}
 
-    .title-link {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: max-content;
-        font-size: 40px;
-        line-height: 100%;
-        font-weight: 400;
-        color: var(--primary-color);
-        white-space: nowrap;
-        text-decoration: none;
+.title-link {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: max-content;
+	font-size: 40px;
+	line-height: 100%;
+	font-weight: 400;
+	color: var(--primary-color);
+	white-space: nowrap;
+	text-decoration: none;
 
-        span {
-            font-size: 22px;
-        }
+	span {
+		font-size: 22px;
+	}
 
-        @media screen and (1138px <= width < 1768px) {
-            font-size: 22px;
+	@media screen and (1138px <= width < 1768px) {
+		font-size: 22px;
 
-            span {
-                font-size: 16px;
-            }
-        }
+		span {
+			font-size: 16px;
+		}
+	}
 
-        @media screen and (width < 800px) {
-            font-size: 22px;
+	@media screen and (width < 800px) {
+		font-size: 22px;
 
-            span {
-                font-size: 16px;
-            }
-        }
-    }
+		span {
+			font-size: 16px;
+		}
+	}
+}
 </style>
 
 <style is:global>
-    @view-transition {
-        header: auto;
-    }
+@view-transition {
+	header: auto;
+}
 </style>

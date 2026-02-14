@@ -6,64 +6,62 @@ const tests = await getCollection("tests");
 ---
 
 <BaseLayout
-    title="Психологические тесты онлайн"
-    description="Бесплатные психологические тесты онлайн: шкала депрессии Бэка, тревожность Либовица, опросник осознанности FFMQ и шкала убеждений Бёрнса."
-    class="tests-page container"
+	title="Психологические тесты онлайн"
+	description="Бесплатные психологические тесты онлайн: шкала депрессии Бэка, тревожность Либовица, опросник осознанности FFMQ и шкала убеждений Бёрнса."
+	class="tests-page container"
 >
-    <h1 class="page-title">Тесты</h1>
+	<h1 class="page-title">Тесты</h1>
 
-    <ul class="tests-list">
-        {
-            tests.map((test) => (
+	<ul class="tests-list">
+		{tests.map((test) => (
                 <li>
                     <a href={`/tests/${test.id}`} data-astro-reload>{test.data.title}</a>
                 </li>
-            ))
-        }
-    </ul>
+            ))}
+	</ul>
 </BaseLayout>
 
 <style is:global>
-    .tests-page {
-        position: relative;
-        background-image:
-            linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
-            url("/images/tests-cover-768.webp");
-        background-repeat: no-repeat;
-        background-size: cover;
+.tests-page {
+	position: relative;
+	background-image:
+		linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+		url("/images/tests-cover-768.webp");
+	background-repeat: no-repeat;
+	background-size: cover;
 
-        @media screen and (width >= 768px) {
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
-                url("/images/tests-cover-1440.webp");
-        }
+	@media screen and (width >= 768px) {
+		background-image:
+			linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+			url("/images/tests-cover-1440.webp");
+	}
 
-        @media screen and (width >= 1500px) {
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
-                url("/images/tests-cover.webp");
-        }
-    }
+	@media screen and (width >= 1500px) {
+		background-image:
+			linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+			url("/images/tests-cover.webp");
+	}
+}
 </style>
 
 <style>
-    .tests-list {
-        list-style: none;
-        padding: 0;
-        margin: 0;
+.tests-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
 
-        li + li {
-            margin-block-start: 24px;
-        }
+	li + li {
+		margin-block-start: 24px;
+	}
 
-        a {
-            font-size: 30px;
-            line-height: 40px;
+	a {
+		font-size: 30px;
+		line-height: 40px;
 
-            @media screen and (width >= 1500px) {
-                font-size: 40px;
-                line-height: 50px;
-            }
-        }
-    }
+		@media screen and (width >= 1500px) {
+			font-size: 40px;
+			line-height: 50px;
+		}
+	}
+}
 </style>
