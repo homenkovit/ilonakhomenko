@@ -4,27 +4,28 @@ import ContactLinks from "./ContactLinks.astro";
 
 <footer class="footer container">
 	<ContactLinks />
+	<p class="info-text">
+		*Услуги носят консультативный характер и не являются медицинской или психотерапевтической
+		помощью. При наличии клинических симптомов рекомендуется обратиться к лицензированному
+		медицинскому специалисту.
+	</p>
 </footer>
 
 <style>
 .footer {
-	display: flex;
-	align-items: center;
 	padding-block: 50px;
 	background-color: var(--accent-color);
 	color: var(--secondary-color);
 
-	@media screen and (width < 768px) {
-		padding-block: 24px;
-
-		.contact-links {
-			flex-direction: column;
-			gap: 24px;
-		}
-	}
-
 	&.container {
 		--container-width: 1592px;
 	}
+}
+
+.info-text {
+	margin-block-start: 28px;
+	margin-block-end: 0;
+	font-size: 18px;
+	line-height: 24px;
 }
 </style>
