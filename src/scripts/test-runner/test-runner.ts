@@ -1,12 +1,11 @@
 import {
 	formatResultAsText,
 	getResultHeadingSuffix,
-	type ResultTemplates,
 	renderResultToContainer,
 } from "./result-formatter";
 import { createScoringStrategy, type ScoringStrategy } from "./scoring/scoring-strategy";
 import { TestStateManager } from "./test-state";
-import type { Question, TestData, TestOption } from "./types";
+import type { Question, ResultTemplates, TestData, TestOption } from "./types";
 
 export class TestRunner {
 	#testData: TestData;

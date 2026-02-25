@@ -1,0 +1,40 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+	title="Запись на консультацию"
+	description="Выберите удобную дату и время."
+	class="container"
+>
+	<section class="page-section">
+		<h2 class="page-title">Запись на консультацию</h2>
+		<p class="page-text">Выберите удобную дату и время.</p>
+		<div id="cal-embed" class="cal-embed"></div>
+	</section>
+</BaseLayout>
+
+<style>
+.page-text {
+	text-align: center;
+	margin-block-end: 60px;
+
+	@media screen and (width < 768px) {
+		margin-block-end: 32px;
+	}
+}
+</style>
+
+<style is:global>
+.cal-embed {
+	border: none;
+}
+</style>
+
+<script>
+import { initCalInlineWidget } from "../scripts/cal-embed";
+
+document.addEventListener("astro:page-load", () => {
+	initCalInlineWidget("#cal-embed");
+});
+</script>
