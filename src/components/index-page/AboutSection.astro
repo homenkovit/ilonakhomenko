@@ -10,29 +10,21 @@ import AppointmentButton from "../shared/AppointmentButton.astro";
 		Меня зовут Илона. Я нейроотличный специалист по психологическому консультированию с высшим
 		психологическим образованием и опытом частной практики. Живу в Нидерландах и работаю онлайн по
 		всему миру в формате консультирования и поддержки, соблюдая профессиональные и этические
-		стандарты. Оплату принимаю в евро и долларах.
-	</p>
-	<p class="about__text">
-		Я помогаю русскоязычным людям за пределами РФ справляться с тревогой, эмоциональным выгоранием,
-		сложными жизненными этапами и адаптацией в новой стране, без давления и универсальных шаблонов,
-		с опорой на современные доказательные подходы и практики психологической поддержки. Моя работа —
-		это пространство для бережного разговора, осмысления происходящего и поиска устойчивых решений.
-	</p>
-	<p class="about__text">
-		У меня есть
+		стандарты. Оплату принимаю в евро и долларах. Я помогаю русскоязычным людям за пределами РФ
+		справляться с тревогой, эмоциональным выгоранием, сложными жизненными этапами и адаптацией в
+		новой стране, без давления и универсальных шаблонов, с опорой на современные доказательные
+		подходы и практики психологической поддержки. Моя работа — это пространство для бережного
+		разговора, осмысления происходящего и поиска устойчивых решений. Веду уютный
 		<a href="https://t.me/not_judging_you" target="_blank" rel="noopener noreferrer"
 			>телеграм канал "Безоценочно с поддержкой"</a
-		>.
-	</p>
-	<p class="about__text">
-		Я с уважением и принятием отношусь к людям любой сексуальной ориентации и гендерной
+		>. С уважением и принятием отношусь к людям любой сексуальной ориентации и гендерной
 		идентичности.
 	</p>
 	<p class="about__text">
 		Консультации проходят онлайн — в комфортной для вас обстановке и в удобное для вас время.
 	</p>
 	<div class="about__photo">
-		<Image src={myPhoto} alt="Илона Хоменко — психолог" width={552} height={552} />
+		<Image src={myPhoto} alt="Илона Хоменко — психолог" width={536} height={728} />
 	</div>
 	<div class="about__buttons">
 		<AppointmentButton />
@@ -45,7 +37,6 @@ import AppointmentButton from "../shared/AppointmentButton.astro";
 	display: grid;
 	grid-template-columns: 1fr 35%;
 	column-gap: 158px;
-	background-color: var(--border-color);
 
 	&.container {
 		--container-width: 1592px;
@@ -82,7 +73,7 @@ import AppointmentButton from "../shared/AppointmentButton.astro";
 
 .about__photo {
 	grid-column: 2 / 2;
-	grid-row: 1 / 8;
+	grid-row: 1 / 5;
 	align-self: center;
 	display: flex;
 	justify-content: flex-end;
@@ -90,21 +81,30 @@ import AppointmentButton from "../shared/AppointmentButton.astro";
 
 	img {
 		width: 100%;
-		max-width: 552px;
-		aspect-ratio: 1 / 1;
+		max-width: 536px;
 		object-fit: contain;
 	}
 
 	@media screen and (width < 1500px) {
-		width: 362px;
-		height: 362px;
+		overflow: hidden;
+		width: 500px;
+		height: 500px;
+		border-radius: 50%;
 		margin-block: 60px;
+
+		img {
+			object-position: 0 80px;
+		}
 	}
 
 	@media screen and (width < 768px) {
-		width: 200px;
-		height: 200px;
+		width: 300px;
+		height: 300px;
 		margin-block: 40px;
+
+		img {
+			object-position: 0 200px;
+		}
 	}
 }
 
