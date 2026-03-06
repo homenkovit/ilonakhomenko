@@ -21,6 +21,12 @@ function loadCalEmbed() {
 
 			const script = document.createElement("script");
 			script.src = CAL_EMBED_SCRIPT_URL;
+			script.onerror = () => {
+				cal.loaded = false;
+				window.Cal = undefined;
+				script.remove();
+				window.dispatchEvent(new Event("cal-embed-error"));
+			};
 			document.head.appendChild(script);
 
 			cal.loaded = true;

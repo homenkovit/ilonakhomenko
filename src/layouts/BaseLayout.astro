@@ -1,5 +1,6 @@
 ---
 import { ClientRouter } from "astro:transitions";
+import { pwaInfo } from "virtual:pwa-info";
 import Footer from "../components/shared/Footer.astro";
 import Header from "../components/shared/Header.astro";
 import JsonLd from "../components/shared/JsonLd.astro";
@@ -59,6 +60,7 @@ const finalDescription = description || defaultDescription;
 		<meta charset="utf-8">
 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="theme-color" content="#3a2c44">
 
 		<link
 			rel="preload"
@@ -78,6 +80,7 @@ const finalDescription = description || defaultDescription;
 		<link rel="icon" href="/favicon.ico" sizes="32x32">
 		<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 		<link rel="apple-touch-icon" href="/apple-touch-favicon.png">
+		{pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
 
 		<title>{title}</title>
 		<ClientRouter />
@@ -92,6 +95,9 @@ const finalDescription = description || defaultDescription;
 		/>
 
 		<JsonLd type={jsonLdType} articleData={articleJsonLd} breadcrumbs={breadcrumbs} />
+		<script>
+		import "../scripts/pwa";
+		</script>
 	</head>
 	<body>
 		<a class="skip-link" href="#main-content">Перейти к основному содержанию</a>

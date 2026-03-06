@@ -2,6 +2,10 @@
 dist/
 # generated types
 .astro/
+# PWA dev files
+dev-sw.js*
+sw.js
+workbox-*.js
 
 # dependencies
 node_modules/

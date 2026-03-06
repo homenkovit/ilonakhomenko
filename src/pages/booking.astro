@@ -10,6 +10,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 	<section class="page-section">
 		<h2 class="page-title">Запись на консультацию</h2>
 		<p class="page-text">Выберите удобную дату и время.</p>
+		<div id="booking-offline" class="booking-offline" hidden>
+			<p>Календарь недоступен без подключения к интернету. Пожалуйста, проверьте соединение.</p>
+		</div>
 		<div id="cal-embed" class="cal-embed"></div>
 	</section>
 </BaseLayout>
@@ -23,6 +26,15 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 		margin-block-end: 32px;
 	}
 }
+
+.booking-offline {
+	text-align: center;
+	padding: 40px 24px;
+	border-radius: 16px;
+	background-color: var(--accent-color-light, #f5f0f8);
+	font-size: 20px;
+	line-height: 30px;
+}
 </style>
 
 <style is:global>
@@ -34,7 +46,30 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 <script>
 import { initCalInlineWidget } from "../scripts/cal-embed";
 
-document.addEventListener("astro:page-load", () => {
+function showOffline() {
+	const notice = document.getElementById("booking-offline");
+	const embed = document.getElementById("cal-embed");
+	if (notice) notice.hidden = false;
+	if (embed) embed.hidden = true;
+}
+
+function tryLoadWidget() {
+	const notice = document.getElementById("booking-offline");
+	const embed = document.getElementById("cal-embed");
+	if (!embed) return;
+
+	if (!navigator.onLine) {
+		showOffline();
+		return;
+	}
+
+	if (notice) notice.hidden = true;
+	embed.hidden = false;
 	initCalInlineWidget("#cal-embed");
-});
+}
+
+document.addEventListener("astro:page-load", tryLoadWidget);
+window.addEventListener("cal-embed-error", showOffline);
+window.addEventListener("online", tryLoadWidget);
+window.addEventListener("offline", showOffline);
 </script>
