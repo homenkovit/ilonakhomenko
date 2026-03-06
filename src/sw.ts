@@ -31,6 +31,16 @@ precacheAndRoute(assetEntries);
 const PAGES_CACHE = "pages";
 const NETWORK_TIMEOUT = 3000;
 
+/** SW can't return redirected responses for navigate requests — strip the flag */
+function cleanResponse(response: Response): Response {
+	if (!response.redirected) return response;
+	return new Response(response.body, {
+		status: response.status,
+		statusText: response.statusText,
+		headers: response.headers,
+	});
+}
+
 /** Strip trailing slash (except root "/") for consistent cache keys */
 function normalizeUrl(raw: string): string {
 	const u = new URL(raw, self.location.origin);
@@ -46,7 +56,10 @@ self.addEventListener("install", (event) => {
 		caches.open(PAGES_CACHE).then((cache) =>
 			Promise.allSettled(
 				pageUrls.map(async (url) => {
-					const response = await fetch(url);
+					// Fetch with trailing slash to avoid Netlify 301 redirect
+					// (redirected responses can't be used for navigate requests)
+					const fetchUrl = url === "/" ? url : `${url}/`;
+					const response = await fetch(fetchUrl);
 					if (response.ok) await cache.put(normalizeUrl(url), response);
 				}),
 			),
@@ -70,10 +83,11 @@ self.addEventListener("fetch", (event) => {
 				const response = await fetch(event.request.url, { signal: ctrl.signal });
 				clearTimeout(tid);
 
-				if (response.ok) {
-					cache.put(key, response.clone());
+				const clean = cleanResponse(response);
+				if (clean.ok) {
+					cache.put(key, clean.clone());
 				}
-				return response;
+				return clean;
 			} catch {
 				const cached = await cache.match(key);
 				if (cached) return cached;
