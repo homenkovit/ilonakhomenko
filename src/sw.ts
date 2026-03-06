@@ -1,9 +1,6 @@
 /// <reference lib="webworker" />
 
-import type { WorkboxPlugin } from "workbox-core";
 import { cleanupOutdatedCaches, precacheAndRoute } from "workbox-precaching";
-import { NavigationRoute, registerRoute } from "workbox-routing";
-import { NetworkFirst } from "workbox-strategies";
 
 declare let self: ServiceWorkerGlobalScope;
 
@@ -28,52 +25,66 @@ for (const entry of manifest) {
 	}
 }
 
+// CacheFirst for hashed static assets
 precacheAndRoute(assetEntries);
 
 const PAGES_CACHE = "pages";
+const NETWORK_TIMEOUT = 3000;
 
+/** Strip trailing slash (except root "/") for consistent cache keys */
+function normalizeUrl(raw: string): string {
+	const u = new URL(raw, self.location.origin);
+	if (u.pathname !== "/" && u.pathname.endsWith("/")) {
+		u.pathname = u.pathname.slice(0, -1);
+	}
+	return u.href;
+}
+
+// Pre-cache all pages during install
 self.addEventListener("install", (event) => {
 	event.waitUntil(
 		caches.open(PAGES_CACHE).then((cache) =>
 			Promise.allSettled(
 				pageUrls.map(async (url) => {
 					const response = await fetch(url);
-					if (response.ok) await cache.put(url, response);
+					if (response.ok) await cache.put(normalizeUrl(url), response);
 				}),
 			),
 		),
 	);
 });
 
-// Normalize request URLs: strip trailing slash so that
-// both "/about" and "/about/" match the cached "/about"
-const trailingSlashPlugin: WorkboxPlugin = {
-	cacheKeyWillBeUsed: async ({ request }) => {
-		const url = new URL(request.url);
-		if (url.pathname !== "/" && url.pathname.endsWith("/")) {
-			url.pathname = url.pathname.slice(0, -1);
-			return new Request(url.toString());
-		}
-		return request;
-	},
-};
+// NetworkFirst for page navigations — manual handler for full control
+// Uses fetch(string) instead of fetch(Request) to prevent Safari redirect loop
+self.addEventListener("fetch", (event) => {
+	if (event.request.mode !== "navigate") return;
 
-// Safari/WebKit may route SW-internal fetch(navigate request) back through SW → loop.
-// Creating a new Request from URL string resets mode from "navigate" to "cors",
-// preventing the loop.
-const safariFixPlugin: WorkboxPlugin = {
-	requestWillFetch: async ({ request }) => new Request(request.url),
-};
+	event.respondWith(
+		(async () => {
+			const key = normalizeUrl(event.request.url);
+			const cache = await caches.open(PAGES_CACHE);
 
-registerRoute(
-	new NavigationRoute(
-		new NetworkFirst({
-			cacheName: PAGES_CACHE,
-			networkTimeoutSeconds: 3,
-			plugins: [safariFixPlugin, trailingSlashPlugin],
-		}),
-	),
-);
+			try {
+				const ctrl = new AbortController();
+				const tid = setTimeout(() => ctrl.abort(), NETWORK_TIMEOUT);
+				const response = await fetch(event.request.url, { signal: ctrl.signal });
+				clearTimeout(tid);
+
+				if (response.ok) {
+					cache.put(key, response.clone());
+				}
+				return response;
+			} catch {
+				const cached = await cache.match(key);
+				if (cached) return cached;
+				return new Response("Offline", {
+					status: 503,
+					headers: { "Content-Type": "text/html; charset=utf-8" },
+				});
+			}
+		})(),
+	);
+});
 
 self.addEventListener("activate", () => {
 	self.clients.claim();
