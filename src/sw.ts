@@ -20,8 +20,8 @@ for (const entry of manifest) {
 	const url = typeof entry === "string" ? entry : entry.url;
 	const lastSegment = url.split("/").pop() || "";
 	if (!lastSegment.includes(".")) {
-		// Normalize: "/" for root, "/about/", "/tests/some-test/" for the rest
-		const normalized = url === "" || url === "/" ? "/" : `/${url.replace(/^\/|\/$/g, "")}/`;
+		// Normalize: "/" for root, "/about", "/tests/some-test" for the rest
+		const normalized = url === "" || url === "/" ? "/" : `/${url.replace(/^\/|\/$/g, "")}`;
 		pageUrls.push(normalized);
 	} else {
 		assetEntries.push(entry);
@@ -34,23 +34,35 @@ const PAGES_CACHE = "pages";
 
 self.addEventListener("install", (event) => {
 	event.waitUntil(
-		caches
-			.open(PAGES_CACHE)
-			.then((cache) => Promise.allSettled(pageUrls.map((url) => cache.add(url)))),
+		caches.open(PAGES_CACHE).then((cache) =>
+			Promise.allSettled(
+				pageUrls.map(async (url) => {
+					const response = await fetch(url);
+					if (response.ok) await cache.put(url, response);
+				}),
+			),
+		),
 	);
 });
 
-// Normalize request URLs: ensure trailing slash for page URLs
-// so that both "/about" and "/about/" match the cached "/about/"
+// Normalize request URLs: strip trailing slash so that
+// both "/about" and "/about/" match the cached "/about"
 const trailingSlashPlugin: WorkboxPlugin = {
 	cacheKeyWillBeUsed: async ({ request }) => {
 		const url = new URL(request.url);
-		if (url.pathname !== "/" && !url.pathname.endsWith("/") && !url.pathname.includes(".")) {
-			url.pathname += "/";
+		if (url.pathname !== "/" && url.pathname.endsWith("/")) {
+			url.pathname = url.pathname.slice(0, -1);
 			return new Request(url.toString());
 		}
 		return request;
 	},
+};
+
+// Safari/WebKit may route SW-internal fetch(navigate request) back through SW → loop.
+// Creating a new Request from URL string resets mode from "navigate" to "cors",
+// preventing the loop.
+const safariFixPlugin: WorkboxPlugin = {
+	requestWillFetch: async ({ request }) => new Request(request.url),
 };
 
 registerRoute(
@@ -58,7 +70,7 @@ registerRoute(
 		new NetworkFirst({
 			cacheName: PAGES_CACHE,
 			networkTimeoutSeconds: 3,
-			plugins: [trailingSlashPlugin],
+			plugins: [safariFixPlugin, trailingSlashPlugin],
 		}),
 	),
 );
