@@ -93,7 +93,7 @@ const finalDescription = description || defaultDescription;
 
 		<JsonLd type={jsonLdType} articleData={articleJsonLd} breadcrumbs={breadcrumbs} />
 		<script>
-		import "../scripts/pwa";
+		window.addEventListener("load", () => import("../scripts/pwa"));
 		</script>
 	</head>
 	<body>
