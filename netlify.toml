@@ -6,7 +6,7 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
     Cross-Origin-Resource-Policy = "same-origin"
-    Content-Security-Policy = "default-src 'self'; frame-ancestors 'self'; script-src-elem 'self' 'unsafe-inline'; style-src-elem 'self' 'unsafe-inline';"
+    Content-Security-Policy = "default-src 'self'; frame-ancestors 'self'; script-src-elem 'self' 'unsafe-inline' https://app.cal.com; style-src 'self' 'unsafe-inline'; connect-src 'self' https://*.cal.com https://*.cal.eu; frame-src 'self' https://*.cal.com https://*.cal.eu;"
 
 [[headers]]
   for = "/sw.js"
