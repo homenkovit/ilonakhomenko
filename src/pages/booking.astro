@@ -68,7 +68,7 @@ function tryLoadWidget() {
 	initCalInlineWidget("#cal-embed");
 }
 
-document.addEventListener("astro:page-load", tryLoadWidget);
+tryLoadWidget();
 window.addEventListener("cal-embed-error", showOffline);
 window.addEventListener("online", tryLoadWidget);
 window.addEventListener("offline", showOffline);

@@ -351,19 +351,17 @@ const testUrl = `${siteUrl}/tests/${test.id}`;
 }
 </style>
 
-<script is:inline define:vars={{ testData }} data-astro-rerun>
+<script is:inline define:vars={{ testData }}>
 window.__TEST_DATA__ = testData;
 </script>
 
 <script>
 import { TestRunner } from "../../scripts/test-runner";
 
-document.addEventListener("astro:page-load", () => {
-	const container = document.getElementById("test-runner");
-	const testData = window.__TEST_DATA__;
+const container = document.getElementById("test-runner");
+const testData = window.__TEST_DATA__;
 
-	if (container && testData) {
-		new TestRunner(container, testData);
-	}
-});
+if (container && testData) {
+	new TestRunner(container, testData);
+}
 </script>
