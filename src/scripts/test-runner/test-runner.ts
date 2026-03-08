@@ -241,6 +241,8 @@ export class TestRunner {
 			}, 2000);
 		};
 
+		let shareFailed = false;
+
 		if (navigator.share) {
 			try {
 				await navigator.share({ text: plainTextContent });
@@ -248,6 +250,7 @@ export class TestRunner {
 				return;
 			} catch (e) {
 				if (e instanceof Error && e.name === "AbortError") return;
+				shareFailed = true;
 			}
 		}
 
@@ -278,7 +281,11 @@ export class TestRunner {
 			await navigator.clipboard.writeText(plainTextContent);
 			showFeedback("Скопировано");
 		} catch {
-			showFeedback("Ошибка");
+			showFeedback(
+				shareFailed
+					? "Не удалось поделиться результатом."
+					: "Не удалось скопировать результат. Попробуйте вручную.",
+			);
 		}
 	}
 
