@@ -351,15 +351,14 @@ const testUrl = `${siteUrl}/tests/${test.id}`;
 }
 </style>
 
-<script is:inline define:vars={{ testData }}>
-window.__TEST_DATA__ = testData;
-</script>
+<script type="application/json" id="test-data" set:html={JSON.stringify(testData)} />
 
 <script>
 import { TestRunner } from "../../scripts/test-runner";
 
 const container = document.getElementById("test-runner");
-const testData = window.__TEST_DATA__;
+const raw = document.getElementById("test-data")?.textContent;
+const testData = raw ? JSON.parse(raw) : null;
 
 if (container && testData) {
 	new TestRunner(container, testData);

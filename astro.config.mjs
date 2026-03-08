@@ -66,4 +66,16 @@ export default defineConfig({
 			},
 		}),
 	],
+	experimental: {
+		csp: {
+			scriptDirective: {
+				resources: ["'self'", "https://app.cal.com"],
+			},
+			directives: [
+				"default-src 'self'",
+				"connect-src 'self' https://*.cal.com https://*.cal.eu",
+				"frame-src 'self' https://*.cal.com https://cal.eu https://*.cal.eu",
+			],
+		},
+	},
 });
