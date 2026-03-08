@@ -71,6 +71,9 @@ export default defineConfig({
 			scriptDirective: {
 				resources: ["'self'", "https://app.cal.com"],
 			},
+			styleDirective: {
+				resources: ["'self'", "'unsafe-inline'"],
+			},
 			directives: [
 				"default-src 'self'",
 				"connect-src 'self' https://*.cal.com https://*.cal.eu",
