@@ -12,6 +12,7 @@ export class TestRunner {
 	#stateManager: TestStateManager;
 	#scoringStrategy: ScoringStrategy;
 	#isInitialLoad = true;
+	#resultHeadingBaseText = "";
 
 	#questionText: HTMLElement;
 	#progressText: HTMLElement;
@@ -38,6 +39,7 @@ export class TestRunner {
 		this.#resultContent = document.getElementById("result-content")!;
 		this.#prevBtn = document.getElementById("prev-btn")!;
 		this.#nextBtn = document.getElementById("next-btn")!;
+		this.#resultHeadingBaseText = document.getElementById("result-heading")?.textContent ?? "";
 
 		this.#optionBtnTemplate = document.getElementById("option-btn-template") as HTMLTemplateElement;
 		this.#resultTemplates = {
@@ -189,7 +191,7 @@ export class TestRunner {
 		const heading = document.getElementById("result-heading");
 		const suffix = getResultHeadingSuffix(result);
 		if (heading && suffix) {
-			heading.textContent += suffix;
+			heading.textContent = this.#resultHeadingBaseText + suffix;
 		}
 
 		if (!this.#isInitialLoad) {

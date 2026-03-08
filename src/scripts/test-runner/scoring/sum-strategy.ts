@@ -17,7 +17,9 @@ export class SumStrategy implements ScoringStrategy {
 				interpretation = range.label;
 				break;
 			}
-			interpretation = range.label;
+		}
+		if (!interpretation) {
+			interpretation = this.#scoring.ranges.at(-1)?.label ?? "Результат не определён";
 		}
 
 		return { type: "sum", totalScore: total, interpretation };
