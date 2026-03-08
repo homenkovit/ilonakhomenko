@@ -26,7 +26,27 @@ export class TestRunner {
 	#optionBtnTemplate: HTMLTemplateElement;
 	#resultTemplates: ResultTemplates;
 
+	static #validate(testData: TestData): void {
+		if (!Array.isArray(testData.questions) || testData.questions.length === 0) {
+			throw new Error("Test data missing 'questions' array");
+		}
+		if (!testData.scoring || typeof testData.scoring.type !== "string") {
+			throw new Error("Test data missing 'scoring' object");
+		}
+		const { scoring } = testData;
+		if (scoring.type === "sum" && !Array.isArray(scoring.ranges)) {
+			throw new Error("SumScoring missing 'ranges' array");
+		}
+		if (scoring.type === "groups" && !Array.isArray(scoring.groups)) {
+			throw new Error("GroupsScoring missing 'groups' array");
+		}
+		if (scoring.type === "reverse" && !Array.isArray(scoring.factors)) {
+			throw new Error("ReverseScoring missing 'factors' array");
+		}
+	}
+
 	constructor(containerElement: HTMLElement, testData: TestData) {
+		TestRunner.#validate(testData);
 		this.#testData = testData;
 		this.#stateManager = new TestStateManager(testData.id, () => {
 			document.getElementById("storage-error-notice")?.removeAttribute("hidden");
