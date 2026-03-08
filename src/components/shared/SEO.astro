@@ -17,7 +17,7 @@ const {
 	articlePublishedTime,
 } = Astro.props;
 
-const siteUrl = import.meta.env.SITE || "https://ilonakhomenko.com";
+const siteUrl = import.meta.env.SITE;
 const fullCanonicalUrl = new URL(canonicalUrl, siteUrl).href;
 const fullOgImageUrl = new URL(ogImage, siteUrl).href;
 ---

@@ -32,7 +32,7 @@ const testDescription =
 	test.data.description ||
 	`Пройдите тест "${test.data.title}" онлайн. Тест не заменяет консультацию специалиста.`;
 
-const siteUrl = import.meta.env.SITE || "https://ilonakhomenko.com";
+const siteUrl = import.meta.env.SITE;
 const testUrl = `${siteUrl}/tests/${test.id}`;
 ---
 

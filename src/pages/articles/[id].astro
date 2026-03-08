@@ -25,7 +25,7 @@ const pageTitle = `Статья "${article.data.title}"`;
 const pubDate = article.data.pubDate.toLocaleDateString("ru-RU").replaceAll(".", "/");
 
 const articleDescription = article.data.description || `Статья "${article.data.title}"`;
-const siteUrl = import.meta.env.SITE || "https://ilonakhomenko.com";
+const siteUrl = import.meta.env.SITE;
 const articleUrl = `${siteUrl}/articles/${article.id}`;
 const isoDate = article.data.pubDate.toISOString();
 ---
