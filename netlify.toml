@@ -6,9 +6,26 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
     Cross-Origin-Resource-Policy = "same-origin"
-    Content-Security-Policy = "frame-ancestors 'self'"
 
 [[headers]]
   for = "/sw.js"
   [headers.values]
     Cache-Control = "no-cache"
+
+[[plugins]]
+package = "netlify-plugin-csp-generator"
+
+  [plugins.inputs]
+  buildDir = "dist"
+  disableGeneratedPolicies = ["styleSrc", "styleSrcElem", "styleSrcAttr"]
+
+  [plugins.inputs.policies]
+    defaultSrc = "'self'"
+    scriptSrc = "'self' https://app.cal.com"
+    styleSrc = "'self' 'unsafe-inline'"
+    connectSrc = "'self' https://*.cal.com https://*.cal.eu"
+    frameSrc = "'self' https://*.cal.com https://cal.eu https://*.cal.eu"
+    frameAncestors = "'self'"
+    imgSrc = "'self'"
+    fontSrc = "'self'"
+    manifestSrc = "'self'"
