@@ -28,7 +28,9 @@ export class TestRunner {
 
 	constructor(containerElement: HTMLElement, testData: TestData) {
 		this.#testData = testData;
-		this.#stateManager = new TestStateManager(testData.id);
+		this.#stateManager = new TestStateManager(testData.id, () => {
+			document.getElementById("storage-error-notice")?.removeAttribute("hidden");
+		});
 		this.#scoringStrategy = createScoringStrategy(testData);
 
 		this.#questionText = document.getElementById("question-text")!;

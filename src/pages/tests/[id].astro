@@ -61,6 +61,9 @@ const testUrl = `${siteUrl}/tests/${test.id}`;
 
 	<div id="test-runner">
 		<div class="test-question-container">
+			<p id="storage-error-notice" class="storage-error-notice" hidden>
+				Прогресс теста не сохраняется. Пройдите тест за один раз.
+			</p>
 			<p class="test-question-text" id="question-text" tabindex="-1"></p>
 			<p class="test-progress" id="test-progress"></p>
 
@@ -103,6 +106,17 @@ const testUrl = `${siteUrl}/tests/${test.id}`;
 </BaseLayout>
 
 <style>
+.storage-error-notice {
+	margin-block: 0 24px;
+	padding: 12px 20px;
+	border-radius: 12px;
+	background-color: #fff3cd;
+	color: #664d03;
+	font-size: 18px;
+	line-height: 28px;
+	text-align: center;
+}
+
 .test-warning,
 .test-description {
 	margin-block-end: 48px;

@@ -12,9 +12,12 @@ function createDefaultState(): TestState {
 export class TestStateManager {
 	#state: TestState;
 	readonly #storageKey: string;
+	readonly #onStorageError: (() => void) | undefined;
+	#storageErrorNotified = false;
 
-	constructor(testId: string) {
+	constructor(testId: string, onStorageError?: () => void) {
 		this.#storageKey = `test_state_${testId}`;
+		this.#onStorageError = onStorageError;
 		this.#state = this.#load();
 	}
 
@@ -77,6 +80,7 @@ export class TestStateManager {
 			}
 		} catch (e) {
 			console.error("Error loading state:", e);
+			this.#notifyStorageError();
 		}
 		return createDefaultState();
 	}
@@ -86,6 +90,13 @@ export class TestStateManager {
 			localStorage.setItem(this.#storageKey, JSON.stringify(this.#state));
 		} catch (e) {
 			console.error("Error saving state:", e);
+			this.#notifyStorageError();
 		}
+	}
+
+	#notifyStorageError(): void {
+		if (this.#storageErrorNotified) return;
+		this.#storageErrorNotified = true;
+		this.#onStorageError?.();
 	}
 }
