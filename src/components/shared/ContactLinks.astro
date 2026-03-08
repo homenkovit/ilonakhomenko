@@ -1,39 +1,26 @@
 ---
+import { contacts } from "../../config/contacts";
 import Icon from "./Icon.astro";
 ---
 
 <ul class="contact-links">
+	<li><a class="contact-link" href={contacts.telegram} target="_blank" rel="noopener noreferrer">
+		<Icon name="telegram" />
+		<span>telegram</span>
+	</a></li>
+	<li><a class="contact-link" href={contacts.whatsapp} target="_blank" rel="noopener noreferrer">
+		<Icon name="whatsapp" />
+		<span>whatsapp</span>
+	</a></li>
 	<li>
 		<a
 			class="contact-link"
-			href="https://t.me/ilonakhomenko_psy"
-			target="_blank"
-			rel="noopener noreferrer"
-		>
-			<Icon name="telegram" />
-			<span>telegram</span>
-		</a>
-	</li>
-	<li>
-		<a
-			class="contact-link"
-			href="https://wa.me/message/SIEVDKC4PL6QE1"
-			target="_blank"
-			rel="noopener noreferrer"
-		>
-			<Icon name="whatsapp" />
-			<span>whatsapp</span>
-		</a>
-	</li>
-	<li>
-		<a
-			class="contact-link"
-			href="mailto:ilonakhomenkopsy@gmail.com"
+			href={`mailto:${contacts.email}`}
 			target="_blank"
 			rel="noopener noreferrer"
 		>
 			<Icon name="email" />
-			<span>ilonakhomenkopsy@gmail.com</span>
+			<span>{contacts.email}</span>
 		</a>
 	</li>
 </ul>

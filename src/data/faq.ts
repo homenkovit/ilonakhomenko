@@ -1,3 +1,5 @@
+import { contacts } from "../config/contacts";
+
 export interface FaqItem {
 	question: string;
 	answer: string;
@@ -6,8 +8,7 @@ export interface FaqItem {
 export const faqItems: FaqItem[] = [
 	{
 		question: "Могу ли я получить помощь онлайн?",
-		answer:
-			'Да, я работаю онлайн, и для многих запросов этот формат хорошо подходит. При этом есть ситуации, когда человеку может быть рекомендован другой формат или дополнительная поддержка у профильных специалистов. Если вы сомневаетесь, подойдёт ли онлайн-консультирование именно в вашем случае, вы можете написать мне в <a href="https://t.me/ilonakhomenko" target="_blank" rel="noopener noreferrer">telegram</a>, <a href="https://wa.me/79252122525" target="_blank" rel="noopener noreferrer">whatsapp</a> или на <a href="mailto:ilonakhomenko@gmail.com">почту</a> и уточнить свой вопрос. Я постараюсь сориентировать вас по формату работы.',
+		answer: `Да, я работаю онлайн, и для многих запросов этот формат хорошо подходит. При этом есть ситуации, когда человеку может быть рекомендован другой формат или дополнительная поддержка у профильных специалистов. Если вы сомневаетесь, подойдёт ли онлайн-консультирование именно в вашем случае, вы можете написать мне в <a href="${contacts.telegram}" target="_blank" rel="noopener noreferrer">telegram</a>, <a href="${contacts.whatsapp}" target="_blank" rel="noopener noreferrer">whatsapp</a> или на <a href="mailto:${contacts.email}">почту</a> и уточнить свой вопрос. Я постараюсь сориентировать вас по формату работы.`,
 	},
 	{
 		question: "Сколько длится первая встреча и как к ней подготовиться?",
