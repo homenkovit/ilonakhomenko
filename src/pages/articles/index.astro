@@ -27,20 +27,20 @@ const articles = (await getCollection("articles")).sort(
 .articles-page {
 	position: relative;
 	background-image:
-		linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+		linear-gradient(var(--overlay-color), var(--overlay-color)),
 		url("/images/articles-cover-768.webp");
 	background-repeat: no-repeat;
 	background-size: cover;
 
 	@media screen and (width >= 768px) {
 		background-image:
-			linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+			linear-gradient(var(--overlay-color), var(--overlay-color)),
 			url("/images/articles-cover-1440.webp");
 	}
 
 	@media screen and (width >= 1500px) {
 		background-image:
-			linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+			linear-gradient(var(--overlay-color), var(--overlay-color)),
 			url("/images/articles-cover.webp");
 	}
 }

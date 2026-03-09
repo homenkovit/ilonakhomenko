@@ -44,7 +44,7 @@ const testUrl = `${siteUrl}/tests/${test.id}`;
         { name: "Тесты", url: `${siteUrl}/tests` },
         { name: test.data.title, url: testUrl },
     ]}
-	bodyBgColor="#ede8f0"
+	bodyBgColor="var(--surface-alt-color)"
 	class="container"
 >
 	<h1 class="page-title">{test.data.title}</h1>
@@ -109,9 +109,9 @@ const testUrl = `${siteUrl}/tests/${test.id}`;
 .storage-error-notice {
 	margin-block: 0 24px;
 	padding: 12px 20px;
-	border-radius: 12px;
-	background-color: #fff3cd;
-	color: #664d03;
+	border-radius: var(--radius-md);
+	background-color: var(--warning-bg-color);
+	color: var(--warning-text-color);
 	font-size: 18px;
 	line-height: 28px;
 	text-align: center;
@@ -126,7 +126,7 @@ const testUrl = `${siteUrl}/tests/${test.id}`;
 
 .test-warning {
 	margin-block-start: 0;
-	color: #de005c;
+	color: var(--alert-color);
 	font-style: italic;
 }
 
@@ -134,8 +134,8 @@ const testUrl = `${siteUrl}/tests/${test.id}`;
 .test-result-container {
 	padding: 32px;
 	border-radius: 24px;
-	background-color: var(--secondary-color);
-	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+	background-color: var(--bg-color);
+	box-shadow: 0 4px 20px var(--shadow-soft);
 }
 
 .test-question-text,
@@ -174,8 +174,8 @@ const testUrl = `${siteUrl}/tests/${test.id}`;
 .nav-btn {
 	width: 125px;
 	padding: 10px;
-	border: 1px solid var(--primary-color);
-	border-radius: 12px;
+	border: 1px solid var(--text-color);
+	border-radius: var(--radius-md);
 	background-color: transparent;
 	font-size: 20px;
 	color: inherit;
@@ -183,9 +183,9 @@ const testUrl = `${siteUrl}/tests/${test.id}`;
 
 	@media (prefers-reduced-motion: no-preference) {
 		transition:
-			border-color 0.2s ease,
-			color 0.2s ease,
-			background-color 0.2s ease;
+			border-color var(--transition-fast),
+			color var(--transition-fast),
+			background-color var(--transition-fast);
 	}
 
 	&:last-child {
@@ -202,7 +202,7 @@ const testUrl = `${siteUrl}/tests/${test.id}`;
 	&:active {
 		border-color: var(--hover-color);
 		background-color: var(--hover-color);
-		color: var(--secondary-color);
+		color: var(--bg-color);
 	}
 }
 
@@ -228,19 +228,19 @@ const testUrl = `${siteUrl}/tests/${test.id}`;
 	gap: 8px;
 	padding: 12px 45px;
 	border: none;
-	border-radius: 50px;
+	border-radius: var(--radius-full);
 	font-size: 24px;
 	line-height: 32px;
 	font-weight: 500;
-	color: var(--secondary-color);
+	color: var(--bg-color);
 	cursor: pointer;
 
 	@media (prefers-reduced-motion: no-preference) {
-		transition: background-color 0.2s ease;
+		transition: background-color var(--transition-fast);
 	}
 
 	&.btn-primary {
-		background-color: var(--primary-color);
+		background-color: var(--text-color);
 	}
 
 	&.btn-secondary {
@@ -257,11 +257,11 @@ const testUrl = `${siteUrl}/tests/${test.id}`;
 .option-btn {
 	padding: 10px;
 	border: none;
-	border-radius: 16px;
+	border-radius: var(--radius-lg);
 	background-color: var(--accent-color);
 	font-size: 20px;
 	line-height: 30px;
-	color: var(--secondary-color);
+	color: var(--bg-color);
 	cursor: pointer;
 
 	@media (prefers-reduced-motion: no-preference) {

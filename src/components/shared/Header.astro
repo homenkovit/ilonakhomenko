@@ -30,8 +30,8 @@ import Navigation from "./Navigation.astro";
 	height: var(--header-height, auto);
 	min-height: 152px;
 	padding-block: 36px;
-	background-color: var(--secondary-color);
-	box-shadow: 0 4px 10px 0 rgb(from #b4b4b4 r g b / 25%);
+	background-color: var(--bg-color);
+	box-shadow: 0 4px 10px 0 rgb(from var(--shadow-color) r g b / 25%);
 
 	.appointment-button {
 		@media screen and (width >= 1768px) {
@@ -93,7 +93,7 @@ import Navigation from "./Navigation.astro";
 	font-size: 40px;
 	line-height: 100%;
 	font-weight: 400;
-	color: var(--primary-color);
+	color: var(--text-color);
 	white-space: nowrap;
 	text-decoration: none;
 
