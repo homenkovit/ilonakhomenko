@@ -17,7 +17,7 @@ export default defineConfig({
 			srcDir: "src",
 			filename: "sw.ts",
 			injectManifest: {
-				globPatterns: ["**/*.{html,js,css,woff2,svg,ico,webp,png,mp4}"],
+				globPatterns: ["**/*.{html,js,css,woff2,svg,ico}", "_astro/my-photo*.webp"],
 				maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
 			},
 			manifest: {

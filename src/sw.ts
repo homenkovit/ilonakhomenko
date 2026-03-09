@@ -1,6 +1,9 @@
 /// <reference lib="webworker" />
 
+import { ExpirationPlugin } from "workbox-expiration";
 import { cleanupOutdatedCaches, precacheAndRoute } from "workbox-precaching";
+import { registerRoute } from "workbox-routing";
+import { CacheFirst } from "workbox-strategies";
 
 declare let self: ServiceWorkerGlobalScope;
 
@@ -28,8 +31,20 @@ for (const entry of manifest) {
 // CacheFirst for hashed static assets
 precacheAndRoute(assetEntries);
 
-const PAGES_CACHE = "pages";
+const PAGES_CACHE = "pages-v1";
+const IMAGES_CACHE = "images-v1";
 const NETWORK_TIMEOUT = 3000;
+
+const KNOWN_CACHES = [PAGES_CACHE, IMAGES_CACHE];
+
+// Runtime caching for images — CacheFirst with 30-day expiration
+registerRoute(
+	({ request }) => request.destination === "image",
+	new CacheFirst({
+		cacheName: IMAGES_CACHE,
+		plugins: [new ExpirationPlugin({ maxAgeSeconds: 30 * 24 * 60 * 60 })],
+	}),
+);
 
 /** SW can't return redirected responses for navigate requests — strip the flag */
 function cleanResponse(response: Response): Response {
@@ -91,16 +106,32 @@ self.addEventListener("fetch", (event) => {
 			} catch {
 				const cached = await cache.match(key);
 				if (cached) return cached;
-				return new Response("Offline", {
-					status: 503,
-					headers: { "Content-Type": "text/html; charset=utf-8" },
-				});
+				const offline = await cache.match(normalizeUrl("/offline"));
+				return (
+					offline ??
+					new Response("Offline", {
+						status: 503,
+						headers: { "Content-Type": "text/html; charset=utf-8" },
+					})
+				);
 			}
 		})(),
 	);
 });
 
-self.addEventListener("activate", () => {
+// Delete caches from previous SW versions on activate
+self.addEventListener("activate", (event) => {
+	event.waitUntil(
+		caches
+			.keys()
+			.then((names) =>
+				Promise.all(
+					names
+						.filter((name) => !KNOWN_CACHES.includes(name) && !name.startsWith("workbox-precache"))
+						.map((name) => caches.delete(name)),
+				),
+			),
+	);
 	self.clients.claim();
 });
 
