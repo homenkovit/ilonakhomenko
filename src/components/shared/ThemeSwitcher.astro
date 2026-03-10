@@ -1,0 +1,138 @@
+---
+import Icon from "./Icon.astro";
+---
+
+<div class="theme-switcher" role="radiogroup" aria-label="Тема оформления">
+	<button
+		type="button"
+		role="radio"
+		data-theme-value="light"
+		aria-checked="false"
+		aria-label="Светлая"
+	>
+		<Icon name="theme-light" size={24} />
+	</button>
+	<button
+		type="button"
+		role="radio"
+		data-theme-value="auto"
+		aria-checked="true"
+		aria-label="Системная"
+	>
+		<Icon name="theme-auto" size={24} />
+	</button>
+	<button
+		type="button"
+		role="radio"
+		data-theme-value="dark"
+		aria-checked="false"
+		aria-label="Тёмная"
+	>
+		<Icon name="theme-dark" size={24} />
+	</button>
+</div>
+
+<style>
+.theme-switcher {
+	display: flex;
+	border: 1px solid var(--accent-color);
+	border-radius: var(--radius-full);
+	color: var(--text-color);
+	overflow: hidden;
+
+	button {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 8px;
+		border: none;
+		border-left: 1px solid transparent;
+		background: none;
+		color: var(--text-color);
+		cursor: pointer;
+
+		& + button {
+			border-left-color: var(--accent-color);
+		}
+
+		@media (prefers-reduced-motion: no-preference) {
+			transition:
+				background-color var(--transition-fast),
+				color var(--transition-fast);
+		}
+
+		@media (hover: hover) {
+			&:hover {
+				background-color: color-mix(in srgb, var(--border-color) 40%, transparent);
+			}
+		}
+
+		&[aria-checked="true"] {
+			background-color: var(--accent-color);
+			color: var(--bg-color);
+		}
+	}
+}
+</style>
+
+<script>
+// Keep in sync with --accent-color (light) and --bg-color (dark) in global.css
+const THEME_COLORS = { light: "#3a2c44", dark: "#1a1520" };
+
+function getEffectiveTheme(): "light" | "dark" {
+	const saved = localStorage.getItem("theme");
+	if (saved === "dark" || saved === "light") return saved;
+	return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
+
+function updateMetaThemeColor() {
+	const meta = document.querySelector<HTMLMetaElement>('meta[name="theme-color"]');
+	if (meta) meta.content = THEME_COLORS[getEffectiveTheme()];
+}
+
+function syncSwitchers(activeValue: string) {
+	for (const btn of document.querySelectorAll<HTMLButtonElement>(".theme-switcher button")) {
+		btn.setAttribute("aria-checked", btn.dataset.themeValue === activeValue ? "true" : "false");
+	}
+}
+
+function applyTheme(value: string) {
+	if (value === "auto") {
+		document.documentElement.removeAttribute("data-theme");
+		document.documentElement.style.colorScheme = window.matchMedia("(prefers-color-scheme: dark)")
+			.matches
+			? "dark"
+			: "light";
+		localStorage.removeItem("theme");
+	} else {
+		document.documentElement.setAttribute("data-theme", value);
+		document.documentElement.style.colorScheme = value;
+		localStorage.setItem("theme", value);
+	}
+	syncSwitchers(value);
+	updateMetaThemeColor();
+}
+
+function initThemeSwitcher() {
+	const saved = localStorage.getItem("theme");
+	syncSwitchers(saved === "dark" || saved === "light" ? saved : "auto");
+	updateMetaThemeColor();
+}
+
+document.addEventListener("click", (event) => {
+	const btn = (event.target as Element)?.closest<HTMLButtonElement>(".theme-switcher button");
+	if (btn?.dataset.themeValue) {
+		applyTheme(btn.dataset.themeValue);
+	}
+});
+
+window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+	if (!localStorage.getItem("theme")) {
+		document.documentElement.style.colorScheme = e.matches ? "dark" : "light";
+		updateMetaThemeColor();
+	}
+});
+
+initThemeSwitcher();
+document.addEventListener("astro:after-swap", initThemeSwitcher);
+</script>

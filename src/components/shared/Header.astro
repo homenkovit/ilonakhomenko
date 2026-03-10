@@ -1,6 +1,7 @@
 ---
 import AppointmentButton from "./AppointmentButton.astro";
 import Navigation from "./Navigation.astro";
+import ThemeSwitcher from "./ThemeSwitcher.astro";
 ---
 
 <header class="header container">
@@ -8,6 +9,10 @@ import Navigation from "./Navigation.astro";
 		Илона Хоменко
 		<span>психолог онлайн</span>
 	</a></p>
+
+	<div class="header-theme-switcher">
+		<ThemeSwitcher />
+	</div>
 
 	<AppointmentButton />
 
@@ -24,25 +29,40 @@ import Navigation from "./Navigation.astro";
 	right: 0;
 	display: grid;
 	grid-template-columns: 1fr repeat(2, max-content);
-	gap: 24px;
+	column-gap: 24px;
+	row-gap: 6px;
 	align-items: center;
 	box-sizing: border-box;
 	height: var(--header-height, auto);
 	min-height: 152px;
-	padding-block: 36px;
+	padding-block: 10px;
 	background-color: var(--bg-color);
 	box-shadow: 0 4px 10px 0 rgb(from var(--shadow-color) r g b / 25%);
 
+	@media screen and (width >= 1138px) {
+		.menu {
+			grid-column: 1 / -1;
+			display: flex;
+			justify-content: center;
+			padding-block-start: 8px;
+			border-top: 2px solid var(--border-color);
+		}
+	}
+
+	@media screen and (width < 1138px) {
+		padding-block: 36px;
+	}
+
+	@media screen and (width < 800px) {
+		min-height: auto;
+		padding-block: 24px;
+	}
+
+	&.container {
+		--container-width: 1776px;
+	}
+
 	.appointment-button {
-		@media screen and (width >= 1768px) {
-			order: 1;
-		}
-
-		@media screen and (1138px <= width < 1768px) {
-			font-size: 18px;
-			line-height: 24px;
-		}
-
 		@media screen and (width < 800px) {
 			font-size: 18px;
 			line-height: 24px;
@@ -57,27 +77,10 @@ import Navigation from "./Navigation.astro";
 		}
 	}
 
-	@media screen and (1138px <= width < 1768px) {
-		grid-template-columns: 1fr max-content;
-		row-gap: 16px;
-		padding-block: 24px 10px;
-
-		.menu {
-			grid-column: 1 / -1;
-			display: flex;
-			justify-content: center;
-			padding-block-start: 8px;
-			border-top: 2px solid var(--border-color);
+	.header-theme-switcher {
+		@media screen and (width < 1138px) {
+			display: none;
 		}
-	}
-
-	@media screen and (width < 800px) {
-		min-height: auto;
-		padding-block: 24px;
-	}
-
-	&.container {
-		--container-width: 1776px;
 	}
 }
 
@@ -101,11 +104,11 @@ import Navigation from "./Navigation.astro";
 		font-size: 22px;
 	}
 
-	@media screen and (1138px <= width < 1768px) {
-		font-size: 22px;
+	@media screen and (width >= 1138px) {
+		font-size: 36px;
 
 		span {
-			font-size: 16px;
+			font-size: 18px;
 		}
 	}
 

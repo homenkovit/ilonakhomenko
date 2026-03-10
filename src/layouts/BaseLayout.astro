@@ -57,6 +57,29 @@ const finalDescription = description || defaultDescription;
 <html lang="ru">
 	<head>
 		<meta charset="utf-8">
+		<script is:inline>
+		(() => {
+			const saved = localStorage.getItem("theme");
+			if (saved === "dark" || saved === "light") {
+				document.documentElement.setAttribute("data-theme", saved);
+				document.documentElement.style.colorScheme = saved;
+			} else {
+				document.documentElement.removeAttribute("data-theme");
+				document.documentElement.style.colorScheme = window.matchMedia(
+					"(prefers-color-scheme: dark)",
+				).matches
+					? "dark"
+					: "light";
+			}
+			const active = saved === "dark" || saved === "light" ? saved : "auto";
+			document.querySelectorAll(".theme-switcher button").forEach((btn) => {
+				btn.setAttribute(
+					"aria-checked",
+					btn.getAttribute("data-theme-value") === active ? "true" : "false",
+				);
+			});
+		})();
+		</script>
 
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="theme-color" content="#3a2c44">
