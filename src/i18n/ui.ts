@@ -179,7 +179,7 @@ export const ui = {
 		"skip.link": "Skip to main content",
 
 		// Page titles
-		"page.home.title": "Russian-speaking psychologist online",
+		"page.home.title": "Online psychologist",
 		"page.home.description":
 			"Psychologist Ilona Khomenko. Online counseling for anxiety, depression, burnout, emigration adjustment, and neurodivergence. ACT, CFT, SFBT and CBT approaches.",
 		"page.about.title": "About me",
