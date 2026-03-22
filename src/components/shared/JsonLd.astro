@@ -1,4 +1,7 @@
 ---
+import type { Lang } from "../../i18n/utils";
+import { useTranslations } from "../../i18n/utils";
+
 interface ArticleData {
 	title: string;
 	description: string;
@@ -15,39 +18,40 @@ interface Props {
 	type: "ProfessionalService" | "Article" | "WebPage";
 	articleData?: ArticleData;
 	breadcrumbs?: BreadcrumbItem[];
+	lang: Lang;
 }
 
-const { type, articleData, breadcrumbs } = Astro.props;
+const { type, articleData, breadcrumbs, lang } = Astro.props;
+const t = useTranslations(lang);
 const siteUrl = import.meta.env.SITE;
 
 const psychologistSchema = {
 	"@context": "https://schema.org",
 	"@type": "ProfessionalService",
 	"@id": `${siteUrl}/#psychologist`,
-	name: "Психолог Илона Хоменко",
+	name: t("site.title"),
 	url: siteUrl,
-	description:
-		"Индивидуальные онлайн-консультации. Психологическая помощь при тревоге и депрессии, поддержка в эмиграции и при нейроотличиях.",
+	description: t("jsonld.description"),
 	priceRange: "€50/$55",
 	areaServed: {
 		"@type": "Place",
-		name: "Онлайн консультации",
+		name: t("jsonld.areaServed"),
 	},
 	provider: {
 		"@type": "Person",
-		name: "Илона Хоменко",
-		jobTitle: "Психолог",
+		name: t("jsonld.personName"),
+		jobTitle: t("jsonld.jobTitle"),
 		url: siteUrl,
 	},
 	hasOfferCatalog: {
 		"@type": "OfferCatalog",
-		name: "Психологические услуги",
+		name: t("jsonld.serviceCatalog"),
 		itemListElement: [
 			{
 				"@type": "Offer",
 				itemOffered: {
 					"@type": "Service",
-					name: "Индивидуальные онлайн-консультации",
+					name: t("jsonld.serviceName"),
 				},
 			},
 		],
@@ -64,11 +68,11 @@ const articleSchema = articleData
 			url: articleData.url,
 			author: {
 				"@type": "Person",
-				name: "Илона Хоменко",
+				name: t("jsonld.personName"),
 			},
 			publisher: {
 				"@type": "Organization",
-				name: "Психолог Илона Хоменко",
+				name: t("site.title"),
 				url: siteUrl,
 			},
 		}
@@ -78,11 +82,11 @@ const webPageSchema = {
 	"@context": "https://schema.org",
 	"@type": "WebPage",
 	url: siteUrl,
-	name: "Психолог Илона Хоменко",
+	name: t("site.title"),
 	isPartOf: {
 		"@type": "WebSite",
 		url: siteUrl,
-		name: "Психолог Илона Хоменко",
+		name: t("site.title"),
 	},
 };
 

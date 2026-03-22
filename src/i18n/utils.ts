@@ -29,7 +29,7 @@ export function getLocalizedPath(pathname: string, targetLang: Lang): string {
 	const stripped = clean.startsWith("/en/") ? clean.slice(3) : clean === "/en" ? "/" : clean;
 
 	if (targetLang === "ru") return stripped || "/";
-	return `/en${stripped === "/" ? "" : stripped}`;
+	return `/en${stripped}`;
 }
 
 type LocaleParams = { locale: "en" | undefined };

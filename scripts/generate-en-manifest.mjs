@@ -24,7 +24,7 @@ if (en.screenshots) {
 	en.screenshots = en.screenshots.map((s) => {
 		const label = SCREENSHOT_LABELS[s.label];
 		if (label === undefined) {
-			console.warn(`[manifest] No EN translation for label: "${s.label}"`);
+			throw new Error(`[manifest] No EN translation for screenshot label: "${s.label}"`);
 		}
 		return { ...s, label: label ?? s.label };
 	});

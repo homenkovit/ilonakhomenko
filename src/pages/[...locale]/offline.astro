@@ -15,7 +15,7 @@ const t = useTranslations(lang);
 
 <BaseLayout title={t("offline.title")} lang={lang}>
 	<div class="offline">
-		<div class="offline__icon">📡</div>
+		<div class="offline__icon" aria-hidden="true">📡</div>
 		<h1 class="page-title">{t("offline.title")}</h1>
 		<p class="offline__description">{t("offline.description")}</p>
 		<button class="offline__button" onclick="location.reload()">{t("offline.retry")}</button>
@@ -35,21 +35,21 @@ const t = useTranslations(lang);
 
 .offline__icon {
 	font-size: 48px;
-	margin-bottom: 20px;
+	margin-block-end: 20px;
 }
 
 .offline__description {
 	font-size: 16px;
 	line-height: 1.6;
 	color: var(--text-secondary-color);
-	margin-bottom: 28px;
+	margin-block-end: 28px;
 }
 
 .offline__button {
 	display: inline-block;
 	padding: 12px 28px;
 	background-color: var(--accent-color);
-	color: #ffffff;
+	color: var(--bg-color);
 	border: none;
 	border-radius: 8px;
 	font-size: 16px;

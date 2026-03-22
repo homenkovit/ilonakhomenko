@@ -110,6 +110,15 @@ export const ui = {
 		"offline.description": "Проверьте соединение и попробуйте снова.",
 		"offline.retry": "Попробовать снова",
 
+		// JSON-LD
+		"jsonld.personName": "Илона Хоменко",
+		"jsonld.description":
+			"Индивидуальные онлайн-консультации. Психологическая помощь при тревоге и депрессии, поддержка в эмиграции и при нейроотличиях.",
+		"jsonld.areaServed": "Онлайн консультации",
+		"jsonld.jobTitle": "Психолог",
+		"jsonld.serviceCatalog": "Психологические услуги",
+		"jsonld.serviceName": "Индивидуальные онлайн-консультации",
+
 		// Language switcher
 		"lang.ru": "RU",
 		"lang.en": "EN",
@@ -225,6 +234,15 @@ export const ui = {
 		"offline.title": "No internet connection",
 		"offline.description": "Check your connection and try again.",
 		"offline.retry": "Try again",
+
+		// JSON-LD
+		"jsonld.personName": "Ilona Khomenko",
+		"jsonld.description":
+			"Individual online counseling. Psychological support for anxiety, depression, emigration adjustment, and neurodivergence.",
+		"jsonld.areaServed": "Online consultations",
+		"jsonld.jobTitle": "Psychologist",
+		"jsonld.serviceCatalog": "Psychological services",
+		"jsonld.serviceName": "Individual online counseling",
 
 		// Language switcher
 		"lang.ru": "RU",

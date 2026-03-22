@@ -98,6 +98,21 @@ const enPath = lang === "en" ? currentPath : altPath;
 
 		<link
 			rel="preload"
+			href="/fonts/inter-latin-400-normal.woff2"
+			crossorigin
+			as="font"
+			type="font/woff2"
+		>
+		<link
+			rel="preload"
+			href="/fonts/inter-latin-600-normal.woff2"
+			crossorigin
+			as="font"
+			type="font/woff2"
+		>
+		{lang === "ru" && <>
+		<link
+			rel="preload"
 			href="/fonts/inter-cyrillic-400-normal.woff2"
 			crossorigin
 			as="font"
@@ -110,6 +125,7 @@ const enPath = lang === "en" ? currentPath : altPath;
 			as="font"
 			type="font/woff2"
 		>
+		</>}
 
 		<link rel="icon" href="/favicon.ico" sizes="32x32">
 		<link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -133,7 +149,7 @@ const enPath = lang === "en" ? currentPath : altPath;
 			lang={lang}
 		/>
 
-		<JsonLd type={jsonLdType} articleData={articleJsonLd} breadcrumbs={breadcrumbs} />
+		<JsonLd type={jsonLdType} articleData={articleJsonLd} breadcrumbs={breadcrumbs} lang={lang} />
 		<script>
 		import "../scripts/pwa";
 		</script>
