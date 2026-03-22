@@ -119,6 +119,21 @@ export const ui = {
 		"jsonld.serviceCatalog": "Психологические услуги",
 		"jsonld.serviceName": "Индивидуальные онлайн-консультации",
 
+		// Theme switcher
+		"theme.label": "Тема оформления",
+		"theme.light": "Светлая",
+		"theme.auto": "Системная",
+		"theme.dark": "Тёмная",
+
+		// Certificate carousel
+		"carousel.label": "Карусель сертификатов",
+		"carousel.prev": "Предыдущий слайд",
+		"carousel.next": "Следующий слайд",
+		"carousel.slideOf": "{current} из {total}",
+		"carousel.openFullscreen": "Открыть {alt} в полноэкранном режиме",
+		"carousel.fullscreenLabel": "Полноэкранный просмотр сертификата",
+		"carousel.close": "Закрыть",
+
 		// Language switcher
 		"lang.ru": "RU",
 		"lang.en": "EN",
@@ -243,6 +258,21 @@ export const ui = {
 		"jsonld.jobTitle": "Psychologist",
 		"jsonld.serviceCatalog": "Psychological services",
 		"jsonld.serviceName": "Individual online counseling",
+
+		// Theme switcher
+		"theme.label": "Theme",
+		"theme.light": "Light",
+		"theme.auto": "System",
+		"theme.dark": "Dark",
+
+		// Certificate carousel
+		"carousel.label": "Certificate carousel",
+		"carousel.prev": "Previous slide",
+		"carousel.next": "Next slide",
+		"carousel.slideOf": "{current} of {total}",
+		"carousel.openFullscreen": "Open {alt} in fullscreen",
+		"carousel.fullscreenLabel": "Fullscreen certificate view",
+		"carousel.close": "Close",
 
 		// Language switcher
 		"lang.ru": "RU",
