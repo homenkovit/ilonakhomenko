@@ -26,7 +26,7 @@ if (en.screenshots) {
 		if (label === undefined) {
 			throw new Error(`[manifest] No EN translation for screenshot label: "${s.label}"`);
 		}
-		return { ...s, label: label ?? s.label };
+		return { ...s, label };
 	});
 }
 

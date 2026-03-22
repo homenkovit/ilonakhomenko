@@ -9,5 +9,6 @@
 /articles/* /en/articles/:splat  302  Language=en
 /tests      /en/tests            302  Language=en
 /tests/*    /en/tests/:splat     302  Language=en
+/offline    /en/offline          302  Language=en
 
 /en/*  /en/404  404
