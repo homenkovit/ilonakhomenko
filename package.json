@@ -4,11 +4,12 @@
 	"private": true,
 	"scripts": {
 		"dev": "astro dev",
-		"build": "astro build",
+		"build": "npm run check:i18n && astro build",
 		"postbuild": "node scripts/generate-en-manifest.mjs",
 		"preview": "astro preview",
 		"astro": "astro",
-		"typecheck": "astro check",
+		"check:types": "astro check",
+		"check:i18n": "node scripts/check-i18n-parity.mjs",
 		"lint": "biome check .",
 		"lint:fix": "biome check --write .",
 		"format": "biome format --write .",
@@ -27,6 +28,6 @@
 		"workbox-precaching": "^7.4.0"
 	},
 	"simple-git-hooks": {
-		"pre-commit": "npm run lint && npm run typecheck"
+		"pre-commit": "npm run lint && npm run check:types"
 	}
 }
