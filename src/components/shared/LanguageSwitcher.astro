@@ -30,7 +30,6 @@ document.addEventListener("astro:page-load", () => {
 			const lang = link.getAttribute("data-lang");
 			if (lang) {
 				try {
-					localStorage.setItem("preferred-lang", lang);
 					// biome-ignore lint/suspicious/noDocumentCookie: sync access needed in inline script
 					document.cookie = `nf_lang=${lang};path=/;max-age=${365 * 24 * 60 * 60};SameSite=Lax`;
 				} catch {}

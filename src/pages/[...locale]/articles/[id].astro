@@ -60,7 +60,7 @@ const isoDate = article.data.pubDate.toISOString();
 		url: articleUrl,
 	}}
 	breadcrumbs={[
-		{ name: t("breadcrumb.home"), url: siteUrl },
+		{ name: t("breadcrumb.home"), url: new URL(getLocalizedPath("/", lang), siteUrl).href },
 		{ name: t("breadcrumb.articles"), url: `${siteUrl}${articlesPath}` },
 		{ name: article.data.title, url: articleUrl },
 	]}

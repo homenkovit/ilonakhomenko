@@ -52,7 +52,7 @@ const {
 
 const t = useTranslations(lang);
 const siteTitle = t("site.title");
-const title = `${siteTitle}${subtitle ? ` - ${subtitle}` : ""}`;
+const title = subtitle ? `${subtitle} - ${siteTitle}` : siteTitle;
 const canonicalUrl = Astro.url.pathname;
 
 const defaultDescription = t("site.defaultDescription");
@@ -149,7 +149,13 @@ const enPath = lang === "en" ? currentPath : altPath;
 			lang={lang}
 		/>
 
-		<JsonLd type={jsonLdType} articleData={articleJsonLd} breadcrumbs={breadcrumbs} lang={lang} />
+		<JsonLd
+			type={jsonLdType}
+			articleData={articleJsonLd}
+			breadcrumbs={breadcrumbs}
+			lang={lang}
+			pageUrl={new URL(canonicalUrl, siteUrl).href}
+		/>
 		<script>
 		import "../scripts/pwa";
 		</script>
