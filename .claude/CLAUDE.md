@@ -1,6 +1,6 @@
 ## Project Overview
 
-Personal portfolio website for a psychology practice built with Astro (static site generator). The site is entirely in Russian and features articles, interactive psychological tests, and appointment booking via Cal.com.
+Personal portfolio website for a psychology practice built with Astro (static site generator). The site supports Russian (default) and English via i18n, and features articles, interactive psychological tests, and appointment booking via Cal.com.
 
 ## Commands
 
@@ -16,10 +16,11 @@ npm run format   # Format with Biome
 ## Architecture
 
 ### Content System
-- **Articles**: Markdown files in `src/data/articles/*.md` with frontmatter (title, pubDate)
-- **Tests**: Markdown files in `src/data/tests/*.md` paired with JSON data files containing questions and scoring logic
-- **FAQ**: Structured data in `src/data/faq.ts`
-- Content collections configured in `src/content.config.ts`
+- **Articles**: Markdown files in `src/data/articles/{ru,en}/*.md` with frontmatter (title, pubDate)
+- **Tests**: Markdown files in `src/data/tests/{ru,en}/*.md` paired with JSON data files containing questions and scoring logic
+- **Page content**: Localized page text in `src/data/pages/*.ts` (exported as `Record<Lang, ...>`)
+- **FAQ**: Structured data in `src/data/faq.ts` (keyed by locale)
+- Content collections configured in `src/content.config.ts` (separate collections per locale: `articlesRu`, `articlesEn`, `testsRu`, `testsEn`)
 
 ### Test Scoring System
 Three scoring types defined in `src/scripts/test-runner/types.ts`:
@@ -44,9 +45,18 @@ Module structure in `src/scripts/test-runner/`:
 - `public/fonts/` — Inter Cyrillic (woff2, 400/600)
 - `public/` — favicon set, og-image.png, icons.svg
 
+### i18n
+- Two locales: `ru` (default, no prefix) and `en` (prefix `/en/`)
+- Astro's built-in i18n configured in `astro.config.mjs` with `prefixDefaultLocale: false`
+- UI translations in `src/i18n/ui.ts`, helpers in `src/i18n/utils.ts` (`getLangFromUrl`, `useTranslations`, `getLocalizedPath`)
+- Language-based redirects for English users via `public/_redirects` (Netlify)
+- `LanguageSwitcher.astro` component for switching locales
+- `scripts/generate-en-manifest.mjs` runs as postbuild to generate a separate PWA manifest for `/en/`
+
 ### Routing
-File-based routing in `src/pages/`:
-- Static pages as `.astro` files in `src/pages/`
+File-based routing in `src/pages/[...locale]/`:
+- All pages live under `src/pages/[...locale]/` catch-all route for i18n
+- Static pages: `index.astro`, `about.astro`, `faq.astro`, `help.astro`, `price.astro`, `education.astro`, `booking.astro`, `404.astro`, `offline.astro`
 - Dynamic routes: `articles/[id].astro`, `tests/[id].astro` using `getStaticPaths()`
 
 ### Styling
@@ -87,7 +97,7 @@ File-based routing in `src/pages/`:
 - TypeScript strict mode enabled
 - Node 24 required (see `.nvmrc`)
 - Biome for linting and formatting (tabs, 100 char line width, double quotes)
-- All user-facing content in Russian with `lang="ru"`
+- User-facing content in Russian (`lang="ru"`) and English (`lang="en"`)
 - Semantic HTML with ARIA labels for accessibility
 - Pure Astro components (no React/Vue integrations)
 - View Transitions between pages
@@ -99,4 +109,4 @@ File-based routing in `src/pages/`:
 - Do not modify `netlify.toml` without user confirmation
 - Do not add npm dependencies without user confirmation
 - Commit messages and code comments in English
-- Site content in Russian
+- Site content in Russian and English

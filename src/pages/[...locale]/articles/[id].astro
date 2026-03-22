@@ -1,0 +1,171 @@
+---
+import { getCollection, render } from "astro:content";
+import Icon from "../../../components/shared/Icon.astro";
+import type { Lang } from "../../../i18n/utils";
+import { getLocalizedPath, useTranslations } from "../../../i18n/utils";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+	const sortByDate = (a: { data: { pubDate: Date } }, b: { data: { pubDate: Date } }) =>
+		a.data.pubDate.valueOf() - b.data.pubDate.valueOf();
+
+	const [articlesRu, articlesEn] = await Promise.all([
+		getCollection("articlesRu"),
+		getCollection("articlesEn"),
+	]);
+
+	const makePaths = (
+		articles: typeof articlesRu | typeof articlesEn,
+		locale: string | undefined,
+		lang: Lang,
+	) =>
+		articles.sort(sortByDate).map((article, index, array) => ({
+			params: { locale, id: article.id },
+			props: {
+				article,
+				prevArticle: index > 0 ? array[index - 1] : undefined,
+				nextArticle: index < array.length - 1 ? array[index + 1] : undefined,
+				lang,
+			},
+		}));
+
+	return [...makePaths(articlesRu, undefined, "ru"), ...makePaths(articlesEn, "en", "en")];
+}
+
+const { article, prevArticle, nextArticle, lang } = Astro.props;
+const t = useTranslations(lang);
+const { Content } = await render(article);
+const pageTitle = `${t("articles.prefix")} "${article.data.title}"`;
+const dateLocale = lang === "ru" ? "ru-RU" : "en-US";
+const pubDate = article.data.pubDate.toLocaleDateString(dateLocale).replaceAll(".", "/");
+
+const articleDescription =
+	article.data.description || `${t("articles.prefix")} "${article.data.title}"`;
+const siteUrl = import.meta.env.SITE;
+const articlesPath = getLocalizedPath("/articles", lang);
+const articleUrl = `${siteUrl}${articlesPath}/${article.id}`;
+const isoDate = article.data.pubDate.toISOString();
+---
+
+<BaseLayout
+	title={pageTitle}
+	description={articleDescription}
+	ogType="article"
+	articlePublishedTime={isoDate}
+	jsonLdType="Article"
+	articleJsonLd={{
+		title: article.data.title,
+		description: articleDescription,
+		datePublished: isoDate,
+		url: articleUrl,
+	}}
+	breadcrumbs={[
+		{ name: t("breadcrumb.home"), url: siteUrl },
+		{ name: t("breadcrumb.articles"), url: `${siteUrl}${articlesPath}` },
+		{ name: article.data.title, url: articleUrl },
+	]}
+	bodyBgColor="var(--surface-alt-color)"
+	class="container"
+	lang={lang}
+>
+	<h1 class="page-title">{article.data.title}</h1>
+	<time class="article-datetime" datetime={isoDate}>{pubDate}</time>
+
+	<Content />
+
+	<div class="prev-next-articles">
+		{prevArticle && (
+			<a href={`${articlesPath}/${prevArticle.id}`} class="article-url prev">
+				<span class="article-url__text-with-icon">
+					<Icon name="arrow-prev" />
+					{t("articles.prev")}
+				</span>
+				<span class="article-url__title">{prevArticle.data.title}</span>
+			</a>
+		)}
+		{nextArticle && (
+			<a href={`${articlesPath}/${nextArticle.id}`} class="article-url next">
+				<span class="article-url__text-with-icon">
+					{t("articles.next")}
+					<Icon name="arrow-next" />
+				</span>
+				<span class="article-url__title">{nextArticle.data.title}</span>
+			</a>
+		)}
+	</div>
+</BaseLayout>
+
+<style>
+.article-datetime {
+	margin-block-end: 24px;
+	font-size: 24px;
+	line-height: 34px;
+	font-weight: 500;
+}
+
+.prev-next-articles {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 44px;
+
+	margin-block-start: 72px;
+
+	@media screen and (width < 768px) {
+		flex-direction: column;
+		align-items: center;
+		text-align: center;
+	}
+}
+
+.article-url__text-with-icon {
+	display: contents;
+
+	@media screen and (width < 768px) {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+	}
+}
+
+.article-url {
+	display: grid;
+	gap: 12px;
+	align-items: center;
+	max-width: 314px;
+	text-decoration: none;
+
+	&:hover {
+		color: var(--hover-color);
+	}
+
+	&.prev {
+		grid-template-columns: auto 198px;
+	}
+	&.next {
+		grid-template-columns: 187px auto;
+
+		@media screen and (width >= 768px) {
+			margin-inline-start: auto;
+		}
+	}
+
+	@media screen and (width < 768px) {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+}
+
+.article-url__title {
+	font-size: 30px;
+	line-height: 40px;
+	hyphens: auto;
+
+	@media screen and (width >= 768px) {
+		.article-url.prev & {
+			grid-column: 2 / 3;
+		}
+	}
+}
+</style>

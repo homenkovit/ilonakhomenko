@@ -1,0 +1,44 @@
+---
+import type { Lang } from "../../i18n/utils";
+import { getLocaleStaticPaths, useTranslations } from "../../i18n/utils";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<BaseLayout title={t("404.title")} lang={lang}>
+	<div class="not-found">
+		<h1 class="page-title">{t("404.title")}</h1>
+		<video
+			class="not-found__video"
+			autoplay
+			loop
+			muted
+			playsinline
+			poster="/images/confused-travolta.webp"
+			aria-hidden="true"
+		>
+			<source src="/images/confused-travolta.mp4" type="video/mp4">
+		</video>
+	</div>
+</BaseLayout>
+
+<style>
+.not-found {
+	padding-inline: 24px;
+	text-align: center;
+}
+
+.not-found__video {
+	max-width: 800px;
+	width: 100%;
+	border-radius: 28px;
+}
+</style>

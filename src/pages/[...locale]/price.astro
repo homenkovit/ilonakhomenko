@@ -1,0 +1,19 @@
+---
+import PriceSection from "../../components/index-page/PriceSection.astro";
+import type { Lang } from "../../i18n/utils";
+import { getLocaleStaticPaths, useTranslations } from "../../i18n/utils";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<BaseLayout title={t("page.price.title")} description={t("page.price.description")} lang={lang}>
+	<PriceSection titleTag="h1" lang={lang} />
+</BaseLayout>

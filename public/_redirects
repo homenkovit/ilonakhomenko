@@ -1,0 +1,13 @@
+/           /en/                 302  Language=en
+/about      /en/about            302  Language=en
+/booking    /en/booking          302  Language=en
+/education  /en/education        302  Language=en
+/faq        /en/faq              302  Language=en
+/help       /en/help             302  Language=en
+/price      /en/price            302  Language=en
+/articles   /en/articles         302  Language=en
+/articles/* /en/articles/:splat  302  Language=en
+/tests      /en/tests            302  Language=en
+/tests/*    /en/tests/:splat     302  Language=en
+
+/en/*  /en/404  404

@@ -106,7 +106,10 @@ self.addEventListener("fetch", (event) => {
 			} catch {
 				const cached = await cache.match(key);
 				if (cached) return cached;
-				const offline = await cache.match(normalizeUrl("/offline"));
+				const reqPath = new URL(event.request.url).pathname;
+				const offlinePath =
+					reqPath.startsWith("/en/") || reqPath === "/en" ? "/en/offline" : "/offline";
+				const offline = await cache.match(normalizeUrl(offlinePath));
 				return (
 					offline ??
 					new Response("Offline", {

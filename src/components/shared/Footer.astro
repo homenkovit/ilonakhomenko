@@ -1,14 +1,19 @@
 ---
+import type { Lang } from "../../i18n/utils";
+import { useTranslations } from "../../i18n/utils";
 import ContactLinks from "./ContactLinks.astro";
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
 <footer class="footer container">
 	<ContactLinks />
-	<p class="info-text">
-		*Услуги носят консультативный характер и не являются медицинской или психотерапевтической
-		помощью. При наличии клинических симптомов рекомендуется обратиться к лицензированному
-		медицинскому специалисту.
-	</p>
+	<p class="info-text">{t("footer.disclaimer")}</p>
 </footer>
 
 <style>

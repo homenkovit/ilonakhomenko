@@ -1,23 +1,40 @@
 ---
 import { getCollection } from "astro:content";
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import type { Lang } from "../../../i18n/utils";
+import { getLocalizedPath, useTranslations } from "../../../i18n/utils";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
 
-const tests = await getCollection("tests");
+export async function getStaticPaths() {
+	const [testsRu, testsEn] = await Promise.all([
+		getCollection("testsRu"),
+		getCollection("testsEn"),
+	]);
+
+	return [
+		{ params: { locale: undefined }, props: { lang: "ru" as Lang, tests: testsRu } },
+		{ params: { locale: "en" }, props: { lang: "en" as Lang, tests: testsEn } },
+	];
+}
+
+const { lang, tests } = Astro.props;
+const t = useTranslations(lang);
+const testsPath = getLocalizedPath("/tests", lang);
 ---
 
 <BaseLayout
-	title="Психологические тесты онлайн"
-	description="Бесплатные психологические тесты онлайн: шкала депрессии Бэка, тревожность Либовица, опросник осознанности FFMQ и шкала убеждений Бёрнса."
+	title={t("page.tests.title")}
+	description={t("page.tests.description")}
 	class="tests-page container"
+	lang={lang}
 >
-	<h1 class="page-title">Тесты</h1>
+	<h1 class="page-title">{t("section.tests.title")}</h1>
 
 	<ul class="tests-list">
 		{tests.map((test) => (
-                <li>
-                    <a href={`/tests/${test.id}`} data-astro-reload>{test.data.title}</a>
-                </li>
-            ))}
+			<li>
+				<a href={`${testsPath}/${test.id}`}>{test.data.title}</a>
+			</li>
+		))}
 	</ul>
 </BaseLayout>
 

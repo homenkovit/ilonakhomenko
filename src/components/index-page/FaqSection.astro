@@ -1,37 +1,43 @@
 ---
 import { faqItems } from "../../data/faq";
+import type { Lang } from "../../i18n/utils";
+import { useTranslations } from "../../i18n/utils";
 
 interface Props {
 	titleTag?: "h1" | "h2";
+	lang: Lang;
 }
 
-const { titleTag: TitleTag = "h2" } = Astro.props;
+const { titleTag: TitleTag = "h2", lang } = Astro.props;
+const t = useTranslations(lang);
+const items = faqItems[lang];
 ---
 
 <section class="faq container">
-	<TitleTag class="page-subtitle">Популярные вопросы (FAQ)</TitleTag>
-	{faqItems.map((item) => (
-        <details class="faq__item">
-            <summary><h3>{item.question}</h3></summary>
-            <p set:html={item.answer}></p>
-        </details>
-    ))}
+	<TitleTag class="page-subtitle">{t("section.faq.title")}</TitleTag>
+	{items.map((item) => (
+		<details class="faq__item">
+			<summary><h3>{item.question}</h3></summary>
+			<p set:html={item.answer}></p>
+		</details>
+	))}
 </section>
 
 <script
+	is:inline
 	type="application/ld+json"
 	set:html={JSON.stringify({
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": faqItems.map((item) => ({
-        "@type": "Question",
-        "name": item.question,
-        "acceptedAnswer": {
-            "@type": "Answer",
-            "text": item.answer.replace(/<[^>]*>/g, ""),
-        },
-    })),
-})}
+		"@context": "https://schema.org",
+		"@type": "FAQPage",
+		mainEntity: items.map((item) => ({
+			"@type": "Question",
+			name: item.question,
+			acceptedAnswer: {
+				"@type": "Answer",
+				text: item.answer.replace(/<[^>]*>/g, ""),
+			},
+		})),
+	})}
 ></script>
 
 <style>

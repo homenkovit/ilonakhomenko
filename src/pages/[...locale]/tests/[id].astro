@@ -1,59 +1,72 @@
 ---
 import { getCollection, render } from "astro:content";
-import Icon from "../../components/shared/Icon.astro";
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import type { TestData } from "../../scripts/test-runner";
+import Icon from "../../../components/shared/Icon.astro";
+import type { Lang } from "../../../i18n/utils";
+import { getLocalizedPath, useTranslations } from "../../../i18n/utils";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import type { TestData } from "../../../scripts/test-runner";
 
-const testDataFiles = import.meta.glob<{
+const testDataFilesRu = import.meta.glob<{
 	default: Omit<TestData, "id" | "title">;
-}>("../../data/tests/*.json", { eager: true });
+}>("../../../data/tests/ru/*.json", { eager: true });
+
+const testDataFilesEn = import.meta.glob<{
+	default: Omit<TestData, "id" | "title">;
+}>("../../../data/tests/en/*.json", { eager: true });
 
 export async function getStaticPaths() {
-	const tests = await getCollection("tests");
+	const [testsRu, testsEn] = await Promise.all([
+		getCollection("testsRu"),
+		getCollection("testsEn"),
+	]);
 
-	return tests.map((test) => ({
-		params: { id: test.id },
-		props: { test },
-	}));
+	return [
+		...testsRu.map((test) => ({
+			params: { locale: undefined, id: test.id },
+			props: { test, lang: "ru" as Lang },
+		})),
+		...testsEn.map((test) => ({
+			params: { locale: "en", id: test.id },
+			props: { test, lang: "en" as Lang },
+		})),
+	];
 }
 
-const { test } = Astro.props;
+const { test, lang } = Astro.props;
+const t = useTranslations(lang);
 const { Content } = await render(test);
-const pageTitle = `Тест "${test.data.title}"`;
+const pageTitle = `${t("tests.prefix")} "${test.data.title}"`;
 
-const jsonPath = `../../data/tests/${test.id}.json`;
+const testDataFiles = lang === "en" ? testDataFilesEn : testDataFilesRu;
+const jsonPath = `../../../data/tests/${lang === "en" ? "en" : "ru"}/${test.id}.json`;
 const testData = {
 	id: test.id,
 	title: test.data.title,
 	...testDataFiles[jsonPath]?.default,
 } satisfies TestData;
 
-const testDescription =
-	test.data.description ||
-	`Пройдите тест "${test.data.title}" онлайн. Тест не заменяет консультацию специалиста.`;
+const testDescription = test.data.description || `${t("tests.prefix")} "${test.data.title}"`;
 
 const siteUrl = import.meta.env.SITE;
-const testUrl = `${siteUrl}/tests/${test.id}`;
+const testsPath = getLocalizedPath("/tests", lang);
+const testUrl = `${siteUrl}${testsPath}/${test.id}`;
 ---
 
 <BaseLayout
 	title={pageTitle}
 	description={testDescription}
 	breadcrumbs={[
-        { name: "Главная", url: siteUrl },
-        { name: "Тесты", url: `${siteUrl}/tests` },
-        { name: test.data.title, url: testUrl },
-    ]}
+		{ name: t("breadcrumb.home"), url: siteUrl },
+		{ name: t("breadcrumb.tests"), url: `${siteUrl}${testsPath}` },
+		{ name: test.data.title, url: testUrl },
+	]}
 	bodyBgColor="var(--surface-alt-color)"
 	class="container"
+	lang={lang}
 >
 	<h1 class="page-title">{test.data.title}</h1>
 
-	<p class="test-warning">
-		Онлайн-тест носит ознакомительный и информационный характер и не предназначен для постановки
-		диагнозов. Для обсуждения результатов и вашего состояния вы можете обратиться к специалисту по
-		психологическому консультированию или к врачу
-	</p>
+	<p class="test-warning">{t("tests.warning")}</p>
 
 	<div class="test-description">
 		<Content />
@@ -61,30 +74,30 @@ const testUrl = `${siteUrl}/tests/${test.id}`;
 
 	<div id="test-runner">
 		<div class="test-question-container">
-			<p id="storage-error-notice" class="storage-error-notice" hidden>
-				Прогресс теста не сохраняется. Пройдите тест за один раз.
-			</p>
+			<p id="storage-error-notice" class="storage-error-notice" hidden>{t("tests.storageError")}</p>
 			<p class="test-question-text" id="question-text" tabindex="-1"></p>
 			<p class="test-progress" id="test-progress"></p>
 
 			<div class="test-options" id="test-options"></div>
 
 			<div class="test-navigation" id="test-navigation">
-				<button type="button" class="nav-btn" id="prev-btn" hidden>Назад</button>
-				<button type="button" class="nav-btn" id="next-btn" hidden>Вперёд</button>
+				<button type="button" class="nav-btn" id="prev-btn" hidden>{t("tests.prev")}</button>
+				<button type="button" class="nav-btn" id="next-btn" hidden>{t("tests.next")}</button>
 			</div>
 		</div>
 
 		<div class="test-result-container" id="result-container" style="display: none;">
-			<h2 id="result-heading" tabindex="-1">Ваш результат:</h2>
+			<h2 id="result-heading" tabindex="-1">{t("tests.result")}</h2>
 			<div id="result-content"></div>
 
 			<div class="test-actions">
 				<button type="button" class="btn btn-primary" id="share-btn">
-					Поделиться
+					{t("tests.share")}
 					<Icon name="share" size={32} />
 				</button>
-				<button type="button" class="btn btn-secondary" id="restart-btn">Пройти заново</button>
+				<button type="button" class="btn btn-secondary" id="restart-btn">
+					{t("tests.restart")}
+				</button>
 			</div>
 		</div>
 
@@ -292,10 +305,10 @@ const testUrl = `${siteUrl}/tests/${test.id}`;
 .result-group {
 	font-size: 24px;
 	line-height: 34px;
+}
 
-	& + & {
-		margin-block-start: 48px;
-	}
+.result-group + .result-group {
+	margin-block-start: 48px;
 }
 
 .result-group-name {
@@ -365,10 +378,10 @@ const testUrl = `${siteUrl}/tests/${test.id}`;
 }
 </style>
 
-<script type="application/json" id="test-data" set:html={JSON.stringify(testData)} />
+<script is:inline type="application/json" id="test-data" set:html={JSON.stringify(testData)} />
 
 <script>
-import { TestRunner } from "../../scripts/test-runner";
+import { TestRunner } from "../../../scripts/test-runner";
 
 const container = document.getElementById("test-runner");
 const raw = document.getElementById("test-data")?.textContent;

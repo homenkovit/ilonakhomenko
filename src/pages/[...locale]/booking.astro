@@ -1,23 +1,37 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
+import { bookingContent } from "../../data/pages";
+import type { Lang } from "../../i18n/utils";
+import { getLocaleStaticPaths, useTranslations } from "../../i18n/utils";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const content = bookingContent[lang];
 ---
 
 <BaseLayout
-	title="Запись на консультацию"
-	description="Выберите удобную дату и время."
+	title={t("page.booking.title")}
+	description={t("page.booking.description")}
 	class="container"
+	lang={lang}
 >
 	<section class="page-section">
-		<h2 class="page-title">Запись на консультацию</h2>
-		<p class="page-text">Выберите удобную дату и время.</p>
+		<h2 class="page-title">{content.title}</h2>
+		<p class="page-text">{content.subtitle}</p>
 		<div id="booking-offline" class="booking-offline" hidden>
-			<p>Календарь недоступен без подключения к интернету. Пожалуйста, проверьте соединение.</p>
+			<p>{content.offlineMessage}</p>
 		</div>
 		<div
 			id="booking-loading"
 			class="booking-loading"
 			hidden
-			aria-label="Загрузка"
+			aria-label={t("booking.loading")}
 			aria-live="polite"
 		>
 			<div class="booking-spinner"></div>
@@ -78,7 +92,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 </style>
 
 <script>
-import { initCalInlineWidget } from "../scripts/cal-embed";
+import { initCalInlineWidget } from "../../scripts/cal-embed";
 
 let iframeObserver: MutationObserver | null = null;
 

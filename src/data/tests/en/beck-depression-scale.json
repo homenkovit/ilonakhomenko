@@ -1,0 +1,60 @@
+{
+	"options": [
+		{
+			"text": "Not at all",
+			"value": 0
+		},
+		{
+			"text": "Mildly. It didn't bother me much",
+			"value": 1
+		},
+		{
+			"text": "Moderately. It was very unpleasant but I could stand it",
+			"value": 2
+		},
+		{
+			"text": "Severely. I could barely stand it",
+			"value": 3
+		}
+	],
+	"questions": [
+		"Numbness or tingling",
+		"Feeling hot",
+		"Wobbliness in legs",
+		"Unable to relax",
+		"Fear of the worst happening",
+		"Dizzy or lightheaded",
+		"Heart pounding or racing",
+		"Unsteady",
+		"Terrified",
+		"Nervous",
+		"Hands trembling",
+		"Shaky",
+		"Shaky / unsteady",
+		"Fear of losing control",
+		"Difficulty breathing",
+		"Fear of dying",
+		"Scared",
+		"Indigestion or discomfort in abdomen",
+		"Faint",
+		"Face flushed",
+		"Sweating (not due to heat)"
+	],
+	"scoring": {
+		"type": "sum",
+		"ranges": [
+			{
+				"max": 21,
+				"label": "A score of 21 or below indicates a minimal level of anxiety."
+			},
+			{
+				"max": 35,
+				"label": "A score of 22 to 35 indicates a moderate level of anxiety."
+			},
+			{
+				"max": 63,
+				"label": "A score above 36 (with a maximum of 63) indicates a very high level of anxiety."
+			}
+		]
+	}
+}

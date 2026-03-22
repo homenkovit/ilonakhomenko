@@ -1,175 +1,34 @@
 ---
+import { homeHelpContent } from "../../data/pages";
+import type { Lang } from "../../i18n/utils";
+import { useTranslations } from "../../i18n/utils";
+
 interface Props {
 	titleTag?: "h1" | "h2";
+	lang: Lang;
 }
 
-const { titleTag: TitleTag = "h2" } = Astro.props;
+const { titleTag: TitleTag = "h2", lang } = Astro.props;
+const t = useTranslations(lang);
+const content = homeHelpContent[lang];
 ---
 
 <section class="help container">
-	<TitleTag class="page-subtitle">С чем помогаю</TitleTag>
+	<TitleTag class="page-subtitle">{t("section.help.title")}</TitleTag>
 	<ol class="help__list">
-		<li class="help__item">
-			<h3 class="help__item-title">Нейроотличия (РАС, СДВГ, высокая чувствительность)</h3>
-			<ul class="item-list">
-				<li class="item-list__item">
-					Я работаю с запросами, связанными с нейроотличиями и особенностями восприятия и
-					переработки информации.
-				</li>
-				<li class="item-list__item">
-					Вы можете обратиться независимо от того, есть ли у вас официальный диагноз или вы только
-					исследуете свои особенности.
-				</li>
-				<li class="item-list__item">Бережное обсуждение и валидизация вашего опыта.</li>
-				<li class="item-list__item">Поддержка в развитии навыков саморегуляции.</li>
-				<li class="item-list__item">
-					Поиск способов подстройки среды и образа жизни под ваши индивидуальные особенности.
-				</li>
-				<li class="item-list__item">
-					Самоисследование и подбор поддерживающих практик, которые подходят именно вам.
-				</li>
-				<li class="item-list__item">Профилактика эмоционального и профессионального выгорания.</li>
-			</ul>
-		</li>
-		<li class="help__item">
-			<h3 class="help__item-title">Эмиграция и жизнь в другой стране</h3>
-			<ul class="item-list">
-				<li class="item-list__item">
-					Снижение самооценки и изменение самоощущения после потери прежнего статуса.
-				</li>
-				<li class="item-list__item">
-					Потеря привычных социальных связей, чувство одиночества и непонимания.
-				</li>
-				<li class="item-list__item">Возвращение в страну и повторная адаптация.</li>
-				<li class="item-list__item">Тоска по дому.</li>
-				<li class="item-list__item">
-					Поиск опоры и способов поддерживать себя в процессе обустройства жизни в новой стране.
-				</li>
-				<li class="item-list__item">
-					Разногласия с близкими, в том числе по политическим взглядам.
-				</li>
-			</ul>
-		</li>
-		<li class="help__item">
-			<h3 class="help__item-title">Неуверенность в себе и самокритика</h3>
-			<ul class="item-list">
-				<li class="item-list__item">Неуверенность в своих решениях и действиях.</li>
-				<li class="item-list__item">Постоянные сомнения и самокопание.</li>
-				<li class="item-list__item">
-					Поиск внутренних опор и понимания, на что можно опираться в себе.
-				</li>
-				<li class="item-list__item">Трудности с принятием решений и откладывание важных шагов.</li>
-				<li class="item-list__item">
-					Самокритика или радио в голове “Закритикуй себя полностью”. Работа с внутренним критиком:
-					как снизить его влияние и научиться поддерживать себя.
-				</li>
-			</ul>
-		</li>
-		<li class="help__item">
-			<h3 class="help__item-title">Тревога, подавленность, страхи</h3>
-			<ul class="item-list">
-				<li class="item-list__item">Тревога в широком смысле, в том числе страх не справиться.</li>
-				<li class="item-list__item">Социальная тревожность.</li>
-				<li class="item-list__item">Повышенная тревожность как личностная особенность.</li>
-				<li class="item-list__item">
-					Состояния усталости, эмоционального истощения и снижения мотивации.
-				</li>
-				<li class="item-list__item">
-					По желанию мы можем использовать опросники и шкалы самонаблюдения, чтобы отслеживать ваше
-					состояние и динамику в процессе нашей работы.
-				</li>
-			</ul>
-		</li>
-		<li class="help__item">
-			<h3 class="help__item-title">Экзистенциальные вопросы и поиск смыслов</h3>
-			<ul class="item-list">
-				<li class="item-list__item">
-					Если вы чувствуете растерянность, не понимаете, в каком направлении двигаться, чем хотите
-					заниматься и куда идти дальше, мы можем вместе бережно исследовать эти вопросы.
-				</li>
-			</ul>
-		</li>
-		<li class="help__item">
-			<h3 class="help__item-title">Трудности в отношениях</h3>
-			<ul class="item-list">
-				<li class="item-list__item">Ощущение, что вас не понимают или вы не понимаете партнёра.</li>
-				<li class="item-list__item">Сложности в близости, границах и коммуникации.</li>
-				<li class="item-list__item">Вопросы, связанные с сексуальностью и отношениями.</li>
-				<li class="item-list__item">
-					Трудности в том, чтобы говорить о своих желаниях и потребностях.
-				</li>
-				<li class="item-list__item">Повторяющиеся сложности в построении отношений.</li>
-				<li class="item-list__item">
-					Страхи и неуверенность в общении и знакомстве с новыми людьми.
-				</li>
-			</ul>
-		</li>
-		<li class="help__item">
-			<h3 class="help__item-title">Горевание и утрата</h3>
-			<ul class="item-list">
-				<li class="item-list__item">Потеря близкого человека.</li>
-				<li class="item-list__item">Расставание или развод.</li>
-				<li class="item-list__item">Потеря значимых отношений.</li>
-				<li class="item-list__item">
-					Психологическая поддержка и сопровождение в период проживания утраты.
-				</li>
-			</ul>
-		</li>
-		<li class="help__item">
-			<h3 class="help__item-title">Другая тема</h3>
-			<ul class="item-list">
-				<li class="item-list__item">
-					Если у вас есть сомнения, работаю ли я с тем или иным запросом, вы можете написать мне в
-					личные сообщения в телеграме, на почту или уточнить это на первой консультации.
-				</li>
-			</ul>
-		</li>
-		<li class="help__item">
-			<h3 class="help__item-title">С какими запросами я не работаю</h3>
-			<ul class="item-list">
-				<li class="item-list__item">
-					Не беру в работу запросы, которые предполагают специализированную клиническую или
-					медицинскую помощь.
-				</li>
-				<li class="item-list__item">Острые кризисные и суицидоопасные состояния.</li>
-				<li class="item-list__item">Пограничные и биполярные расстройства (ПРЛ и БАР).</li>
-				<li class="item-list__item">Обсессивно-компульсивные проявления (ОКР).</li>
-				<li class="item-list__item">Расстройства пищевого поведения (РПП).</li>
-				<li class="item-list__item">
-					Не работаю с детьми и подростками до 18 лет и не веду парное консультирование.
-				</li>
-			</ul>
-		</li>
-		<li class="help__item">
-			<h3 class="help__item-title">Что еще важно</h3>
-			<ul class="item-list">
-				<li class="item-list__item">
-					Я работаю в формате психологического консультирования и поддержки.
-				</li>
-				<li class="item-list__item">
-					Я не ставлю диагнозов и не назначаю медикаменты. Если вы проходите лечение и замечаете
-					изменения в самочувствии или эмоциональном состоянии, важно обсуждать эти вопросы с
-					лечащим врачом или другим профильным специалистом.
-				</li>
-				<li class="item-list__item">
-					В своей работе я не использую эзотерические или оккультные практики.
-				</li>
-				<li class="item-list__item">
-					Если у вас есть выраженные телесные симптомы или жалобы на здоровье, важно обращаться к
-					врачу и не заменять этим консультации у специалистов.
-				</li>
-				<li class="item-list__item">
-					Если вы замечаете, что ваше состояние ухудшается или становится трудно справляться
-					самостоятельно, важно своевременно обращаться за дополнительной профессиональной помощью.
-				</li>
-			</ul>
-		</li>
+		{content.topics.map((topic) => (
+			<li class="help__item">
+				<h3 class="help__item-title">{topic.title}</h3>
+				<ul class="item-list">
+					{topic.items.map((item) => (
+						<li class="item-list__item">{item}</li>
+					))}
+				</ul>
+			</li>
+		))}
 	</ol>
 
-	<p class="info-text">
-		*Услуги носят консультативный и поддерживающий характер и не являются медицинской или
-		психотерапевтической помощью.
-	</p>
+	<p class="info-text">{content.disclaimer}</p>
 </section>
 
 <style>

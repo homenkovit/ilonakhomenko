@@ -1,0 +1,1037 @@
+{
+	"questions": [
+		{
+			"text": "Telephoning in public",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Telephoning in public",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Participating in small groups",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Participating in small groups",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Eating in public places",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Eating in public places",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Drinking with others in public places",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Drinking with others in public places",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Talking to someone in authority",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Talking to someone in authority",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Acting, performing, or giving a talk in front of an audience",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Acting, performing, or giving a talk in front of an audience",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Going to a party",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Going to a party",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Working while being observed",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Working while being observed",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Writing while being observed",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Writing while being observed",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Calling someone you don't know very well",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Calling someone you don't know very well",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Talking face-to-face with someone you don't know very well",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Talking face-to-face with someone you don't know very well",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Meeting strangers",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Meeting strangers",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Urinating in a public bathroom",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Urinating in a public bathroom",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Entering a room when others are already seated",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Entering a room when others are already seated",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Being the center of attention",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Being the center of attention",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Speaking up at a meeting",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Speaking up at a meeting",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Taking a test of skill or ability",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Taking a test of skill or ability",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Expressing disagreement or disapproval to someone you don't know very well",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Expressing disagreement or disapproval to someone you don't know very well",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Looking someone you don't know very well in the eye",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Looking someone you don't know very well in the eye",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Giving a report to a group",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Giving a report to a group",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Trying to pick up someone",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Trying to pick up someone",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Returning goods to a store",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Returning goods to a store",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Giving a party",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Giving a party",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Resisting a high pressure salesperson",
+			"options": [
+				{
+					"text": "No fear or anxiety",
+					"value": 1
+				},
+				{
+					"text": "Mild fear or anxiety",
+					"value": 2
+				},
+				{
+					"text": "Moderate fear or anxiety",
+					"value": 3
+				},
+				{
+					"text": "Severe fear or anxiety",
+					"value": 4
+				}
+			]
+		},
+		{
+			"text": "Resisting a high pressure salesperson",
+			"options": [
+				{
+					"text": "Never avoid",
+					"value": 1
+				},
+				{
+					"text": "Occasionally avoid",
+					"value": 2
+				},
+				{
+					"text": "Often avoid",
+					"value": 3
+				},
+				{
+					"text": "Usually avoid",
+					"value": 4
+				}
+			]
+		}
+	],
+	"scoring": {
+		"type": "sum",
+		"ranges": [
+			{
+				"max": 55,
+				"label": "A score below 55 — social anxiety within normal range."
+			},
+			{
+				"max": 65,
+				"label": "55–65 — mild social phobia."
+			},
+			{
+				"max": 80,
+				"label": "66–80 — moderate social phobia."
+			},
+			{
+				"max": 95,
+				"label": "81–95 — marked social phobia."
+			},
+			{
+				"max": 999,
+				"label": "Above 95 — severe social phobia."
+			}
+		]
+	}
+}

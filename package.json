@@ -5,8 +5,10 @@
 	"scripts": {
 		"dev": "astro dev",
 		"build": "astro build",
+		"postbuild": "node scripts/generate-en-manifest.mjs",
 		"preview": "astro preview",
 		"astro": "astro",
+		"typecheck": "astro check",
 		"lint": "biome check .",
 		"lint:fix": "biome check --write .",
 		"format": "biome format --write ."
@@ -18,6 +20,7 @@
 		"netlify-plugin-csp-generator": "^1.6.1"
 	},
 	"devDependencies": {
+		"@astrojs/check": "^0.9.8",
 		"@biomejs/biome": "2.3.15",
 		"workbox-precaching": "^7.4.0"
 	}

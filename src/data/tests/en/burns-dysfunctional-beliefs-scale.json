@@ -1,0 +1,108 @@
+{
+	"options": [
+		{
+			"text": "Completely agree",
+			"value": -2
+		},
+		{
+			"text": "Agree somewhat",
+			"value": -1
+		},
+		{
+			"text": "Neutral",
+			"value": 0
+		},
+		{
+			"text": "Disagree somewhat",
+			"value": 1
+		},
+		{
+			"text": "Completely disagree",
+			"value": 2
+		}
+	],
+	"questions": [
+		"Criticism will obviously upset the person who receives it",
+		"It is better to give up my own interests in order to please other people",
+		"I need the approval of other people in order to be happy",
+		"If someone important to me expects something of me, then I really should do it",
+		"My value as a person depends largely on what others think of me",
+		"I cannot be happy unless I am loved by another person",
+		"If other people don't like you, you are bound to be less happy",
+		"If people who matter to me reject me, it must mean there is something wrong with me",
+		"If a person I love doesn't love me, it must mean I am unlovable",
+		"Being isolated from others inevitably leads to unhappiness",
+		"If I want to be a worthwhile person, I must truly excel in at least one important area",
+		"I must be a useful, productive, creative person, or life has no meaning",
+		"People who have good ideas are more worthwhile than those who do not",
+		"If I am not doing as well as other people, it means I am an inferior person",
+		"If I fail at my work, then I am a failure as a person",
+		"If you can't do something well, there is little point in doing it at all",
+		"It is shameful for a person to display weakness",
+		"A person should try to be the best at everything they undertake",
+		"I should be upset when I make mistakes",
+		"If I don't set the highest standards for myself, I will likely end up a second-rate person",
+		"If I firmly believe I deserve something, I have reason to expect to receive it",
+		"It is upsetting when you encounter obstacles to getting what you want",
+		"If I put other people's needs before my own, they should help me when I need something from them",
+		"If I am a good husband/wife, my spouse is obligated to love me",
+		"If I do something nice for a person, I can expect them to respect me and treat me as well as I treat them",
+		"I should take responsibility for how the people close to me feel and behave",
+		"If I criticize how someone does something and that person gets angry or upset, it means I have upset them",
+		"In order to be a good, worthy, moral person, I must strive to help everyone who is in need",
+		"If a child has emotional or behavioral difficulties, it shows that the child's parents have failed in some way",
+		"I must be able to please everyone",
+		"I cannot expect to be able to control my feelings when something bad happens",
+		"There is no point in trying to change upsetting emotions, because they are a real and inevitable part of daily life",
+		"My mood is mainly determined by factors largely beyond my control, such as my past, body chemistry, hormonal cycles, biorhythms, chance, or fate",
+		"My happiness depends largely on what happens to me",
+		"People who have signs of success (good looks, social status, wealth, or fame) are happier than those who do not"
+	],
+	"scoring": {
+		"type": "groups",
+		"groups": [
+			{
+				"name": "Approval",
+				"questions": [1, 2, 3, 4, 5],
+				"positive": "Independence and maintaining a healthy sense of self-worth even when faced with criticism and disapproval.",
+				"negative": "The closer the score is to -10, the greater the excessive dependence on others' opinions — because self-assessment happens through 'borrowed' eyes. If someone criticizes this person, they automatically see themselves as worthless. Being emotionally oversensitive to what they believe others think of them makes them easy to manipulate. They are also vulnerable to anxiety and depression when others criticize or are angry with them."
+			},
+			{
+				"name": "Love",
+				"questions": [6, 7, 8, 9, 10],
+				"positive": "The person treats love as something desirable but, beyond that, has many other equally important interests. Love is not a prerequisite for their happiness or self-esteem.",
+				"negative": "The person has a strong need for love and sees it as a prerequisite for survival and happiness. The closer the score is to -10, the stronger the dependency on love. Such a person tends to accept more subordinate, secondary roles in relationships with significant others, out of fear of being abandoned."
+			},
+			{
+				"name": "Achievement",
+				"questions": [11, 12, 13, 14, 15],
+				"positive": "Deriving satisfaction from work and productivity, with the understanding that this is not the only or necessary way to maintain self-esteem.",
+				"negative": "This score is an indicator of work dependency. Such a person has a limited sense of self-worth and views themselves more like a commodity in a market. The closer the score is to -10, the more their joy and capacity for happiness depend on success and productivity."
+			},
+			{
+				"name": "Perfectionism",
+				"questions": [16, 17, 18, 19, 20],
+				"positive": "The ability to set reasonable, flexible, and proportionate goals. The person enjoys the process of working toward a goal, rather than focusing solely on the outcome. They understand that they don't have to excel at everything or constantly strive to be outstanding.",
+				"negative": "Demanding perfection of oneself — mistakes are unacceptable, failure is worse than death, even negative emotions are a catastrophe. The closer the score is to -10, the more the person believes they must feel, think, and behave in an exceptionally perfect way, and if they don't, it feels as if everything is lost."
+			},
+			{
+				"name": "Entitlement",
+				"questions": [21, 22, 23, 24, 25],
+				"positive": "The person does not feel 'destined' for certain things, so they make an effort to achieve what they want — and often succeed. They understand that everyone is unique, and there is no reason why fate should bend to their wishes.",
+				"negative": "Taking things like success, love, and happiness for granted. The closer the score is to -10, the more the person demands that those around them — and the entire universe — cater to their wishes in return for being good or working hard."
+			},
+			{
+				"name": "Omnipotence",
+				"questions": [26, 27, 28, 29, 30],
+				"positive": "The person is content knowing that the world doesn't revolve around them. Since they don't control other adults, they are not responsible for them — only for themselves.",
+				"negative": "The presence of the cognitive distortion known as personalization. The closer the score is to -10, the more the person unjustifiably blames themselves for the faults and reactions of others that are beyond their control."
+			},
+			{
+				"name": "Autonomy",
+				"questions": [31, 32, 33, 34, 35],
+				"positive": "The person's moods are generated by their own thoughts and attitudes, so they understand and accept responsibility for their own feelings.",
+				"negative": "The closer the score is to -10, the stronger the conviction that joy and satisfaction come from outside. This creates risk, because everything outside of us is outside our control. Such a person's mood becomes dependent on external factors."
+			}
+		]
+	}
+}
