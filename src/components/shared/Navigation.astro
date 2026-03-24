@@ -7,9 +7,10 @@ import ThemeSwitcher from "./ThemeSwitcher.astro";
 
 interface Props {
 	lang: Lang;
+	altPath?: string;
 }
 
-const { lang } = Astro.props;
+const { lang, altPath } = Astro.props;
 const t = useTranslations(lang);
 const { pathname } = Astro.url;
 
@@ -58,7 +59,7 @@ const navigationLinks = [
 		})}
 	</ul>
 	<div class="menu-theme-switcher">
-		<LanguageSwitcher lang={lang} pathname={pathname} />
+		<LanguageSwitcher lang={lang} pathname={pathname} altPath={altPath} />
 		<ThemeSwitcher lang={lang} />
 	</div>
 </nav>

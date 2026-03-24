@@ -1,4 +1,5 @@
 ---
+articleId: "1ab52558-8b08-4af3-8c01-f374f1a80893"
 title: Uncertainty as... an Advantage?
 pubDate: 2025-09-05
 description: "Can uncertainty be useful? How doubt helps make considered decisions and act according to values despite anxiety."

@@ -1,4 +1,5 @@
 ---
+articleId: "2426a2a5-cd11-48cb-b808-4da9fad926b4"
 title: When Done Is Not Enough
 pubDate: 2025-12-05
 description: "Why does the inner critic devalue achievements and how to deal with it? The neurobiology of self-criticism and practical psychological recommendations."

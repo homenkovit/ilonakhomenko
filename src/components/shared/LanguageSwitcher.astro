@@ -5,12 +5,13 @@ import { getLocalizedPath, useTranslations } from "../../i18n/utils";
 interface Props {
 	lang: Lang;
 	pathname: string;
+	altPath?: string;
 }
 
-const { lang, pathname } = Astro.props;
+const { lang, pathname, altPath: altPathOverride } = Astro.props;
 const t = useTranslations(lang);
 const altLang: Lang = lang === "ru" ? "en" : "ru";
-const altPath = getLocalizedPath(pathname, altLang);
+const altPath = altPathOverride ?? getLocalizedPath(pathname, altLang);
 ---
 
 <a

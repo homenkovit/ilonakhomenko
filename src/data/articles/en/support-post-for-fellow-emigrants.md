@@ -1,4 +1,5 @@
 ---
+articleId: "58271670-5ac7-4554-bbf9-8cfeea9ccd5c"
 title: A Support Post for Fellow Emigrants
 pubDate: 2025-08-11
 description: "8 messages of support for emigrants: adapting, self-esteem, comparison with others, and the right to your own pace. Personal experience from a psychologist."

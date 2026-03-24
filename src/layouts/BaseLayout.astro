@@ -34,6 +34,7 @@ interface Props {
 	class?: string;
 	bodyBgColor?: string;
 	lang: Lang;
+	altPath?: string;
 }
 
 const {
@@ -48,6 +49,7 @@ const {
 	class: className,
 	bodyBgColor,
 	lang,
+	altPath: altPathOverride,
 } = Astro.props;
 
 const t = useTranslations(lang);
@@ -60,7 +62,7 @@ const finalDescription = description || defaultDescription;
 
 const siteUrl = import.meta.env.SITE;
 const altLang: Lang = lang === "ru" ? "en" : "ru";
-const altPath = getLocalizedPath(Astro.url.pathname, altLang);
+const altPath = altPathOverride ?? getLocalizedPath(Astro.url.pathname, altLang);
 const currentPath = getLocalizedPath(Astro.url.pathname, lang);
 const ruPath = lang === "ru" ? currentPath : altPath;
 const enPath = lang === "en" ? currentPath : altPath;
@@ -162,7 +164,7 @@ const enPath = lang === "en" ? currentPath : altPath;
 	</head>
 	<body>
 		<a class="skip-link" href="#main-content">{t("skip.link")}</a>
-		<Header lang={lang} />
+		<Header lang={lang} altPath={altPathOverride} />
 		<main id="main-content" class={className}>
 			<slot />
 		</main>

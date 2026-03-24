@@ -1,4 +1,5 @@
 ---
+articleId: "7ef81101-4915-4a0b-91a0-2a9fb8cddd39"
 title: How Are Smells and Feelings of Safety Connected?
 pubDate: 2025-06-26
 description: "A self-regulation practice using scents: how aromas activate the safety system and help reduce anxiety from a CFT perspective."

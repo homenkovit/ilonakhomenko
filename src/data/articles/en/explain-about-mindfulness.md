@@ -1,4 +1,5 @@
 ---
+articleId: "a7f9a110-0bf0-4a1d-acb8-d26d07731865"
 title: Let's Talk About Mindfulness
 pubDate: 2025-06-21
 description: "What is mindfulness and how is it different from meditation? How conscious choices aligned with values help change habitual behavior patterns."

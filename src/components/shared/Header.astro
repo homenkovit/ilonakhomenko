@@ -8,9 +8,10 @@ import ThemeSwitcher from "./ThemeSwitcher.astro";
 
 interface Props {
 	lang: Lang;
+	altPath?: string;
 }
 
-const { lang } = Astro.props;
+const { lang, altPath } = Astro.props;
 const { pathname } = Astro.url;
 const t = useTranslations(lang);
 const homeHref = getLocalizedPath("/", lang);
@@ -23,7 +24,7 @@ const homeHref = getLocalizedPath("/", lang);
 	</a></p>
 
 	<div class="header-lang-switcher">
-		<LanguageSwitcher lang={lang} pathname={pathname} />
+		<LanguageSwitcher lang={lang} pathname={pathname} altPath={altPath} />
 	</div>
 
 	<div class="header-theme-switcher">
@@ -32,7 +33,7 @@ const homeHref = getLocalizedPath("/", lang);
 
 	<AppointmentButton lang={lang} />
 
-	<Navigation lang={lang} />
+	<Navigation lang={lang} altPath={altPath} />
 </header>
 
 <style>

@@ -1,4 +1,5 @@
 ---
+articleId: "c9274804-ec82-4a02-9bfe-4080a2147033"
 title: Observing Our Aquarium of Emotions (Self-as-Context)
 pubDate: 2025-05-22
 description: "The aquarium of emotions metaphor from ACT therapy: how to learn to observe feelings without fighting them, and develop psychological flexibility."

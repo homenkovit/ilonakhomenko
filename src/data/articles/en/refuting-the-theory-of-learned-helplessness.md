@@ -1,4 +1,5 @@
 ---
+articleId: "e8a7c6b3-ac65-4f51-9e7c-2bf6bce641e7"
 title: How the Creators of Learned Helplessness Theory Refuted It
 pubDate: 2025-08-17
 description: "Seligman and Maier revised their theory of learned helplessness. What neuroscience revealed and why learning new skills matters."

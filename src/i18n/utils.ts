@@ -32,6 +32,13 @@ export function getLocalizedPath(pathname: string, targetLang: Lang): string {
 	return `/en${stripped}`;
 }
 
+export function findTranslatedArticle(
+	articleId: string,
+	targetCollection: Array<{ id: string; data: { articleId: string } }>,
+): { id: string } | undefined {
+	return targetCollection.find((a) => a.data.articleId === articleId);
+}
+
 type LocaleParams = { locale: "en" | undefined };
 type LocaleProps = { lang: Lang };
 type GetLocaleStaticPathsReturn = Array<{ params: LocaleParams; props: LocaleProps }>;

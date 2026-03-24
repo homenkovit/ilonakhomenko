@@ -3,6 +3,7 @@ import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 
 const articleSchema = z.object({
+	articleId: z.string().uuid(),
 	title: z.string(),
 	pubDate: z.date(),
 	description: z.string().optional(),

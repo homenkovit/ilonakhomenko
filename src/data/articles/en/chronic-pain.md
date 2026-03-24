@@ -1,4 +1,5 @@
 ---
+articleId: "b957b198-f68c-4b6b-9bbb-62e9c4e4e12b"
 title: Chronic Pain
 pubDate: 2025-11-03
 description: "How to live with chronic pain: practical recommendations on activity and mindfulness to improve quality of life."
