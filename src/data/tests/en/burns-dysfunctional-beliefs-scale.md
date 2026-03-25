@@ -1,4 +1,5 @@
 ---
+testId: "f72bea89-e0ab-43a9-967d-3c02d8a474a9"
 title: "Burns Dysfunctional Attitude Scale"
 description: "The Burns scale identifies deep-seated negative beliefs that get in the way of living fully. Discover how much your self-worth depends on others' opinions."
 ---

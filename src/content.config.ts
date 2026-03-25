@@ -10,6 +10,7 @@ const articleSchema = z.object({
 });
 
 const testSchema = z.object({
+	testId: z.string().uuid(),
 	title: z.string(),
 	description: z.string().optional(),
 });

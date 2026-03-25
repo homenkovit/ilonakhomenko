@@ -2,7 +2,7 @@
 import { getCollection, render } from "astro:content";
 import Icon from "../../../components/shared/Icon.astro";
 import type { Lang } from "../../../i18n/utils";
-import { getLocalizedPath, useTranslations } from "../../../i18n/utils";
+import { findTranslatedTest, getLocalizedPath, useTranslations } from "../../../i18n/utils";
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import type { TestData } from "../../../scripts/test-runner";
 
@@ -23,16 +23,24 @@ export async function getStaticPaths() {
 	return [
 		...testsRu.map((test) => ({
 			params: { locale: undefined, id: test.id },
-			props: { test, lang: "ru" as Lang },
+			props: {
+				test,
+				lang: "ru" as Lang,
+				translatedSlug: findTranslatedTest(test.data.testId, testsEn)?.id,
+			},
 		})),
 		...testsEn.map((test) => ({
 			params: { locale: "en", id: test.id },
-			props: { test, lang: "en" as Lang },
+			props: {
+				test,
+				lang: "en" as Lang,
+				translatedSlug: findTranslatedTest(test.data.testId, testsRu)?.id,
+			},
 		})),
 	];
 }
 
-const { test, lang } = Astro.props;
+const { test, lang, translatedSlug } = Astro.props;
 const t = useTranslations(lang);
 const { Content } = await render(test);
 const pageTitle = `${t("tests.prefix")} "${test.data.title}"`;
@@ -50,6 +58,11 @@ const testDescription = test.data.description || `${t("tests.prefix")} "${test.d
 const siteUrl = import.meta.env.SITE;
 const testsPath = getLocalizedPath("/tests", lang);
 const testUrl = `${siteUrl}${testsPath}/${test.id}`;
+
+const altLang: Lang = lang === "ru" ? "en" : "ru";
+const altPath = translatedSlug
+	? `${getLocalizedPath("/tests", altLang)}/${translatedSlug}`
+	: undefined;
 ---
 
 <BaseLayout
@@ -60,6 +73,7 @@ const testUrl = `${siteUrl}${testsPath}/${test.id}`;
 		{ name: t("breadcrumb.tests"), url: `${siteUrl}${testsPath}` },
 		{ name: test.data.title, url: testUrl },
 	]}
+	altPath={altPath}
 	bodyBgColor="var(--surface-alt-color)"
 	class="container"
 	lang={lang}

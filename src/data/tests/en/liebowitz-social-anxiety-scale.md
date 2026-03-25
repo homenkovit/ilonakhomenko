@@ -1,4 +1,5 @@
 ---
+testId: "d2e3fb25-96c8-4c27-ac88-3197dc91b71c"
 title: "Liebowitz Social Anxiety Scale"
 description: "The Liebowitz scale measures the level of social anxiety and avoidance across 24 typical situations. Rate the intensity of your fear and avoidance over the past week."
 ---

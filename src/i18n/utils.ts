@@ -39,6 +39,13 @@ export function findTranslatedArticle(
 	return targetCollection.find((a) => a.data.articleId === articleId);
 }
 
+export function findTranslatedTest(
+	testId: string,
+	targetCollection: Array<{ id: string; data: { testId: string } }>,
+): { id: string } | undefined {
+	return targetCollection.find((t) => t.data.testId === testId);
+}
+
 type LocaleParams = { locale: "en" | undefined };
 type LocaleProps = { lang: Lang };
 type GetLocaleStaticPathsReturn = Array<{ params: LocaleParams; props: LocaleProps }>;
