@@ -3,7 +3,7 @@
 	"type": "module",
 	"private": true,
 	"scripts": {
-		"dev": "astro dev",
+		"dev": "astro dev --host",
 		"build": "npm run check:i18n && astro build",
 		"postbuild": "node scripts/generate-en-manifest.mjs",
 		"preview": "astro preview",

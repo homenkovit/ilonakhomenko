@@ -42,23 +42,23 @@ export const faqItems: Record<Lang, FaqItem[]> = {
 		{
 			question: "How long is the first session and how should I prepare?",
 			answer:
-				"The first session lasts 60 minutes. This is usually enough for us to get acquainted, discuss your concern, and talk about the format of our future work. No special preparation is needed — it's not an interview or exam. You can bring a pen and paper if you'd like to take notes. During the first session, we get to know each other, discuss what brought you here, I explain what our further work might look like, and together we decide whether to continue. The cost of the first session is €50 or $55.",
+				"The first session lasts 60 minutes. This is usually enough for us so we can get to know each other, discuss your questions, and talk about how we’ll proceed from here. No special preparation is needed — it's not an interview or exam. You can use a pen and paper if you'd like to take notes. During our first session, we’ll get to know each other, discuss what brought you to me, I’ll explain what our future work might look like, and together we’ll decide whether to continue. The cost of the first session is €50 or $55.",
 		},
 		{
 			question: "What happens in the first session? I don't know where to start",
 			answer:
-				"The first session is often nerve-wracking — that's normal. You can start with whatever concerns or bothers you most in your life right now. In my work, there is no judgment or criticism. Counseling is a space where you can talk about your experience and feelings in a safe and supportive atmosphere.",
+				"The first session feels exciting — that's normal. You can start with whatever concerns or bothers you most in your life right now. In my work, there is no judgment or criticism. Counseling is a space where you can talk about your experience and feelings in a safe and supportive atmosphere.",
 		},
 		{
 			question: "How many sessions might I need?",
 			answer:
-				"This is very individual and depends on your concern and situation. Short-term work typically lasts 10 to 12 sessions, but can be even shorter. Long-term work takes 40 or more sessions, and medium-term falls between 12 and 40. For mild situational difficulties, sometimes up to 10 sessions are enough. We discuss duration estimates as your concern becomes clearer and can adjust them along the way — this is a normal part of counseling work.",
+				"This is very individual and depends on your concern and situation. Short-term work typically lasts 10 to 12 sessions, but can be even shorter. Long-term work takes 40 or more sessions, and medium-term falls between 12 and 40. For mild situational difficulties, sometimes up to 10 sessions are enough. We’ll discuss the estimated timeline as we get a clearer picture of your situation, and we can adjust them along the way — this is a standard part of the consultation process.",
 		},
 		{
 			question:
 				"I've heard that counseling professionals don't give advice and don't promise anything. What happens in sessions then?",
 			answer:
-				"In counseling, you determine what changes are important to you and at what pace you're ready to pursue them. I don't impose solutions or promise specific results. My task is to help you better understand yourself and your situation, see possible options and support points, and support you in finding solutions that work for you. In some difficult life situations (for example, when experiencing loss or severe stress), I may provide more supportive and orienting recommendations — within the framework of psychological support, not medical care.",
+				"In counseling, you determine what changes are important to you and at what pace you're ready to pursue them. I don’t impose ready-made solutions or promise specific results. My goal is to help you better understand yourself and your situation, identify possible options and points of support, and assist you in finding solutions that work for you in unique way. In certain difficult life situations (for example, when experiencing loss or severe stress), I can offer you more constructive and helpful guidance — as part of psychological support, rather than medical care.",
 		},
 	],
 };

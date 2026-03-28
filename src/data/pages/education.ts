@@ -30,10 +30,10 @@ export const educationContent: Record<Lang, EducationContent> = {
 	en: {
 		pageTitle: "Education",
 		introParagraphs: [
-			"In 2013, I received my psychology qualification from the Russian Christian Humanitarian Academy. I am currently completing an advanced training program at MANP to become a clinical psychologist; I will attach the diploma upon completion.",
-			"<strong>Primary approach:</strong> Acceptance and Commitment Therapy (ACT).",
-			"<strong>Additional modalities:</strong> Solution Focused Brief Therapy (SFBT), Compassion-Focused Therapy (CFT), Cognitive Behavioral Therapy (CBT), Client-Centered approach.",
-			"Below you can find all diplomas and certificates for the trainings I have completed to date.",
+			"In 2013, I graduated from the Russian Christian Humanitarian Academy as a psychologist. I am currently completing an advanced training program to in clinical psychology. Soon I'll be ready to attach the document upon completion.",
+			"<strong>Main approach:</strong> Acceptance and Commitment Therapy (ACT).",
+			"<strong>Additional approaches:</strong> Solution Focused Brief Therapy (SFBT), Compassion-Focused Therapy (CFT), Cognitive Behavioral Therapy (CBT), Client-Centered approach.",
+			"Below you can find all the diplomas and training certificates I have.",
 		],
 		certsTitle: "Diplomas and certificates",
 		certificateAlts: [

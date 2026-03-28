@@ -19,7 +19,7 @@ export const homePriceContent: Record<Lang, HomePriceContent> = {
 		],
 		price: "€50 / $55",
 		infoText:
-			"Работаю только онлайн, по всему миру, по предоплате. Оплату принимаю в евро и долларах. Буду рада вам помочь!",
+			"Работаю только онлайн, по всему миру, по предоплате минимум за сутки. Оплату принимаю в евро и долларах. Буду рада вам помочь!",
 		contactText: "Для связи:",
 	},
 	en: {
@@ -32,7 +32,7 @@ export const homePriceContent: Record<Lang, HomePriceContent> = {
 		],
 		price: "€50 / $55",
 		infoText:
-			"I work online only, worldwide, with prepayment. I accept payment in euros and dollars. I'd be happy to help you!",
+			"I work online only, worldwide, with a minimum one-day prepayment. I accept payment in euros and dollars. I'd be happy to help you!",
 		contactText: "Contact me:",
 	},
 };

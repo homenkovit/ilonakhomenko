@@ -18,7 +18,7 @@ export const aboutContent: Record<Lang, AboutContent> = {
 			{
 				title: "Конфиденциальность.",
 				description:
-					"Я соблюдаю конфиденциальность нашей работы. Если я выношу ваш случай на супервизию, это происходит без какой-либо идентифицирующей информации и только с вашего предварительного согласия.",
+					"Я соблюдаю конфиденциальность нашей работы. Я спрашиваю заранее вашего согласия, можно ли выносить ваш кейс на разбор с супервизором. Иногда это необходимо делать для улучшения качества моей работы. Кейс предоставляется анонимно, без личных деталей, чтобы вас было невозможно идентифицировать.",
 			},
 			{
 				title: "Последовательность и гибкость.",
@@ -28,7 +28,7 @@ export const aboutContent: Record<Lang, AboutContent> = {
 			{
 				title: "Индивидуальный подход и атмосфера принятия.",
 				description:
-					"Я приглашаю вас свободно говорить о любых мыслях и переживаниях — в том числе о страхе быть осуждённым, неловкости или стыде. Я придерживаюсь гуманистической позиции: с вами изначально всё в порядке. Сейчас вам может быть больно и трудно — и моя задача быть рядом и поддерживать вас в этом процессе.",
+					"Я приглашаю вас свободно говорить о любых мыслях и переживаниях — в том числе о страхе быть осуждённым, неловкости или стыде. Сейчас вам может быть больно и трудно — и моя задача быть рядом и поддерживать вас в этом процессе.",
 			},
 			{
 				title: "Объём встреч по совместной договоренности.",
@@ -99,46 +99,46 @@ export const aboutContent: Record<Lang, AboutContent> = {
 	},
 	en: {
 		introParagraphs: [
-			"In my work, I draw on ACT methods (an approach focused on acceptance, values, and mindful action even in the presence of difficult emotions), as well as CFT (an approach focused on developing self-compassion and a supportive inner relationship). I also use elements of the solution-focused approach as a way to find ways out of difficult life situations and restore a person's sense of authorship over their own life. At the same time, I hold a humanistic stance: there is fundamentally nothing wrong with you.",
-			"Why do I combine several approaches? Because it provides greater flexibility in work and allows looking at complex situations from different angles, noticing more possible support points and options for change. You are at the center of our collaborative work. Whatever concern, difficulty, or life dilemma you bring, I will accompany you in exploring your situation and finding solutions that are right for you. You are not the problem, and you don't exist in a vacuum. I take into account the social context and conditions in which you live, and how they may affect your wellbeing and choices. Together, we will gradually work through this complex tangle of circumstances, experiences, and contradictions. If during our work I realize that my professional experience and counseling format are not suitable for your needs, I will honestly say so and, if necessary, recommend a colleague whose specialization may better match your situation.",
-			"I try not to use outdated and stigmatizing terms and regularly update my knowledge to rely on current research and practices in psychological counseling and related disciplines. I am currently undergoing additional professional training, expanding my qualifications in psychological support and counseling. I am also well-versed in the topic of neurodivergence and tailor the format of work to each person's individual characteristics.",
+			"In my practice, I use ACT method (an approach focused on acceptance, values, and mindful action even in the presence of difficult emotions), as well as CFT (an approach focused on developing self-compassion and a supportive inner relationship). I also use elements of a solution-focused approach to find ways out of difficult life situations and help people regain a sense of control over their own lives. At the same time, I take a humanistic stance: there is fundamentally nothing wrong with you.",
+			"Why do I combine several approaches? Because this provides greater flexibility in my practice and allows us to examine complex situations from different perspectives, identifying more potential starting points and options for change. You are at the heart of our collaboration. No matter what problems, challenges, or life dilemmas you may be facing, I will help you make sense of the situation and find solutions that are right for you. You are not the problem, and you don't exist in a vacuum. I take into account the social context and conditions in which you live, and how they may affect your wellbeing and choices. Together, we will gradually work through this complex tangle of circumstances, experiences, and contradictions. If, during our work together, I realize that my professional experience and counseling approach do not meet your needs, I will be honest about it and, if necessary, recommend a colleague whose expertise may be better suited to your situation.",
+			"I try not to use outdated and stigmatizing terms and regularly update my knowledge to rely on current research and practices in psychological counseling and related disciplines. I am currently undergoing additional professional training, expanding my qualifications in psychological support and counseling. In addition, I have a strong understanding of neurodiversity and tailor my approach to each person’s individual needs.",
 		],
 		principlesTitle: "Work principles",
 		principles: [
 			{
 				title: "Confidentiality.",
 				description:
-					"I maintain the confidentiality of our work. If I bring your case to supervision, it happens without any identifying information and only with your prior consent.",
+					"I respect the confidentiality of our work. I am asking for your permission in advance to discuss your case with my supervisor. Sometimes this is necessary to improve the quality of my work. The case will be presented anonymously, without any details that could identify you personally.",
 			},
 			{
 				title: "Consistency and flexibility.",
 				description:
-					"In the first few sessions, I help you gather and describe your life story and context (your experience, important events, current situation). At the same time, I am always ready to flexibly adjust the session structure based on your state and needs at any given moment.",
+					"During the first few sessions, I will help you piece together and describe your life story and its context (your experiences, significant events, and your current situation). At the same time, I am always willing to adjust the structure of the session flexibly to accommodate how you are feeling and your current needs.",
 			},
 			{
 				title: "Individual approach and atmosphere of acceptance.",
 				description:
-					"I invite you to speak freely about any thoughts and feelings — including fear of being judged, awkwardness, or shame. I hold a humanistic stance: there is fundamentally nothing wrong with you. You may be in pain and struggling right now — and my job is to be alongside you and support you in this process.",
+					"I invite you to openly share any thoughts or feelings you may have — including fear of judgment, awkwardness, or shame. You may be going through a difficult time right now—and my role is to be there for you and support you through this process.",
 			},
 			{
-				title: "Session volume by mutual agreement.",
+				title: "We decide on the number of sessions together.",
 				description:
-					"The number of sessions is determined together with you and can change as we work — as many as you specifically need, no more, no less. Depending on your goals, condition, and life situation. I have no goal of keeping you in counseling longer than necessary or, conversely, ending the work before you feel comfortable.",
+					"We determine the number of sessions together with you, and it may change as we go along — exactly as many as you specifically need, no more, no less. Depending on your goals, condition, and life situation. I don’t intend to drag out our therapy sessions any longer than necessary, but I also won’t stop working with you until you feel comfortable.",
 			},
 			{
 				title: "Gentleness.",
 				description:
-					"We won't immediately dive into the most painful topics without a sense of grounding and readiness. In other words, we won't rush into the thick of things unprepared. I try to structure our work so that you have enough safety and resources.",
+					"We won't immediately dive into the most painful topics without a sense of grounding and readiness. In other words, we won't jump right into the thick of things without being prepared. I try to structure our work so that you have enough safety and resources.",
 			},
 			{
 				title: "Not just techniques and homework.",
 				description:
-					"The most important thing in our sessions is you and your experience — being heard. Techniques and exercises are used only when necessary and when you have the resources for them. If you have a strong need to talk things through, I create a safe and supportive space for that.",
+					"The most important thing in our sessions is you and your feelings: that you are heard. Techniques and exercises are used only when necessary and when you have the resources for them. If you have a strong need to talk things through, I create a safe and supportive space for that.",
 			},
 			{
 				title: "IT work experience.",
 				description:
-					"I worked in the IT field for several years, so you won't need to spend a long time explaining the specifics of that environment — many of its features are well familiar to me, and we can speak a language you understand and relate to.",
+					"I’ve worked in the IT industry for several years, so you won’t have to spend much time explaining the ins and outs of the field — I’m very familiar with many of its aspects, and we’ll be able to communicate in a way that makes sense to you.",
 			},
 			{
 				title: "Professional resilience and commitment to quality.",
@@ -146,42 +146,42 @@ export const aboutContent: Record<Lang, AboutContent> = {
 					"I regularly attend supervisions, intervisions, and Balint groups, which helps me maintain professional quality and sustainability in my work. I also pay attention to my own rest and recovery and engage in hobbies.",
 			},
 			{
-				title: "Partnership model of interaction.",
+				title: "A partnership model.",
 				description:
-					"I don't take an expert or directive position. My role is to be alongside you as a co-explorer of your inner world and help navigate complex tangles of thoughts, feelings, and life circumstances. I don't offer ready-made solutions or universal advice. Together we search for what works best specifically for you, sharing responsibility for the process and changes.",
+					"I don't like taking an expert or directive position. My role is to accompany you as a fellow explorer of your inner world and to help you navigate the complex tangles of thoughts, feelings, and life circumstances. I don't offer ready-made solutions or universal advice. Together we search for what works best specifically for you, sharing responsibility for the process and changes.",
 			},
 			{
-				title: "Use of metaphors and imagery.",
+				title: "Use of metaphors.",
 				description:
-					"In my work, I sometimes use metaphors and figurative comparisons — for some people, this helps make it easier to talk about difficult things. The format of work is always tailored individually: some prefer diagrams and structures, others prefer notes, tables, images, drawings, or stories.",
+					"In my work, I sometimes use metaphors and figurative language — it helps some people talk about complex topics more easily. I always tailor my approach to each individual: some people prefer diagrams and outlines, while others prefer notes, tables, images, drawings, or stories.",
 			},
 			{
-				title: "Swearing is allowed in my sessions.",
+				title: "Swearing is allowed.",
 				description:
-					"Yes, if the situation calls for it, I rather encourage it. After such an emotional expression, things often feel a bit lighter. If profanity is unacceptable to you, we find other forms of emotional expression.",
+					"Yes, if the situation calls for it, I rather encourage it. After such an emotional expression, things often feel a bit lighter. If you find profanity offensive, we'll find other ways to help you express your emotions.",
 			},
 			{
 				title: "I welcome your feedback.",
 				description:
-					"Our work is a collaborative process. You can share your feelings and suggestions not only at the end of a session but at any time. If during a conversation or exercise you become uncomfortable, you have the right to say so. This is very important for our connection.",
+					"Our work is a collaborative process. You can share your feelings and suggestions not only at the end of a session but at any time. If you feel uncomfortable during a conversation or while doing an exercise, you have the right to speak up. This is very important for our alliance.",
 			},
 			{
-				title: "Flexibility and respect for individuality.",
+				title: "Flexibility with respect for individuality.",
 				description:
-					"I don't subscribe to provocative work formats, ideas of 'secondary gain,' rigid templating, or simplified explanations of human difficulties. Structure in work is important, but it shouldn't destroy the connection. The work is built around the person, not the person adapting to the method.",
+					"I do not endorse provocative methods, the concept of “secondary gain”, rigid templates, or oversimplified explanations of human complexities. Structure in work is important, but it shouldn't destroy the relationship. The work is built around the person, not the person adapting to the method.",
 			},
 			{
 				title: "Destigmatization.",
 				description:
-					"If during discussion, diagnoses or labels come up that may be unpleasant or painful for you, we discuss together which formulations and terms you are more comfortable using in our work.",
+					"If, during our conversation, any diagnoses or terms come up that you might find upsetting or distressing, we’ll discuss together which phrases and terms you’d prefer to use in our work.",
 			},
 			{
-				title: "Healthy curiosity and respect for the inner world.",
+				title: "Respect and curiosity for your inner world.",
 				description:
-					"I try to ask questions gently and tactfully. My interest is directed at how your internal processes work — and it's important to me that this exploratory attitude gradually develops in you toward yourself as well.",
+					"I try to ask questions gently and tactfully. I’m interested in how your internal processes work—and it’s important to me that you gradually develop this same inquisitive attitude toward yourselves as well.",
 			},
 			{
-				title: "Personal practice and professional development.",
+				title: "Personal professional development.",
 				description:
 					"I apply elements of ACT, mindfulness practices, and self-support in my own life and, when necessary, seek professional psychological support myself.",
 			},
