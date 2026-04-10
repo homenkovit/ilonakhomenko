@@ -93,7 +93,6 @@ export const homeHelpContent: Record<Lang, HomeHelpContent> = {
 				items: [
 					"Не беру в работу запросы, которые предполагают специализированную клиническую или медицинскую помощь.",
 					"Острые кризисные и суицидоопасные состояния.",
-					"Обсессивно-компульсивные проявления (ОКР).",
 					"Расстройства пищевого поведения (РПП).",
 					"Не работаю с детьми и подростками до 18 лет и не веду парное консультирование.",
 				],
@@ -194,7 +193,6 @@ export const homeHelpContent: Record<Lang, HomeHelpContent> = {
 				items: [
 					"I do not take on cases that require specialized clinical or medical care.",
 					"Acute crisis and suicidal states.",
-					"Obsessive-compulsive manifestations (OCD).",
 					"Eating disorders.",
 					"I do not work with children and adolescents under 18, and I do not provide couples counseling.",
 				],
