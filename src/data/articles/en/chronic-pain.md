@@ -1,11 +1,11 @@
 ---
 articleId: "b957b198-f68c-4b6b-9bbb-62e9c4e4e12b"
-title: Chronic Pain
+title: "Chronic Pain"
 pubDate: 2025-11-03
 description: "How to live with chronic pain: practical recommendations on activity and mindfulness to improve quality of life."
 ---
 
-Is chronic pain something any of you are familiar with? If so, I feel for you with all my heart. The bad news is that it's unlikely to go away completely (though I never rule out a glimmer of hope); the good news is that it's quite possible to find your own ways of coping with it — and to live a fulfilling life in spite of it (and even in defiance of it).
+Is chronic pain something you are familiar with? If so, I feel for you with all my heart. The bad news is that it's unlikely to go away completely (though I never rule out a glimmer of hope); the good news is that it's quite possible to find your own ways of coping with it — and to live a fulfilling life in spite of it (and even in defiance of it).
 
 Chronic pain can have many causes, but what defines it is its duration (more than 3 months) and the fact that it either recurs or persists. Pain usually signals something important — for example, that tissue has been damaged. But with chronic pain there is no tissue or organ damage, even though the pain can be quite intense, which can be confusing. Despite the fact that the pain often doesn't match the severity of any injury, it does significantly complicate life with anxiety, depression, sleep disturbances, and limitations at work and in daily activities. Because chronic pain no longer serves a protective function and its symptoms can meaningfully impair a person's functioning, it is recognized as a distinct condition in its own right. That said, I want to emphasize: if you haven't yet seen a doctor about your pain, that should be your first step — to rule out serious underlying conditions.
 
