@@ -24,7 +24,7 @@ Chronic pain can have many causes, but what defines it is its duration (more tha
 *What would you like to start doing, something that brings you pleasure, or something you used to enjoy in the past?*
 
 - What other enjoyable activities did you have before, or what have you always wanted to try? People often enjoy passing on their experience to others, so volunteering, coaching or teaching could be a way to find joy in those activities.
-- You can start by narrowing it down to 2–3 activities from a larger list (I've included a small screenshot — it's just an example; you can add your own options).
+- You can start by narrowing it down to 2–3 activities. You can search for a list online — for example, “list of enjoyable activities.”
 - Then move on to an implementation plan — to start, choose just one activity from those two or three. It's best to choose something manageable, something easier to begin. Try to plan it out, put it in a diary or calendar, decide when it fits best into your life and how many minutes a day it will take. It's better to set realistic goals, even 5 minutes is better than nothing. And if you feel like going longer, that's fine too. The main thing is to set a time frame.
 - Anticipate possible barriers — beliefs, rumination, weather, and other factors. Under what conditions is each activity possible? Should you have backup options? Would it help to prepare the necessary equipment in advance? Plan your activity regardless of whether you're feeling good or bad in the moment.
 
