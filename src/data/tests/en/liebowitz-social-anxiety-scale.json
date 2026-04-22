@@ -1,7 +1,7 @@
 {
 	"questions": [
 		{
-			"text": "Telephoning in public",
+			"text": "Using a telephone in public",
 			"options": [
 				{
 					"text": "No fear or anxiety",
@@ -22,7 +22,7 @@
 			]
 		},
 		{
-			"text": "Telephoning in public",
+			"text": "Using a telephone in public",
 			"options": [
 				{
 					"text": "Never avoid",
@@ -43,7 +43,7 @@
 			]
 		},
 		{
-			"text": "Participating in small groups",
+			"text": "Participating in a small group activity",
 			"options": [
 				{
 					"text": "No fear or anxiety",
@@ -64,7 +64,7 @@
 			]
 		},
 		{
-			"text": "Participating in small groups",
+			"text": "Participating in a small group activity",
 			"options": [
 				{
 					"text": "Never avoid",
@@ -85,7 +85,7 @@
 			]
 		},
 		{
-			"text": "Eating in public places",
+			"text": "Eating in public",
 			"options": [
 				{
 					"text": "No fear or anxiety",
@@ -106,7 +106,7 @@
 			]
 		},
 		{
-			"text": "Eating in public places",
+			"text": "Eating in public",
 			"options": [
 				{
 					"text": "Never avoid",
@@ -127,7 +127,7 @@
 			]
 		},
 		{
-			"text": "Drinking with others in public places",
+			"text": "Drinking with others",
 			"options": [
 				{
 					"text": "No fear or anxiety",
@@ -148,7 +148,7 @@
 			]
 		},
 		{
-			"text": "Drinking with others in public places",
+			"text": "Drinking with others",
 			"options": [
 				{
 					"text": "Never avoid",
@@ -211,7 +211,7 @@
 			]
 		},
 		{
-			"text": "Acting, performing, or giving a talk in front of an audience",
+			"text": "Acting, performing, or speaking in front of an audience",
 			"options": [
 				{
 					"text": "No fear or anxiety",
@@ -232,7 +232,7 @@
 			]
 		},
 		{
-			"text": "Acting, performing, or giving a talk in front of an audience",
+			"text": "Acting, performing, or speaking in front of an audience",
 			"options": [
 				{
 					"text": "Never avoid",
@@ -421,7 +421,7 @@
 			]
 		},
 		{
-			"text": "Talking face-to-face with someone you don't know very well",
+			"text": "Talking face to face with someone you don't know very well",
 			"options": [
 				{
 					"text": "No fear or anxiety",
@@ -442,7 +442,7 @@
 			]
 		},
 		{
-			"text": "Talking face-to-face with someone you don't know very well",
+			"text": "Talking face to face with someone you don't know very well",
 			"options": [
 				{
 					"text": "Never avoid",
@@ -673,7 +673,7 @@
 			]
 		},
 		{
-			"text": "Taking a test of skill or ability",
+			"text": "Taking a test of your ability, skill, or knowledge",
 			"options": [
 				{
 					"text": "No fear or anxiety",
@@ -694,7 +694,7 @@
 			]
 		},
 		{
-			"text": "Taking a test of skill or ability",
+			"text": "Taking a test of your ability, skill, or knowledge",
 			"options": [
 				{
 					"text": "Never avoid",
@@ -757,7 +757,7 @@
 			]
 		},
 		{
-			"text": "Looking someone you don't know very well in the eye",
+			"text": "Looking someone who you don't know very well straight in the eyes",
 			"options": [
 				{
 					"text": "No fear or anxiety",
@@ -778,7 +778,7 @@
 			]
 		},
 		{
-			"text": "Looking someone you don't know very well in the eye",
+			"text": "Looking someone who you don't know very well straight in the eyes",
 			"options": [
 				{
 					"text": "Never avoid",
@@ -799,7 +799,7 @@
 			]
 		},
 		{
-			"text": "Giving a report to a group",
+			"text": "Giving a prepared oral talk to a group",
 			"options": [
 				{
 					"text": "No fear or anxiety",
@@ -820,7 +820,7 @@
 			]
 		},
 		{
-			"text": "Giving a report to a group",
+			"text": "Giving a prepared oral talk to a group",
 			"options": [
 				{
 					"text": "Never avoid",
@@ -841,7 +841,7 @@
 			]
 		},
 		{
-			"text": "Trying to pick up someone",
+			"text": "Trying to make someone's acquaintance for the purpose of a romantic/sexual relationship",
 			"options": [
 				{
 					"text": "No fear or anxiety",
@@ -862,7 +862,7 @@
 			]
 		},
 		{
-			"text": "Trying to pick up someone",
+			"text": "Trying to make someone's acquaintance for the purpose of a romantic/sexual relationship",
 			"options": [
 				{
 					"text": "Never avoid",
@@ -883,7 +883,7 @@
 			]
 		},
 		{
-			"text": "Returning goods to a store",
+			"text": "Returning goods to a store for a refund",
 			"options": [
 				{
 					"text": "No fear or anxiety",
@@ -904,7 +904,7 @@
 			]
 		},
 		{
-			"text": "Returning goods to a store",
+			"text": "Returning goods to a store for a refund",
 			"options": [
 				{
 					"text": "Never avoid",
@@ -967,7 +967,7 @@
 			]
 		},
 		{
-			"text": "Resisting a high pressure salesperson",
+			"text": "Resisting a high pressure sales person",
 			"options": [
 				{
 					"text": "No fear or anxiety",
@@ -988,7 +988,7 @@
 			]
 		},
 		{
-			"text": "Resisting a high pressure salesperson",
+			"text": "Resisting a high pressure sales person",
 			"options": [
 				{
 					"text": "Never avoid",
@@ -1014,23 +1014,23 @@
 		"ranges": [
 			{
 				"max": 55,
-				"label": "A score below 55 — social anxiety within normal range."
+				"label": "A score below 55 — you don't suffer from social anxiety."
 			},
 			{
 				"max": 65,
-				"label": "55–65 — mild social phobia."
+				"label": "55–65 — mild social anxiety."
 			},
 			{
 				"max": 80,
-				"label": "66–80 — moderate social phobia."
+				"label": "66–80 — moderate social anxiety."
 			},
 			{
 				"max": 95,
-				"label": "81–95 — marked social phobia."
+				"label": "81–95 — marked social anxiety."
 			},
 			{
 				"max": 999,
-				"label": "Above 95 — severe social phobia."
+				"label": "Above 95 — severe social anxiety."
 			}
 		]
 	}

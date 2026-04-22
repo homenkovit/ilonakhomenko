@@ -1,7 +1,7 @@
 ---
 testId: "d2e3fb25-96c8-4c27-ac88-3197dc91b71c"
-title: "Liebowitz Social Anxiety Scale"
-description: "The Liebowitz scale measures the level of social anxiety and avoidance across 24 typical situations. Rate the intensity of your fear and avoidance over the past week."
+title: "The Liebowitz Social Anxiety Scale for Adults (LSAS)"
+description: "The Liebowitz Social Anxiety Scale for Adults (LSAS) is a questionnaire developed by Dr. Michael R. Liebowitz, a psychiatrist and researcher. The Liebowitz scale measures the level of social anxiety and avoidance across 24 typical situations. Rate the intensity of your fear and avoidance over the past week."
 ---
 
 The Liebowitz Social Anxiety Scale (LSAS) is designed to measure the level of social anxiety, the tendency toward avoidance, and their impact on a person's social functioning across various social situations.
