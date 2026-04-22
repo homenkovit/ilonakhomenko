@@ -8,13 +8,14 @@ Mindfulness is the ability to be present in the here and now and to notice what 
 
 This questionnaire contains 5 independently developed scales designed to measure 5 facets of mindfulness:
 
-- the skill of observing,
-- the skill of describing experience,
+- observing,
+- describing experience,
 - the ability to act with awareness,
-- a non-judgmental stance toward inner experience,
-- a non-reactive stance toward inner experience (toward inner impulses).
+- non-judging of inner experience,
+- non-reactivity to inner experience (inner impulses).
 
-**Instructions:**
-Read each statement and indicate how true it is for you.
+**Instructions:** Read each statement and indicate how true it is for you.
 
 The higher your score on each factor, the more developed the corresponding skill.
+
+This test is provided for educational and entertainment use only.
