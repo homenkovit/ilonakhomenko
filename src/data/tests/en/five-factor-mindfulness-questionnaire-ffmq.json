@@ -46,101 +46,35 @@
 			{
 				"name": "Observing",
 				"description": "The ability to notice, attend to, and track external and internal experience: feelings, emotions, thoughts, sounds, smells, and sensations.",
-				"questions": [
-					1,
-					6,
-					11,
-					15,
-					20,
-					26,
-					31,
-					36
-				],
+				"questions": [1, 6, 11, 15, 20, 26, 31, 36],
 				"reversed": [],
 				"maxScore": 40
 			},
 			{
 				"name": "Describing",
 				"description": "The ability to label inner experiences with words.",
-				"questions": [
-					2,
-					7,
-					12,
-					16,
-					22,
-					27,
-					32,
-					37
-				],
-				"reversed": [
-					12,
-					16,
-					22
-				],
+				"questions": [2, 7, 12, 16, 22, 27, 32, 37],
+				"reversed": [12, 16, 22],
 				"maxScore": 40
 			},
 			{
 				"name": "Acting with Awareness",
 				"description": "The ability to be fully present in the here and now, engaged with the current moment, instead of operating on autopilot or acting out of quick judgment.",
-				"questions": [
-					5,
-					8,
-					13,
-					18,
-					23,
-					28,
-					34,
-					38
-				],
-				"reversed": [
-					5,
-					8,
-					13,
-					18,
-					23,
-					28,
-					34,
-					38
-				],
+				"questions": [5, 8, 13, 18, 23, 28, 34, 38],
+				"reversed": [5, 8, 13, 18, 23, 28, 34, 38],
 				"maxScore": 40
 			},
 			{
 				"name": "Non-Judging of Inner Experience",
 				"description": "The ability to accept any inner experience — even painful ones — as they are, without labeling them as unwanted, and without striving to get rid of or suppress them. It calls for self-acceptance and unconditional empathy for oneself and others.",
-				"questions": [
-					3,
-					10,
-					14,
-					17,
-					25,
-					30,
-					35,
-					39
-				],
-				"reversed": [
-					3,
-					10,
-					14,
-					17,
-					25,
-					30,
-					35,
-					39
-				],
+				"questions": [3, 10, 14, 17, 25, 30, 35, 39],
+				"reversed": [3, 10, 14, 17, 25, 30, 35, 39],
 				"maxScore": 40
 			},
 			{
 				"name": "Non-Reactivity to Inner Experience",
 				"description": "The ability to allow thoughts and feelings to come and go without getting caught up in or carried away by them. Non-reactivity makes way for emotional resilience and restores mental balance.",
-				"questions": [
-					4,
-					9,
-					19,
-					21,
-					24,
-					29,
-					33
-				],
+				"questions": [4, 9, 19, 21, 24, 29, 33],
 				"reversed": [],
 				"maxScore": 35
 			}
