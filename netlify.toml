@@ -1,3 +1,65 @@
+# Articles: old English slugs → new transliterated Russian slugs
+[[redirects]]
+  from = "/articles/chronic-pain"
+  to = "/articles/khronicheskaya-bol"
+  status = 301
+
+[[redirects]]
+  from = "/articles/when-done-is-not-enough"
+  to = "/articles/kogda-sdelano-nedostatochno"
+  status = 301
+
+[[redirects]]
+  from = "/articles/observing-our-aquarium-of-emotions-self-as-context"
+  to = "/articles/nablyudaem-za-nashim-akvariumom-emotsij-ya-kak-kontekst"
+  status = 301
+
+[[redirects]]
+  from = "/articles/uncertainty-as-an-advantage"
+  to = "/articles/neuverennost-kak-preimushchestvo"
+  status = 301
+
+[[redirects]]
+  from = "/articles/refuting-the-theory-of-learned-helplessness"
+  to = "/articles/oproverzhenie-teorii-o-vyuchennoj-bespomoshchnosti-samimi-avtorami"
+  status = 301
+
+[[redirects]]
+  from = "/articles/support-post-for-fellow-emigrants"
+  to = "/articles/post-podderzhki-takim-zhe-emigrantam"
+  status = 301
+
+[[redirects]]
+  from = "/articles/explain-about-mindfulness"
+  to = "/articles/poyasnite-za-osoznannost"
+  status = 301
+
+[[redirects]]
+  from = "/articles/how-are-smells-and-feelings-of-safety-connected"
+  to = "/articles/kak-svyazany-zapakhi-i-oshchushchenie-bezopasnosti"
+  status = 301
+
+# Tests: old English slugs → new transliterated Russian slugs
+[[redirects]]
+  from = "/tests/beck-depression-scale"
+  to = "/tests/shkala-depressii-beka"
+  status = 301
+
+[[redirects]]
+  from = "/tests/burns-dysfunctional-beliefs-scale"
+  to = "/tests/shkala-disfunktsionalnykh-ubezhdenij-bernsa"
+  status = 301
+
+[[redirects]]
+  from = "/tests/five-factor-mindfulness-questionnaire-ffmq"
+  to = "/tests/pyatifaktornyj-oprosnik-osoznannosti-ffmq"
+  status = 301
+
+[[redirects]]
+  from = "/tests/liebowitz-social-anxiety-scale"
+  to = "/tests/shkala-sotsialnoj-trevozhnosti-libovitsa"
+  status = 301
+
 [[headers]]
   for = "/*"
   [headers.values]
