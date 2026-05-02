@@ -7,6 +7,8 @@ import SEO from "../components/shared/SEO.astro";
 
 import "../styles/global.css";
 import AppointmentDialog from "../components/shared/AppointmentDialog.astro";
+import type { Lang } from "../i18n/utils";
+import { getLocalizedPath, useTranslations } from "../i18n/utils";
 
 interface ArticleJsonLd {
 	title: string;
@@ -31,6 +33,8 @@ interface Props {
 	breadcrumbs?: BreadcrumbItem[];
 	class?: string;
 	bodyBgColor?: string;
+	lang: Lang;
+	altPath?: string;
 }
 
 const {
@@ -44,17 +48,27 @@ const {
 	breadcrumbs,
 	class: className,
 	bodyBgColor,
+	lang,
+	altPath: altPathOverride,
 } = Astro.props;
 
-const title = `Психолог Илона Хоменко${subtitle ? ` - ${subtitle}` : ""}`;
+const t = useTranslations(lang);
+const siteTitle = t("site.title");
+const title = subtitle ? `${subtitle} - ${siteTitle}` : siteTitle;
 const canonicalUrl = Astro.url.pathname;
 
-const defaultDescription =
-	"Психолог Илона Хоменко. Индивидуальные консультации онлайн. Работаю в подходах ACT, CFT и ОРКТ. Помогаю справиться с тревогой, депрессией, эмоциональным выгоранием.";
+const defaultDescription = t("site.defaultDescription");
 const finalDescription = description || defaultDescription;
+
+const siteUrl = import.meta.env.SITE;
+const altLang: Lang = lang === "ru" ? "en" : "ru";
+const altPath = altPathOverride ?? getLocalizedPath(Astro.url.pathname, altLang);
+const currentPath = getLocalizedPath(Astro.url.pathname, lang);
+const ruPath = lang === "ru" ? currentPath : altPath;
+const enPath = lang === "en" ? currentPath : altPath;
 ---
 
-<html lang="ru">
+<html lang={lang}>
 	<head>
 		<meta charset="utf-8">
 		<script is:inline>
@@ -86,6 +100,21 @@ const finalDescription = description || defaultDescription;
 
 		<link
 			rel="preload"
+			href="/fonts/inter-latin-400-normal.woff2"
+			crossorigin
+			as="font"
+			type="font/woff2"
+		>
+		<link
+			rel="preload"
+			href="/fonts/inter-latin-600-normal.woff2"
+			crossorigin
+			as="font"
+			type="font/woff2"
+		>
+		{lang === "ru" && <>
+		<link
+			rel="preload"
 			href="/fonts/inter-cyrillic-400-normal.woff2"
 			crossorigin
 			as="font"
@@ -98,11 +127,18 @@ const finalDescription = description || defaultDescription;
 			as="font"
 			type="font/woff2"
 		>
+		</>}
 
 		<link rel="icon" href="/favicon.ico" sizes="32x32">
 		<link rel="icon" href="/favicon.svg" type="image/svg+xml">
 		<link rel="apple-touch-icon" href="/apple-touch-favicon.png">
-		{pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
+		{lang === "en"
+			? <link rel="manifest" href="/manifest-en.webmanifest" />
+			: pwaInfo && <Fragment set:html={pwaInfo.webManifest.linkTag} />}
+
+		<link rel="alternate" hreflang="ru" href={new URL(ruPath, siteUrl).href}>
+		<link rel="alternate" hreflang="en" href={new URL(enPath, siteUrl).href}>
+		<link rel="alternate" hreflang="x-default" href={new URL(ruPath, siteUrl).href}>
 
 		<title>{title}</title>
 		<SEO
@@ -112,21 +148,28 @@ const finalDescription = description || defaultDescription;
 			ogImage={ogImage}
 			ogType={ogType}
 			articlePublishedTime={articlePublishedTime}
+			lang={lang}
 		/>
 
-		<JsonLd type={jsonLdType} articleData={articleJsonLd} breadcrumbs={breadcrumbs} />
+		<JsonLd
+			type={jsonLdType}
+			articleData={articleJsonLd}
+			breadcrumbs={breadcrumbs}
+			lang={lang}
+			pageUrl={new URL(canonicalUrl, siteUrl).href}
+		/>
 		<script>
 		import "../scripts/pwa";
 		</script>
 	</head>
 	<body>
-		<a class="skip-link" href="#main-content">Перейти к основному содержанию</a>
-		<Header />
+		<a class="skip-link" href="#main-content">{t("skip.link")}</a>
+		<Header lang={lang} altPath={altPathOverride} />
 		<main id="main-content" class={className}>
 			<slot />
 		</main>
-		<Footer />
-		<AppointmentDialog />
+		<Footer lang={lang} />
+		<AppointmentDialog lang={lang} />
 	</body>
 </html>
 

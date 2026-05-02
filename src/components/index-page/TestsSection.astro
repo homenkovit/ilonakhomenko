@@ -1,19 +1,30 @@
 ---
 import { getCollection } from "astro:content";
+import type { Lang } from "../../i18n/utils";
+import { getLocalizedPath, useTranslations } from "../../i18n/utils";
 
-const tests = await getCollection("tests");
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const testsPath = getLocalizedPath("/tests", lang);
+
+const collectionName = lang === "en" ? "testsEn" : "testsRu";
+const tests = await getCollection(collectionName);
 ---
 
 <section class="tests container">
-	<h2 class="page-subtitle">Тесты</h2>
+	<h2 class="page-subtitle">{t("section.tests.title")}</h2>
 	<ul class="tests__list">
 		{tests.map((test) => (
-            <li class="tests__item">
-                <a href={`/tests/${test.id}`} class="test-link" data-astro-reload>
-                    <h3 class="test-link__title">{test.data.title}</h3>
-                </a>
-            </li>
-        ))}
+			<li class="tests__item">
+				<a href={`${testsPath}/${test.id}`} class="test-link">
+					<h3 class="test-link__title">{test.data.title}</h3>
+				</a>
+			</li>
+		))}
 	</ul>
 </section>
 

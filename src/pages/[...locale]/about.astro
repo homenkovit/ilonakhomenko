@@ -1,0 +1,54 @@
+---
+import { aboutContent } from "../../data/pages";
+import type { Lang } from "../../i18n/utils";
+import { getLocaleStaticPaths, useTranslations } from "../../i18n/utils";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const content = aboutContent[lang];
+---
+
+<BaseLayout
+	title={t("page.about.title")}
+	description={t("page.about.description")}
+	bodyBgColor="var(--surface-color)"
+	class="container"
+	lang={lang}
+>
+	<section class="page-section">
+		<h1 class="page-title">{t("page.about.title")}</h1>
+		{content.introParagraphs.map((p) => <p class="page-text" set:html={p} />)}
+	</section>
+	<section class="page-section">
+		<h2 class="page-subtitle">{content.principlesTitle}</h2>
+		<ul class="principle-list">
+			{content.principles.map((item) => (
+				<li>
+					<h3>{item.title}</h3>
+					<p>{item.description}</p>
+				</li>
+			))}
+		</ul>
+	</section>
+</BaseLayout>
+
+<style>
+.principle-list {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+
+	&,
+	h3,
+	p {
+		margin: 0;
+	}
+}
+</style>

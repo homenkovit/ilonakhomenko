@@ -1,4 +1,7 @@
 ---
+import type { Lang } from "../../i18n/utils";
+import { useTranslations } from "../../i18n/utils";
+
 interface Props {
 	title: string;
 	description: string;
@@ -6,6 +9,7 @@ interface Props {
 	ogImage?: string;
 	ogType?: "website" | "article";
 	articlePublishedTime?: string;
+	lang: Lang;
 }
 
 const {
@@ -15,8 +19,12 @@ const {
 	ogImage = "/og-image.png",
 	ogType = "website",
 	articlePublishedTime,
+	lang,
 } = Astro.props;
 
+const t = useTranslations(lang);
+const ogLocale = lang === "ru" ? "ru_RU" : "en_US";
+const ogLocaleAlternate = lang === "ru" ? "en_US" : "ru_RU";
 const siteUrl = import.meta.env.SITE;
 const fullCanonicalUrl = new URL(canonicalUrl, siteUrl).href;
 const fullOgImageUrl = new URL(ogImage, siteUrl).href;
@@ -33,8 +41,9 @@ const fullOgImageUrl = new URL(ogImage, siteUrl).href;
 <meta property="og:title" content={title}>
 <meta property="og:description" content={description}>
 <meta property="og:url" content={fullCanonicalUrl}>
-<meta property="og:locale" content="ru_RU">
-<meta property="og:site_name" content="Психолог Илона Хоменко">
+<meta property="og:locale" content={ogLocale}>
+<meta property="og:locale:alternate" content={ogLocaleAlternate}>
+<meta property="og:site_name" content={t("site.title")}>
 <meta property="og:image" content={fullOgImageUrl}>
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">

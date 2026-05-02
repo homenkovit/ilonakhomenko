@@ -9,8 +9,24 @@ export default defineConfig({
 	image: {
 		layout: "constrained",
 	},
+	i18n: {
+		defaultLocale: "ru",
+		locales: ["ru", "en"],
+		routing: {
+			prefixDefaultLocale: false,
+		},
+	},
 	integrations: [
-		sitemap(),
+		sitemap({
+			filter: (page) => !page.includes("/404") && !page.includes("/offline"),
+			i18n: {
+				defaultLocale: "ru",
+				locales: {
+					ru: "ru",
+					en: "en",
+				},
+			},
+		}),
 		AstroPWA({
 			strategies: "injectManifest",
 			registerType: "prompt",

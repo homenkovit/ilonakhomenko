@@ -1,0 +1,82 @@
+---
+import { getCollection } from "astro:content";
+import type { Lang } from "../../../i18n/utils";
+import { getLocalizedPath, useTranslations } from "../../../i18n/utils";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+	const [testsRu, testsEn] = await Promise.all([
+		getCollection("testsRu"),
+		getCollection("testsEn"),
+	]);
+
+	return [
+		{ params: { locale: undefined }, props: { lang: "ru" as Lang, tests: testsRu } },
+		{ params: { locale: "en" }, props: { lang: "en" as Lang, tests: testsEn } },
+	];
+}
+
+const { lang, tests } = Astro.props;
+const t = useTranslations(lang);
+const testsPath = getLocalizedPath("/tests", lang);
+---
+
+<BaseLayout
+	title={t("page.tests.title")}
+	description={t("page.tests.description")}
+	class="tests-page container"
+	lang={lang}
+>
+	<h1 class="page-title">{t("section.tests.title")}</h1>
+
+	<ul class="tests-list">
+		{tests.map((test) => (
+			<li>
+				<a href={`${testsPath}/${test.id}`}>{test.data.title}</a>
+			</li>
+		))}
+	</ul>
+</BaseLayout>
+
+<style is:global>
+.tests-page {
+	position: relative;
+	background-image:
+		linear-gradient(var(--overlay-color), var(--overlay-color)), url("/images/tests-cover-768.webp");
+	background-repeat: no-repeat;
+	background-size: cover;
+
+	@media screen and (width >= 768px) {
+		background-image:
+			linear-gradient(var(--overlay-color), var(--overlay-color)),
+			url("/images/tests-cover-1440.webp");
+	}
+
+	@media screen and (width >= 1500px) {
+		background-image:
+			linear-gradient(var(--overlay-color), var(--overlay-color)), url("/images/tests-cover.webp");
+	}
+}
+</style>
+
+<style>
+.tests-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+
+	li + li {
+		margin-block-start: 24px;
+	}
+
+	a {
+		font-size: 30px;
+		line-height: 40px;
+
+		@media screen and (width >= 1500px) {
+			font-size: 40px;
+			line-height: 50px;
+		}
+	}
+}
+</style>

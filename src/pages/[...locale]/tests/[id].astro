@@ -1,0 +1,407 @@
+---
+import { getCollection, render } from "astro:content";
+import Icon from "../../../components/shared/Icon.astro";
+import type { Lang } from "../../../i18n/utils";
+import { findTranslatedTest, getLocalizedPath, useTranslations } from "../../../i18n/utils";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import type { TestData } from "../../../scripts/test-runner";
+
+const testDataFilesRu = import.meta.glob<{
+	default: Omit<TestData, "id" | "title">;
+}>("../../../data/tests/ru/*.json", { eager: true });
+
+const testDataFilesEn = import.meta.glob<{
+	default: Omit<TestData, "id" | "title">;
+}>("../../../data/tests/en/*.json", { eager: true });
+
+export async function getStaticPaths() {
+	const [testsRu, testsEn] = await Promise.all([
+		getCollection("testsRu"),
+		getCollection("testsEn"),
+	]);
+
+	return [
+		...testsRu.map((test) => ({
+			params: { locale: undefined, id: test.id },
+			props: {
+				test,
+				lang: "ru" as Lang,
+				translatedSlug: findTranslatedTest(test.data.testId, testsEn)?.id,
+			},
+		})),
+		...testsEn.map((test) => ({
+			params: { locale: "en", id: test.id },
+			props: {
+				test,
+				lang: "en" as Lang,
+				translatedSlug: findTranslatedTest(test.data.testId, testsRu)?.id,
+			},
+		})),
+	];
+}
+
+const { test, lang, translatedSlug } = Astro.props;
+const t = useTranslations(lang);
+const { Content } = await render(test);
+const pageTitle = `${t("tests.prefix")} "${test.data.title}"`;
+
+const testDataFiles = lang === "en" ? testDataFilesEn : testDataFilesRu;
+const jsonPath = `../../../data/tests/${lang === "en" ? "en" : "ru"}/${test.id}.json`;
+const testData = {
+	id: test.id,
+	title: test.data.title,
+	...testDataFiles[jsonPath]?.default,
+} satisfies TestData;
+
+const testDescription = test.data.description || `${t("tests.prefix")} "${test.data.title}"`;
+
+const siteUrl = import.meta.env.SITE;
+const testsPath = getLocalizedPath("/tests", lang);
+const testUrl = `${siteUrl}${testsPath}/${test.id}`;
+
+const altLang: Lang = lang === "ru" ? "en" : "ru";
+const altPath = translatedSlug
+	? `${getLocalizedPath("/tests", altLang)}/${translatedSlug}`
+	: undefined;
+---
+
+<BaseLayout
+	title={pageTitle}
+	description={testDescription}
+	breadcrumbs={[
+		{ name: t("breadcrumb.home"), url: new URL(getLocalizedPath("/", lang), siteUrl).href },
+		{ name: t("breadcrumb.tests"), url: `${siteUrl}${testsPath}` },
+		{ name: test.data.title, url: testUrl },
+	]}
+	altPath={altPath}
+	bodyBgColor="var(--surface-alt-color)"
+	class="container"
+	lang={lang}
+>
+	<h1 class="page-title">{test.data.title}</h1>
+
+	<p class="test-warning">{t("tests.warning")}</p>
+
+	<div class="test-description">
+		<Content />
+	</div>
+
+	<div id="test-runner" data-question-of-template={t("tests.questionOf")}>
+		<div class="test-question-container">
+			<p id="storage-error-notice" class="storage-error-notice" hidden>{t("tests.storageError")}</p>
+			<p class="test-question-text" id="question-text" tabindex="-1"></p>
+			<p class="test-progress" id="test-progress"></p>
+
+			<div class="test-options" id="test-options"></div>
+
+			<div class="test-navigation" id="test-navigation">
+				<button type="button" class="nav-btn" id="prev-btn" hidden>{t("tests.prev")}</button>
+				<button type="button" class="nav-btn" id="next-btn" hidden>{t("tests.next")}</button>
+			</div>
+		</div>
+
+		<div class="test-result-container" id="result-container" style="display: none;">
+			<h2 id="result-heading" tabindex="-1">{t("tests.result")}</h2>
+			<div id="result-content"></div>
+
+			<div class="test-actions">
+				<button type="button" class="btn btn-primary" id="share-btn">
+					{t("tests.share")}
+					<Icon name="share" size={32} />
+				</button>
+				<button type="button" class="btn btn-secondary" id="restart-btn">
+					{t("tests.restart")}
+				</button>
+			</div>
+		</div>
+
+		<template id="option-btn-template">
+			<button type="button" class="option-btn"></button>
+		</template>
+
+		<template id="result-interpretation-template">
+			<p class="result-interpretation"></p>
+		</template>
+
+		<template id="result-group-template">
+			<div class="result-group">
+				<p class="result-group-name"></p>
+				<p class="result-group-interpretation"></p>
+			</div>
+		</template>
+	</div>
+</BaseLayout>
+
+<style>
+.storage-error-notice {
+	margin-block: 0 24px;
+	padding: 12px 20px;
+	border-radius: var(--radius-md);
+	background-color: var(--warning-bg-color);
+	color: var(--warning-text-color);
+	font-size: 18px;
+	line-height: 28px;
+	text-align: center;
+}
+
+.test-warning,
+.test-description {
+	margin-block-end: 48px;
+	font-size: 24px;
+	line-height: 34px;
+}
+
+.test-warning {
+	margin-block-start: 0;
+	color: var(--alert-color);
+	font-style: italic;
+}
+
+.test-question-container,
+.test-result-container {
+	padding: 32px;
+	border-radius: 24px;
+	background-color: var(--bg-color);
+	box-shadow: 0 4px 20px var(--shadow-soft);
+}
+
+.test-question-text,
+.test-progress {
+	margin-block-start: 0;
+}
+
+.test-question-text {
+	margin-block-end: 16px;
+	font-size: 24px;
+	line-height: 34px;
+	font-weight: 600;
+	text-align: center;
+}
+
+.test-progress {
+	margin-block-end: 32px;
+	font-size: 20px;
+	line-height: 30px;
+	text-align: center;
+}
+
+.test-options {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.test-navigation {
+	display: flex;
+	justify-content: space-between;
+	margin-block-start: 24px;
+	gap: 16px;
+}
+
+.nav-btn {
+	width: 125px;
+	padding: 10px;
+	border: 1px solid var(--text-color);
+	border-radius: var(--radius-md);
+	background-color: transparent;
+	font-size: 20px;
+	color: inherit;
+	cursor: pointer;
+
+	@media (prefers-reduced-motion: no-preference) {
+		transition:
+			border-color var(--transition-fast),
+			color var(--transition-fast),
+			background-color var(--transition-fast);
+	}
+
+	&:last-child {
+		margin-inline-start: auto;
+	}
+
+	@media (hover: hover) {
+		&:hover {
+			border-color: var(--hover-color);
+			color: var(--hover-color);
+		}
+	}
+
+	&:active {
+		border-color: var(--hover-color);
+		background-color: var(--hover-color);
+		color: var(--bg-color);
+	}
+}
+
+.test-result-container h2 {
+	margin-block-start: 0;
+	margin-block-end: 40px;
+	font-size: 24px;
+	line-height: 34px;
+	color: var(--accent-color);
+}
+
+.test-actions {
+	display: flex;
+	gap: 16px;
+	justify-content: center;
+	margin-block-start: 64px;
+	flex-wrap: wrap;
+}
+
+.btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	padding: 12px 45px;
+	border: none;
+	border-radius: var(--radius-full);
+	font-size: 24px;
+	line-height: 32px;
+	font-weight: 500;
+	color: var(--bg-color);
+	cursor: pointer;
+
+	@media (prefers-reduced-motion: no-preference) {
+		transition: background-color var(--transition-fast);
+	}
+
+	&.btn-primary {
+		background-color: var(--text-color);
+	}
+
+	&.btn-secondary {
+		background-color: var(--accent-color);
+	}
+
+	@media (hover: hover) {
+		&:hover {
+			background-color: var(--hover-color);
+		}
+	}
+}
+
+.option-btn {
+	padding: 10px;
+	border: none;
+	border-radius: var(--radius-lg);
+	background-color: var(--accent-color);
+	font-size: 20px;
+	line-height: 30px;
+	color: var(--bg-color);
+	cursor: pointer;
+
+	@media (prefers-reduced-motion: no-preference) {
+		transition: transform 0.1s;
+	}
+
+	&.clicked,
+	&.selected {
+		background-color: var(--hover-color);
+	}
+
+	&.clicked {
+		transform: scale(0.98);
+	}
+
+	@media (hover: hover) {
+		&:hover {
+			background-color: var(--hover-color);
+		}
+	}
+}
+
+.result-interpretation {
+	font-size: 24px;
+	line-height: 34px;
+}
+
+.result-group {
+	font-size: 24px;
+	line-height: 34px;
+}
+
+.result-group + .result-group {
+	margin-block-start: 48px;
+}
+
+.result-group-name {
+	margin-block-end: 12px;
+	font-style: italic;
+	color: var(--accent-color);
+}
+
+.result-group-interpretation {
+	margin-block: 0;
+}
+</style>
+
+<style is:global>
+@media (prefers-reduced-motion: no-preference) {
+	#question-text {
+		view-transition-name: question-text;
+	}
+
+	#test-progress {
+		view-transition-name: test-progress;
+	}
+
+	#test-options {
+		view-transition-name: test-options;
+	}
+
+	@keyframes fade-in {
+		from {
+			opacity: 0;
+		}
+	}
+
+	@keyframes fade-out {
+		to {
+			opacity: 0;
+		}
+	}
+
+	@keyframes slide-from-right {
+		from {
+			transform: translateX(100px);
+		}
+	}
+
+	@keyframes slide-to-left {
+		to {
+			transform: translateX(-100px);
+		}
+	}
+
+	::view-transition-old(question-text),
+	::view-transition-old(test-progress),
+	::view-transition-old(test-options) {
+		animation:
+			90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+			300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+	}
+
+	::view-transition-new(question-text),
+	::view-transition-new(test-progress),
+	::view-transition-new(test-options) {
+		animation:
+			210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
+			300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+	}
+}
+</style>
+
+<script is:inline type="application/json" id="test-data" set:html={JSON.stringify(testData)} />
+
+<script>
+import { TestRunner } from "../../../scripts/test-runner";
+
+const container = document.getElementById("test-runner");
+const raw = document.getElementById("test-data")?.textContent;
+const testData = raw ? JSON.parse(raw) : null;
+
+if (container && testData) {
+	new TestRunner(container, testData);
+}
+</script>

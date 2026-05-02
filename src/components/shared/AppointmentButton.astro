@@ -1,9 +1,18 @@
 ---
+import type { Lang } from "../../i18n/utils";
+import { useTranslations } from "../../i18n/utils";
 import Icon from "./Icon.astro";
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
-<button class="appointment-button" aria-label="Записаться">
-	<span>Записаться</span>
+<button class="appointment-button" aria-label={t("button.appointment")}>
+	<span>{t("button.appointment")}</span>
 	<Icon name="calendar" />
 </button>
 

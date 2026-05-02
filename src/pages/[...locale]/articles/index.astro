@@ -1,0 +1,93 @@
+---
+import { getCollection } from "astro:content";
+import type { Lang } from "../../../i18n/utils";
+import { getLocalizedPath, useTranslations } from "../../../i18n/utils";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+	const sortByDate = (a: { data: { pubDate: Date } }, b: { data: { pubDate: Date } }) =>
+		a.data.pubDate.valueOf() - b.data.pubDate.valueOf();
+
+	const [articlesRu, articlesEn] = await Promise.all([
+		getCollection("articlesRu"),
+		getCollection("articlesEn"),
+	]);
+
+	return [
+		{
+			params: { locale: undefined },
+			props: { lang: "ru" as Lang, articles: articlesRu.sort(sortByDate) },
+		},
+		{
+			params: { locale: "en" },
+			props: { lang: "en" as Lang, articles: articlesEn.sort(sortByDate) },
+		},
+	];
+}
+
+const { lang, articles } = Astro.props;
+const t = useTranslations(lang);
+const articlesPath = getLocalizedPath("/articles", lang);
+---
+
+<BaseLayout
+	title={t("page.articles.title")}
+	description={t("page.articles.description")}
+	class="articles-page container"
+	lang={lang}
+>
+	<h1 class="page-title">{t("section.articles.title")}</h1>
+
+	<ul class="articles-list">
+		{articles.map((article) => (
+			<li>
+				<a href={`${articlesPath}/${article.id}`}>{article.data.title}</a>
+			</li>
+		))}
+	</ul>
+</BaseLayout>
+
+<style is:global>
+.articles-page {
+	position: relative;
+	background-image:
+		linear-gradient(var(--overlay-color), var(--overlay-color)),
+		url("/images/articles-cover-768.webp");
+	background-repeat: no-repeat;
+	background-size: cover;
+
+	@media screen and (width >= 768px) {
+		background-image:
+			linear-gradient(var(--overlay-color), var(--overlay-color)),
+			url("/images/articles-cover-1440.webp");
+	}
+
+	@media screen and (width >= 1500px) {
+		background-image:
+			linear-gradient(var(--overlay-color), var(--overlay-color)),
+			url("/images/articles-cover.webp");
+	}
+}
+</style>
+
+<style>
+.articles-list {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+
+	li + li {
+		margin-block-start: 24px;
+	}
+
+	a {
+		font-size: 30px;
+		line-height: 40px;
+
+		@media screen and (width >= 1500px) {
+			font-size: 40px;
+			line-height: 50px;
+		}
+	}
+}
+</style>

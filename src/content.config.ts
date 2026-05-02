@@ -2,21 +2,37 @@ import { defineCollection } from "astro:content";
 import { glob } from "astro/loaders";
 import { z } from "astro/zod";
 
-const articles = defineCollection({
-	loader: glob({ pattern: "**/[^_]*.md", base: "./src/data/articles" }),
-	schema: z.object({
-		title: z.string(),
-		pubDate: z.date(),
-		description: z.string().optional(),
-	}),
+const articleSchema = z.object({
+	articleId: z.string().uuid(),
+	title: z.string(),
+	pubDate: z.date(),
+	description: z.string().optional(),
 });
 
-const tests = defineCollection({
-	loader: glob({ pattern: "**/[^_]*.md", base: "./src/data/tests" }),
-	schema: z.object({
-		title: z.string(),
-		description: z.string().optional(),
-	}),
+const testSchema = z.object({
+	testId: z.string().uuid(),
+	title: z.string(),
+	description: z.string().optional(),
 });
 
-export const collections = { articles, tests };
+const articlesRu = defineCollection({
+	loader: glob({ pattern: "**/[^_]*.md", base: "./src/data/articles/ru" }),
+	schema: articleSchema,
+});
+
+const articlesEn = defineCollection({
+	loader: glob({ pattern: "**/[^_]*.md", base: "./src/data/articles/en" }),
+	schema: articleSchema,
+});
+
+const testsRu = defineCollection({
+	loader: glob({ pattern: "**/[^_]*.md", base: "./src/data/tests/ru" }),
+	schema: testSchema,
+});
+
+const testsEn = defineCollection({
+	loader: glob({ pattern: "**/[^_]*.md", base: "./src/data/tests/en" }),
+	schema: testSchema,
+});
+
+export const collections = { articlesRu, articlesEn, testsRu, testsEn };

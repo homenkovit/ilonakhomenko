@@ -1,6 +1,16 @@
 ---
+import type { Lang } from "../../i18n/utils";
+import { getLocalizedPath, useTranslations } from "../../i18n/utils";
 import ContactLinks from "./ContactLinks.astro";
 import Icon from "./Icon.astro";
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const bookingHref = getLocalizedPath("/booking", lang);
 ---
 
 <dialog
@@ -9,15 +19,15 @@ import Icon from "./Icon.astro";
 	aria-labelledby="appointment-title"
 	closedby="any"
 >
-	<button type="button" class="close-button" aria-label="Закрыть">
+	<button type="button" class="close-button" aria-label={t("dialog.appointment.close")}>
 		<Icon name="close" size={44} />
 	</button>
-	<h2 id="appointment-title" class="title">Запись на консультацию</h2>
-	<a href="/booking" class="booking-link">
-		<span>Выбрать дату и время</span>
+	<h2 id="appointment-title" class="title">{t("dialog.appointment.title")}</h2>
+	<a href={bookingHref} class="booking-link">
+		<span>{t("dialog.appointment.pickDate")}</span>
 		<Icon name="calendar" size={24} />
 	</a>
-	<p class="divider">Или напишите мне:</p>
+	<p class="divider">{t("dialog.appointment.divider")}</p>
 	<ContactLinks />
 </dialog>
 

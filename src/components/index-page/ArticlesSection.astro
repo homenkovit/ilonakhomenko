@@ -1,23 +1,34 @@
 ---
 import { getCollection } from "astro:content";
+import type { Lang } from "../../i18n/utils";
+import { getLocalizedPath, useTranslations } from "../../i18n/utils";
 
-const articles = (await getCollection("articles"))
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const articlesPath = getLocalizedPath("/articles", lang);
+
+const collectionName = lang === "en" ? "articlesEn" : "articlesRu";
+const articles = (await getCollection(collectionName))
 	.sort((a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf())
 	.slice(0, 3);
 ---
 
 <section class="articles container">
-	<h2 class="page-subtitle">Статьи</h2>
+	<h2 class="page-subtitle">{t("section.articles.title")}</h2>
 	<ul class="articles__list">
 		{articles.map((article) => (
-            <li class="articles__item">
-                <a href={`/articles/${article.id}`} class="article-link" data-astro-reload>
-                    <h3 class="article-link__title">{article.data.title}</h3>
-                </a>
-            </li>
-        ))}
+			<li class="articles__item">
+				<a href={`${articlesPath}/${article.id}`} class="article-link">
+					<h3 class="article-link__title">{article.data.title}</h3>
+				</a>
+			</li>
+		))}
 	</ul>
-	<a href="/articles" class="show-all-link">Показать все</a>
+	<a href={articlesPath} class="show-all-link">{t("articles.showAll")}</a>
 </section>
 
 <style>

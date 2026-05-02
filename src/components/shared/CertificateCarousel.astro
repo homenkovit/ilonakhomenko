@@ -1,6 +1,8 @@
 ---
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
+import type { Lang } from "../../i18n/utils";
+import { useTranslations } from "../../i18n/utils";
 import Icon from "./Icon.astro";
 
 interface Certificate {
@@ -10,22 +12,29 @@ interface Certificate {
 
 interface Props {
 	images: Certificate[];
+	lang: Lang;
 	mode?: "inline" | "modal";
 }
 
-const { images, mode = "inline" } = Astro.props;
+const { images, lang, mode = "inline" } = Astro.props;
+const t = useTranslations(lang);
 const totalSlides = images.length;
+const slideOf = (current: number) =>
+	t("carousel.slideOf")
+		.replace("{current}", String(current))
+		.replace("{total}", String(totalSlides));
 ---
 
 <div
 	class="carousel"
 	role="region"
-	aria-label="Карусель сертификатов"
+	aria-label={t("carousel.label")}
 	aria-roledescription="carousel"
 	data-mode={mode}
+	data-slide-of-template={t("carousel.slideOf")}
 >
 	<div class="carousel-main">
-		<button class="nav-button" aria-label="Предыдущий слайд" data-action="prev" disabled>
+		<button class="nav-button" aria-label={t("carousel.prev")} data-action="prev" disabled>
 			<Icon name="arrow-prev-lg" size={104} />
 		</button>
 
@@ -36,7 +45,7 @@ const totalSlides = images.length;
               class="carousel-slide"
               role="group"
               aria-roledescription="slide"
-              aria-label={`${index + 1} из ${totalSlides}`}
+              aria-label={slideOf(index + 1)}
               aria-hidden={index !== 0 ? "true" : undefined}
               inert={index !== 0 ? true : undefined}
               data-slide-index={index}
@@ -44,7 +53,7 @@ const totalSlides = images.length;
               {mode === "inline" ? (
                 <button
                   class="slide-button"
-                  aria-label={`Открыть ${image.alt} в полноэкранном режиме`}
+                  aria-label={t("carousel.openFullscreen").replace("{alt}", image.alt)}
                   data-action="open-modal"
                   data-slide-index={index}
                 >
@@ -65,7 +74,7 @@ const totalSlides = images.length;
 
 		<button
 			class="nav-button"
-			aria-label="Следующий слайд"
+			aria-label={t("carousel.next")}
 			data-action="next"
 			disabled={totalSlides === 1}
 		>
@@ -73,21 +82,21 @@ const totalSlides = images.length;
 		</button>
 	</div>
 
-	<span class="counter" aria-live="polite">1 из {totalSlides}</span>
+	<span class="counter" aria-live="polite">{slideOf(1)}</span>
 </div>
 
 {mode === "inline" && (
     <dialog
       id="certificate-modal"
       class="carousel-modal"
-      aria-label="Полноэкранный просмотр сертификата"
+      aria-label={t("carousel.fullscreenLabel")}
     >
-      <button class="close-modal-button" aria-label="Закрыть">
+      <button class="close-modal-button" aria-label={t("carousel.close")}>
         <Icon name="close" size={44} />
       </button>
 
       <div class="modal-content">
-        <Astro.self images={images} mode="modal" />
+        <Astro.self images={images} lang={lang} mode="modal" />
       </div>
     </dialog>
   )}
@@ -387,7 +396,12 @@ function initCarousel(carouselElement: HTMLElement) {
 		prevButton && (prevButton.disabled = currentIndex === 0);
 		nextButton && (nextButton.disabled = currentIndex === totalSlides - 1);
 
-		counter && (counter.textContent = `${currentIndex + 1} из ${totalSlides}`);
+		if (counter) {
+			const template = carouselElement.dataset.slideOfTemplate || "{current} / {total}";
+			counter.textContent = template
+				.replace("{current}", String(currentIndex + 1))
+				.replace("{total}", String(totalSlides));
+		}
 
 		slides.forEach((slide, index) => {
 			const isActive = index === currentIndex;

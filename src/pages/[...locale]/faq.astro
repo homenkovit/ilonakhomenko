@@ -1,0 +1,24 @@
+---
+import FaqSection from "../../components/index-page/FaqSection.astro";
+import type { Lang } from "../../i18n/utils";
+import { getLocaleStaticPaths, useTranslations } from "../../i18n/utils";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+	title={t("page.faq.title")}
+	description={t("page.faq.description")}
+	bodyBgColor="var(--surface-color)"
+	lang={lang}
+>
+	<FaqSection titleTag="h1" lang={lang} />
+</BaseLayout>

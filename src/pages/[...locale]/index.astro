@@ -1,0 +1,70 @@
+---
+import AboutSection from "../../components/index-page/AboutSection.astro";
+import ArticlesSection from "../../components/index-page/ArticlesSection.astro";
+import FaqSection from "../../components/index-page/FaqSection.astro";
+import HelpSection from "../../components/index-page/HelpSection.astro";
+import PriceSection from "../../components/index-page/PriceSection.astro";
+import TestsSection from "../../components/index-page/TestsSection.astro";
+import type { Lang } from "../../i18n/utils";
+import { getLocaleStaticPaths, useTranslations } from "../../i18n/utils";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<BaseLayout
+	title={t("page.home.title")}
+	description={t("page.home.description")}
+	jsonLdType="ProfessionalService"
+	class="index-page"
+	lang={lang}
+>
+	<AboutSection lang={lang} />
+	<hr class="separator">
+	<HelpSection lang={lang} />
+	<hr class="separator">
+	<PriceSection lang={lang} />
+	<FaqSection lang={lang} />
+	<ArticlesSection lang={lang} />
+	<TestsSection lang={lang} />
+</BaseLayout>
+
+<style is:global>
+main.index-page {
+	overflow: hidden;
+	padding-block: 0;
+
+	:where(h1, h2, h3, h4, h5, h6) {
+		font-weight: 400;
+	}
+
+	section {
+		padding-block: 160px;
+		background-color: var(--bg-color);
+
+		@media screen and (width < 1500px) {
+			padding-block: 80px;
+		}
+
+		@media screen and (width < 768px) {
+			padding-block: 60px;
+		}
+	}
+}
+</style>
+
+<style>
+.separator {
+	height: 2px;
+	border: none;
+	margin: 0;
+	background-color: var(--border-color);
+}
+</style>

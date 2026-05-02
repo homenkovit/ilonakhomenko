@@ -1,0 +1,105 @@
+{
+	"questions": [
+		"When I'm walking, I deliberately notice the sensations of my body moving.",
+		"I'm good at finding words to describe my feelings.",
+		"I criticize myself for having irrational or inappropriate emotions.",
+		"I perceive my feelings and emotions without having to react to them.",
+		"When I do things, my mind wanders off and I'm easily distracted.",
+		"When I take a shower or bath, I stay alert to the sensations of water on my body.",
+		"I can easily put my beliefs, opinions, and expectations into words.",
+		"I don't pay attention to what I'm doing because I'm daydreaming, worrying, or otherwise distracted.",
+		"I watch my feelings without getting lost in them.",
+		"I tell myself that I shouldn't be feeling the way I'm feeling.",
+		"I notice how foods and drinks affect my thoughts, bodily sensations, and emotions.",
+		"It's hard for me to find the words to describe what I'm thinking.",
+		"I am easily distracted.",
+		"I believe some of my thoughts are abnormal or bad, and I shouldn't think that way.",
+		"I pay attention to sensations, such as the wind in my hair or the sun on my face.",
+		"I have trouble finding the right words to express how I feel about things.",
+		"I make judgments about whether my thoughts are good or bad.",
+		"I find it difficult to stay focused on what's happening in the present.",
+		"When I have distressing thoughts or images, I \"step back\" and am aware of the thought or image without getting taken over by it.",
+		"I pay attention to sounds, such as clock ticking, birds chirping, or cars passing.",
+		"In difficult situations, I can pause without immediately reacting.",
+		"When I have a sensation in my body, it's difficult for me to describe it because I can't find the right words.",
+		"It seems I'm \"running on automatic\" without much awareness of what I'm doing.",
+		"When I have distressing thoughts or images, I feel calm soon after.",
+		"I tell myself that I shouldn't be thinking the way I'm thinking.",
+		"I notice the smells and aromas of things.",
+		"Even when I'm feeling terribly upset, I can find a way to put it into words.",
+		"I rush through activities without being really attentive to them.",
+		"When I have distressing thoughts or images, I'm able just to notice them without reacting.",
+		"I think some of my emotions are bad or inappropriate, and I shouldn't feel them.",
+		"I notice visual elements in art or in nature, such as colors, shapes, textures, and patterns of light and shadow.",
+		"My natural tendency is to put my experiences into words.",
+		"When I have distressing thoughts or images, I just notice them and let them go.",
+		"I do jobs or tasks automatically without being aware of what I'm doing.",
+		"When I have distressing thoughts or images, I judge myself as good or bad depending what the thought or image is about.",
+		"I pay attention to how my emotions affect my thoughts and behavior.",
+		"I can usually describe how I feel at the moment in considerable detail.",
+		"I find myself doing things without paying attention.",
+		"I disapprove of myself when I have irrational ideas."
+	],
+	"scoring": {
+		"type": "reverse",
+		"factors": [
+			{
+				"name": "Observing",
+				"description": "The ability to notice, attend to, and track external and internal experience: feelings, emotions, thoughts, sounds, smells, and sensations.",
+				"questions": [1, 6, 11, 15, 20, 26, 31, 36],
+				"reversed": [],
+				"maxScore": 40
+			},
+			{
+				"name": "Describing",
+				"description": "The ability to label inner experiences with words.",
+				"questions": [2, 7, 12, 16, 22, 27, 32, 37],
+				"reversed": [12, 16, 22],
+				"maxScore": 40
+			},
+			{
+				"name": "Acting with Awareness",
+				"description": "The ability to be fully present in the here and now, engaged with the current moment, instead of operating on autopilot or acting out of quick judgment.",
+				"questions": [5, 8, 13, 18, 23, 28, 34, 38],
+				"reversed": [5, 8, 13, 18, 23, 28, 34, 38],
+				"maxScore": 40
+			},
+			{
+				"name": "Non-Judging of Inner Experience",
+				"description": "The ability to accept any inner experience — even painful ones — as they are, without labeling them as unwanted, and without striving to get rid of or suppress them. It calls for self-acceptance and unconditional empathy for oneself and others.",
+				"questions": [3, 10, 14, 17, 25, 30, 35, 39],
+				"reversed": [3, 10, 14, 17, 25, 30, 35, 39],
+				"maxScore": 40
+			},
+			{
+				"name": "Non-Reactivity to Inner Experience",
+				"description": "The ability to allow thoughts and feelings to come and go without getting caught up in or carried away by them. Non-reactivity makes way for emotional resilience and restores mental balance.",
+				"questions": [4, 9, 19, 21, 24, 29, 33],
+				"reversed": [],
+				"maxScore": 35
+			}
+		]
+	},
+	"options": [
+		{
+			"text": "Never or very rarely true",
+			"value": 1
+		},
+		{
+			"text": "Rarely true",
+			"value": 2
+		},
+		{
+			"text": "Sometimes true",
+			"value": 3
+		},
+		{
+			"text": "Often true",
+			"value": 4
+		},
+		{
+			"text": "Very often or always true",
+			"value": 5
+		}
+	]
+}

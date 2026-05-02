@@ -1,0 +1,77 @@
+---
+import type { Lang } from "../../i18n/utils";
+import { getLocalizedPath, useTranslations } from "../../i18n/utils";
+
+interface Props {
+	lang: Lang;
+	pathname: string;
+	altPath?: string;
+}
+
+const { lang, pathname, altPath: altPathOverride } = Astro.props;
+const t = useTranslations(lang);
+const altLang: Lang = lang === "ru" ? "en" : "ru";
+const altPath = altPathOverride ?? getLocalizedPath(pathname, altLang);
+---
+
+<a
+	href={altPath}
+	class="lang-switcher"
+	data-lang={altLang}
+	lang={altLang}
+	aria-label={t("lang.switchTo")}
+>
+	{t(`lang.${altLang}`)}
+</a>
+
+<script>
+document.addEventListener("astro:page-load", () => {
+	document.querySelectorAll<HTMLAnchorElement>(".lang-switcher[data-lang]").forEach((link) => {
+		link.addEventListener("click", () => {
+			const lang = link.getAttribute("data-lang");
+			if (lang) {
+				try {
+					// biome-ignore lint/suspicious/noDocumentCookie: sync access needed in inline script
+					document.cookie = `nf_lang=${lang};path=/;max-age=${365 * 24 * 60 * 60};SameSite=Lax`;
+				} catch {}
+			}
+		});
+	});
+});
+</script>
+
+<style>
+.lang-switcher {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 40px;
+	padding: 6px 12px;
+	border: 1px solid var(--border-color);
+	border-radius: var(--radius-full);
+	font-size: 16px;
+	line-height: 24px;
+	font-weight: 600;
+	color: var(--text-color);
+	text-decoration: none;
+	white-space: nowrap;
+
+	@media (prefers-reduced-motion: no-preference) {
+		transition:
+			border-color var(--transition-fast),
+			color var(--transition-fast);
+	}
+
+	@media (hover: hover) {
+		&:hover {
+			border-color: var(--hover-color);
+			color: var(--hover-color);
+		}
+	}
+
+	&:active {
+		border-color: var(--hover-color);
+		color: var(--hover-color);
+	}
+}
+</style>

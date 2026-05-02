@@ -1,7 +1,17 @@
 ---
+import type { Lang } from "../../i18n/utils";
+import { getLocalizedPath, useTranslations } from "../../i18n/utils";
 import Icon from "./Icon.astro";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
 import ThemeSwitcher from "./ThemeSwitcher.astro";
 
+interface Props {
+	lang: Lang;
+	altPath?: string;
+}
+
+const { lang, altPath } = Astro.props;
+const t = useTranslations(lang);
 const { pathname } = Astro.url;
 
 const normalizePathname = (path: string) => path.replace(/\/$/, "") || "/";
@@ -9,43 +19,48 @@ const getIsLinkActive = (href: string) =>
 	!href.includes("#") && normalizePathname(pathname) === normalizePathname(href);
 
 const navigationLinks = [
-	{ href: "/", label: "Главная" },
-	{ href: "/help", label: "С чем помогаю" },
-	{ href: "/price", label: "Стоимость" },
-	{ href: "/faq", label: "Вопросы" },
-	{ href: "/about", label: "Обо мне" },
-	{ href: "/articles", label: "Статьи" },
-	{ href: "/tests", label: "Тесты" },
-	{ href: "/education", label: "Образование" },
+	{ href: getLocalizedPath("/", lang), label: t("nav.home") },
+	{ href: getLocalizedPath("/help", lang), label: t("nav.help") },
+	{ href: getLocalizedPath("/price", lang), label: t("nav.price") },
+	{ href: getLocalizedPath("/faq", lang), label: t("nav.faq") },
+	{ href: getLocalizedPath("/about", lang), label: t("nav.about") },
+	{ href: getLocalizedPath("/articles", lang), label: t("nav.articles") },
+	{ href: getLocalizedPath("/tests", lang), label: t("nav.tests") },
+	{ href: getLocalizedPath("/education", lang), label: t("nav.education") },
 ];
 ---
 
 <button
 	type="button"
 	class="menu-button"
-	aria-label="Меню"
+	aria-label={t("nav.aria.menuButton")}
 	aria-expanded="false"
 	aria-controls="menu"
 >
-	<span>Меню</span>
+	<span>{t("nav.menuButton")}</span>
 	<Icon name="menu" />
 </button>
-<nav id="menu" class="menu closed" aria-label="Главное меню">
+<nav id="menu" class="menu closed" aria-label={t("nav.aria.menu")}>
 	<ul class="nav-list">
 		{navigationLinks.map((link) => {
-                const isActive = getIsLinkActive(link.href);
+			const isActive = getIsLinkActive(link.href);
 
-                return (
-                    <li class="nav-item">
-                        <a class="nav-link" href={link.href} class:list={[{ active: isActive }]} aria-current={isActive ? "page" : undefined}>
-                            {link.label}
-                        </a>
-                    </li>
-                );
-            })}
+			return (
+				<li class="nav-item">
+					<a
+						href={link.href}
+						class:list={["nav-link", { active: isActive }]}
+						aria-current={isActive ? "page" : undefined}
+					>
+						{link.label}
+					</a>
+				</li>
+			);
+		})}
 	</ul>
 	<div class="menu-theme-switcher">
-		<ThemeSwitcher />
+		<LanguageSwitcher lang={lang} pathname={pathname} altPath={altPath} />
+		<ThemeSwitcher lang={lang} />
 	</div>
 </nav>
 
@@ -155,6 +170,8 @@ const navigationLinks = [
 	bottom: 0;
 	display: flex;
 	justify-content: center;
+	align-items: center;
+	gap: 16px;
 	padding-block: 16px;
 	padding-inline: 20px;
 	margin-block-start: 20px;

@@ -1,48 +1,40 @@
 ---
+import { homePriceContent } from "../../data/pages";
+import type { Lang } from "../../i18n/utils";
+import { useTranslations } from "../../i18n/utils";
 import AppointmentButton from "../shared/AppointmentButton.astro";
 import ContactLinks from "../shared/ContactLinks.astro";
 import Icon from "../shared/Icon.astro";
 
 interface Props {
 	titleTag?: "h1" | "h2";
+	lang: Lang;
 }
 
-const { titleTag: TitleTag = "h2" } = Astro.props;
+const { titleTag: TitleTag = "h2", lang } = Astro.props;
+const t = useTranslations(lang);
+const content = homePriceContent[lang];
 ---
 
 <section class="price container">
-	<TitleTag class="page-subtitle">Стоимость и формат работы</TitleTag>
+	<TitleTag class="page-subtitle">{t("section.price.title")}</TitleTag>
 	<ul class="price__list">
 		<li class="price__item">
-			<h3 class="price__item-title">Онлайн консультация</h3>
+			<h3 class="price__item-title">{content.cardTitle}</h3>
 			<ul class="item-list">
-				<li class="item-list__item">
-					<Icon name="check" size={30} />
-					Встреча длится 60 минут
-				</li>
-				<li class="item-list__item">
-					<Icon name="check" size={30} />
-					Отвечу на интересующие вас вопросы
-				</li>
-				<li class="item-list__item">
-					<Icon name="check" size={30} />
-					Соберу основную информацию
-				</li>
-				<li class="item-list__item">
-					<Icon name="check" size={30} />
-					Всё, что для этого нужно - стабильное интернет-соединение и помещение, где вас не будут
-					отвлекать
-				</li>
+				{content.features.map((feature) => (
+					<li class="item-list__item">
+						<Icon name="check" size={30} />
+						{feature}
+					</li>
+				))}
 			</ul>
-			<p class="item-price">€50 / $55</p>
-			<AppointmentButton />
+			<p class="item-price">{content.price}</p>
+			<AppointmentButton lang={lang} />
 		</li>
 	</ul>
-	<p class="price__text">
-		Работаю только онлайн, по всему миру, по предоплате. Оплату принимаю в евро и долларах. Буду
-		рада вам помочь!
-	</p>
-	<p class="price__contact-text">Для связи:</p>
+	<p class="price__text">{content.infoText}</p>
+	<p class="price__contact-text">{content.contactText}</p>
 	<ContactLinks />
 </section>
 

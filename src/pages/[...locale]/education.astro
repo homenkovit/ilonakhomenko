@@ -1,0 +1,62 @@
+---
+import diploma1 from "../../assets/images/education/1-diploma-1.webp";
+import diploma2 from "../../assets/images/education/2-diploma-2.webp";
+import diploma3 from "../../assets/images/education/3-diploma-3.webp";
+import certRhga from "../../assets/images/education/4-certificate-rhga.webp";
+import certAct from "../../assets/images/education/5-certificate-act.webp";
+import certManp1 from "../../assets/images/education/6-certificate-manp.webp";
+import certManp2 from "../../assets/images/education/7-certificate-manp.webp";
+import diploma8p1 from "../../assets/images/education/8-diploma-1.webp";
+import diploma8p2 from "../../assets/images/education/8-diploma-2.webp";
+import diploma8p3 from "../../assets/images/education/8-diploma-3.webp";
+import certManp3 from "../../assets/images/education/9-certificate-manp.webp";
+import CertificateCarousel from "../../components/shared/CertificateCarousel.astro";
+import { educationContent } from "../../data/pages";
+import type { Lang } from "../../i18n/utils";
+import { getLocaleStaticPaths, useTranslations } from "../../i18n/utils";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+const content = educationContent[lang];
+
+const certificateImages = [
+	diploma1,
+	diploma2,
+	diploma3,
+	certRhga,
+	certAct,
+	certManp1,
+	certManp2,
+	diploma8p1,
+	diploma8p2,
+	diploma8p3,
+	certManp3,
+];
+const certificates = certificateImages.map((src, index) => ({
+	src,
+	alt: content.certificateAlts[index],
+}));
+---
+
+<BaseLayout
+	title={t("page.education.title")}
+	description={t("page.education.description")}
+	class="container"
+	lang={lang}
+>
+	<section class="page-section">
+		<h1 class="page-title">{content.pageTitle}</h1>
+		{content.introParagraphs.map((paragraph) => <p class="page-text" set:html={paragraph} />)}
+	</section>
+	<section class="page-section">
+		<h2 class="page-subtitle">{content.certsTitle}</h2>
+		<CertificateCarousel images={certificates} lang={lang} />
+	</section>
+</BaseLayout>

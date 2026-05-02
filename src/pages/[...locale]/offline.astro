@@ -1,0 +1,63 @@
+---
+import type { Lang } from "../../i18n/utils";
+import { getLocaleStaticPaths, useTranslations } from "../../i18n/utils";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export const getStaticPaths = getLocaleStaticPaths;
+
+interface Props {
+	lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<BaseLayout title={t("offline.title")} lang={lang}>
+	<div class="offline">
+		<div class="offline__icon" aria-hidden="true">📡</div>
+		<h1 class="page-title">{t("offline.title")}</h1>
+		<p class="offline__description">{t("offline.description")}</p>
+		<button class="offline__button" onclick="location.reload()">{t("offline.retry")}</button>
+	</div>
+</BaseLayout>
+
+<style>
+.offline {
+	padding-inline: 24px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-height: 50vh;
+}
+
+.offline__icon {
+	font-size: 48px;
+	margin-block-end: 20px;
+}
+
+.offline__description {
+	font-size: 16px;
+	line-height: 1.6;
+	color: var(--text-secondary-color);
+	margin-block-end: 28px;
+}
+
+.offline__button {
+	display: inline-block;
+	padding: 12px 28px;
+	background-color: var(--accent-color);
+	color: var(--bg-color);
+	border: none;
+	border-radius: 8px;
+	font-size: 16px;
+	font-family: inherit;
+	cursor: pointer;
+}
+
+.offline__button:hover {
+	opacity: 0.85;
+}
+</style>
