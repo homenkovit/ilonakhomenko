@@ -25,6 +25,10 @@ export const educationContent: Record<Lang, EducationContent> = {
 			"Сертификат ACT",
 			"Сертификат МАНП",
 			"Сертификат МАНП",
+			"Диплом о профессиональной переподготовке СПБ ИДПО — психолог-консультант",
+			"Диплом о профессиональной переподготовке СПБ ИДПО — приложение",
+			"Диплом о профессиональной переподготовке СПБ ИДПО — перечень дисциплин",
+			"Сертификат МАНП — Стратегии психологической помощи при аддикциях",
 		],
 	},
 	en: {
@@ -44,6 +48,10 @@ export const educationContent: Record<Lang, EducationContent> = {
 			"ACT certificate",
 			"MANP certificate",
 			"MANP certificate",
+			"Professional retraining diploma — SPb IDPO, psychologist-consultant",
+			"Professional retraining diploma — SPb IDPO, appendix",
+			"Professional retraining diploma — SPb IDPO, course list",
+			"MANP certificate — Strategies of psychological assistance for addictions",
 		],
 	},
 };
