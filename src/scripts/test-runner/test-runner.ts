@@ -13,6 +13,7 @@ export class TestRunner {
 	#scoringStrategy: ScoringStrategy;
 	#isInitialLoad = true;
 	#resultHeadingBaseText = "";
+	#questionOfTemplate = "{current} / {total}";
 
 	#questionText: HTMLElement;
 	#progressText: HTMLElement;
@@ -48,6 +49,8 @@ export class TestRunner {
 	constructor(containerElement: HTMLElement, testData: TestData) {
 		TestRunner.#validate(testData);
 		this.#testData = testData;
+		this.#questionOfTemplate =
+			containerElement.dataset.questionOfTemplate ?? this.#questionOfTemplate;
 		this.#stateManager = new TestStateManager(testData.id, () => {
 			document.getElementById("storage-error-notice")?.removeAttribute("hidden");
 		});
@@ -108,7 +111,9 @@ export class TestRunner {
 		const options = this.#getQuestionOptions(question);
 
 		this.#questionText.textContent = questionText;
-		this.#progressText.textContent = `Вопрос ${q + 1} из ${total}`;
+		this.#progressText.textContent = this.#questionOfTemplate
+			.replace("{current}", String(q + 1))
+			.replace("{total}", String(total));
 
 		this.#optionsContainer.innerHTML = "";
 		const selectedAnswer = this.#stateManager.answers[q];

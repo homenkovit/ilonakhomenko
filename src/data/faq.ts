@@ -15,7 +15,7 @@ export const faqItems: Record<Lang, FaqItem[]> = {
 		{
 			question: "Сколько длится первая встреча и как к ней подготовиться?",
 			answer:
-				"Первая встреча со мной длится 60 минут. Этого чаще всего хватает, чтобы у нас было достаточно пространства для знакомства, обсуждения вашего запроса и формата дальнейшей работы. Как-то специально готовиться не нужно — это не собеседование и не экзамен. Можно взять лист бумаги и ручку, если вам захочется что-то записать. На первой встрече мы знакомимся, обсуждаем, с чем вы пришли, я рассказываю, как может выглядеть наша дальнейшая работа, и вместе принимаем решение о продолжении сотрудничества. Стоимость первой встречи - 50 евро или 55 долларов.",
+				"Первая встреча со мной длится 60 минут. Этого чаще всего хватает, чтобы у нас было достаточно пространства для знакомства, обсуждения вашего запроса и формата дальнейшей работы. Как-то специально готовиться не нужно — это не собеседование и не экзамен. Можно взять лист бумаги и ручку, если вам захочется что-то записать. На первой встрече мы знакомимся, обсуждаем, с чем вы пришли, я рассказываю, как может выглядеть наша дальнейшая работа, и вместе принимаем решение о продолжении сотрудничества. Стоимость первой встречи - 60 евро.",
 		},
 		{
 			question: "Что будет на первой встрече? Не знаю, с чего начать",
@@ -42,7 +42,7 @@ export const faqItems: Record<Lang, FaqItem[]> = {
 		{
 			question: "How long is the first session and how should I prepare?",
 			answer:
-				"The first session lasts 60 minutes. This is usually enough for us so we can get to know each other, discuss your questions, and talk about how we’ll proceed from here. No special preparation is needed — it's not an interview or exam. You can use a pen and paper if you'd like to take notes. During our first session, we’ll get to know each other, discuss what brought you to me, I’ll explain what our future work might look like, and together we’ll decide whether to continue. The cost of the first session is €50 or $55.",
+				"The first session lasts 60 minutes. This is usually enough for us so we can get to know each other, discuss your questions, and talk about how we’ll proceed from here. No special preparation is needed — it's not an interview or exam. You can use a pen and paper if you'd like to take notes. During our first session, we’ll get to know each other, discuss what brought you to me, I’ll explain what our future work might look like, and together we’ll decide whether to continue. The cost of the first session is €60.",
 		},
 		{
 			question: "What happens in the first session? I don't know where to start",

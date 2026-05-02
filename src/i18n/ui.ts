@@ -57,8 +57,7 @@ export const ui = {
 		"page.help.description":
 			"Психологическая помощь онлайн: нейроотличия, адаптация в эмиграции, тревога, неуверенность, депрессия, эмоциональное выгорание, трудности в отношениях, горевание.",
 		"page.price.title": "Стоимость и формат работы",
-		"page.price.description":
-			"Стоимость онлайн-консультации психолога: первая встреча 90 мин — €50/$55, последующие 60 мин. Оплата в евро и долларах.",
+		"page.price.description": "Стоимость онлайн-консультации психолога: встреча 60 мин — €60.",
 		"page.articles.title": "Статьи о психологии",
 		"page.articles.description":
 			"Статьи психолога Илоны Хоменко: осознанность, эмоции, хроническая боль, выученная беспомощность и другие темы.",
@@ -89,6 +88,7 @@ export const ui = {
 		"tests.result": "Ваш результат:",
 		"tests.share": "Поделиться",
 		"tests.restart": "Пройти заново",
+		"tests.questionOf": "Вопрос {current} из {total}",
 		"tests.prev": "Назад",
 		"tests.next": "Вперёд",
 
@@ -197,8 +197,7 @@ export const ui = {
 		"page.help.description":
 			"Online psychological support: neurodivergence, emigration adjustment, anxiety, self-doubt, depression, burnout, relationship difficulties, grief.",
 		"page.price.title": "Pricing and format",
-		"page.price.description":
-			"Online psychological consultation cost: first session 90 min — €50/$55, subsequent sessions 60 min. Payment in euros and dollars.",
+		"page.price.description": "Online psychological consultation cost: session 60 min — €60.",
 		"page.articles.title": "Psychology articles",
 		"page.articles.description":
 			"Articles by psychologist Ilona Khomenko: mindfulness, emotions, chronic pain, learned helplessness and other topics.",
@@ -229,6 +228,7 @@ export const ui = {
 		"tests.result": "Your result:",
 		"tests.share": "Share",
 		"tests.restart": "Retake",
+		"tests.questionOf": "Question {current} of {total}",
 		"tests.prev": "Back",
 		"tests.next": "Next",
 
