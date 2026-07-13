@@ -16,9 +16,10 @@ const altPath = altPathOverride ?? getLocalizedPath(pathname, altLang);
 
 <a
 	href={altPath}
+	lang={altLang}
+	hreflang={altLang}
 	class="lang-switcher"
 	data-lang={altLang}
-	lang={altLang}
 	aria-label={t("lang.switchTo")}
 >
 	{t(`lang.${altLang}`)}
